@@ -1,6 +1,6 @@
 from __future__ import with_statement
 
-from fabric.api import env, cd, run, sudo
+from fabric.api import env, run, sudo, local
 from fabric.contrib.console import confirm
 from fabric.colors import cyan, red
 
@@ -63,3 +63,26 @@ def restart():
     """Restart the server."""
     if confirm(red('Are you sure that you want to restart the server?')):
         sudo('apache2ctl restart', pty=True)
+
+# Local tasks
+def clean():
+    """
+    Remove all .pyc files
+    """
+    local('find . -name "*.pyc" -exec rm {} \;')
+
+def debug():
+    """
+    Find files with debug symbols
+    """
+    clean()
+    local('grep -ir "print" *')
+    local('grep -ir "console.log" *')
+
+def todo():
+    """
+    Find all TODO and XXX
+    """
+    clean()
+    local('grep -ir "TODO" *')
+    local('grep -ir "XXX" *')
