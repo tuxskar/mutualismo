@@ -66,23 +66,17 @@ def restart():
 
 # Local tasks
 def clean():
-    """
-    Remove all .pyc files
-    """
+    """Remove all .pyc files."""
     local('find . -name "*.pyc" -exec rm {} \;')
 
 def debug():
-    """
-    Find files with debug symbols
-    """
+    """Find files with debug symbols."""
     clean()
     local('grep -ir "print" *')
     local('grep -ir "console.log" *')
 
 def todo():
-    """
-    Find all TODO and XXX
-    """
+    """Find all TODO and XXX."""
     clean()
     local('grep -ir "TODO" *')
     local('grep -ir "XXX" *')
