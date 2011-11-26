@@ -63,7 +63,7 @@ class Loan(Good):
 
 class Gift(Good):
     """
-    Represents a good that is gifted by his/her owner.
+    Represents a good that is gifted by its owner.
     """
     communal = models.BooleanField(_('communal'))
     
@@ -85,15 +85,22 @@ class Service(Trade):
         verbose_name_plural = _('services')
 
 
+class User(BaseUser):
+    """
+    Extends the ``django.contrib.auth.User`` class to store offers, demands, a
+    history of the exchanges and more suitable information.
+    """
+    offerings = models.ManyToManyField(Trade, related_name='offer')
+    demands   = models.ManyToManyField(Trade, related_name='demand')
+    location  = models.CharField(max_length=124)
+
+
 class Exchange(models.Model):
     """
     Represents an exchange between users.
     """
-    TYPE_CHOICES = (
-        (1, _('Give')),
-        (2, _('Receive')),
-    )
-    exchange_type = models.IntegerField(_('type'), choices=TYPE_CHOICES)
+    from_user     = models.ForeignKey(User, related_name='from')
+    to_user       = models.ForeignKey(User, related_name='to')
     trade         = models.ForeignKey(Trade)
     date          = models.DateTimeField(_('date'), default=datetime.datetime.now)
 
@@ -104,14 +111,3 @@ class Exchange(models.Model):
     def __unicode__(self):
         # TODO
         return 'exchange'
-
-
-class User(BaseUser):
-    """
-    Extends the ``django.contrib.auth.User`` class to store offers, demands, a
-    history of the exchanges and more suitable information.
-    """
-    offerings = models.ManyToManyField(Trade, related_name='offer')
-    demands   = models.ManyToManyField(Trade, related_name='demand')
-    history   = models.ManyToManyField(Exchange)
-    location  = models.CharField(max_length=124)
