@@ -1,5 +1,6 @@
 from os import path
 
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 BASE_DIR = path.normpath(path.dirname(__file__))
@@ -7,7 +8,7 @@ BASE_DIR = path.normpath(path.dirname(__file__))
 ADMINS = (
     ('Alejandro', 'alejandrogomez@gmail.com'),
     ('Esteban',   'fadoro@gmail.com'),
-    ('Oscar',     'tuxkar@gmail.com'),
+    ('Óscar',     'tuxskar@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -31,11 +32,11 @@ USE_I18N = True
 USE_L10N = True
 
 MEDIA_ROOT = path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media'
+MEDIA_URL  = '/media'
 
-STATIC_ROOT = ''
-STATIC_URL = '/static/'
-#ADMIN_MEDIA_PREFIX = '/media/admin/'
+STATIC_ROOT        = ''
+STATIC_URL         = '/static/'
+ADMIN_MEDIA_PREFIX = '/media/admin/'
 
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
