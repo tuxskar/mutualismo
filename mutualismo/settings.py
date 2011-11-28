@@ -1,3 +1,4 @@
+# coding=utf-8
 from os import path
 
 
@@ -81,6 +82,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'taggit',
     'red',
 )
 
