@@ -70,8 +70,8 @@ def restart():
 def svn():
     """Mirrors the current repository state with the svn repository."""
     local("git checkout svn")
-    local("git svn dcommit")
     local("git merge master")
+    local("git svn dcommit")
     local("git checkout master")
 
 # Local tasks
