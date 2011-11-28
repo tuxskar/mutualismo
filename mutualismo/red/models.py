@@ -37,31 +37,23 @@ class Trade(models.Model):
         return u'%s' % self.name
 
 
-class Good(Trade):
-    """
-    Represents a good that can be offered or demanded. 
-    """
-    # XXX should be mandatory for offers, N/A for demands
-    STATUS_CHOICES = (
-        (1, _('Available')),
-        (2, _('Not available')),
-    )
-    status = models.IntegerField(_('status'), choices=STATUS_CHOICES, default=1)
-
-
-class Loan(Good):
+class Loan(Trade):
     """
     Represents a good that is available for loan.
     """
-    # TODO we are discussing this
-    max_time = models.CharField(_('maximum time'), max_length=140)
+    STATUS_CHOICES = (
+        (1, _('Available')),
+        (2, _('Reserved')),
+        (3, _('Not available')),
+    )
+    status = models.IntegerField(_('status'), choices = STATUS_CHOICES, default = 1)
 
     class Meta:
         verbose_name = _('loan')
         verbose_name_plural = _('loans')
 
 
-class Gift(Good):
+class Gift(Trade):
     """
     Represents a good that is gifted by its owner.
     """
@@ -99,10 +91,10 @@ class Exchange(models.Model):
     """
     Represents an exchange between users.
     """
-    from_user     = models.ForeignKey(User, related_name='from')
-    to_user       = models.ForeignKey(User, related_name='to')
-    trade         = models.ForeignKey(Trade)
-    date          = models.DateTimeField(_('date'), default=datetime.datetime.now)
+    from_user = models.ForeignKey(User, related_name = 'from')
+    to_user   = models.ForeignKey(User, related_name = 'to')
+    trade     = models.ForeignKey(Trade)
+    date      = models.DateTimeField(_('date'), default = datetime.datetime.now)
 
     class Meta:
         verbose_name = _('exchange')
@@ -110,4 +102,4 @@ class Exchange(models.Model):
 
     def __unicode__(self):
         # TODO
-        return 'exchange'
+        return u'exchange'
