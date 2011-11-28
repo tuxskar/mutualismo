@@ -1,6 +1,6 @@
 from __future__ import with_statement
 
-from fabric.api import env, run, sudo, local
+from fabric.api import env, cd, run, sudo, local
 from fabric.contrib.console import confirm
 from fabric.colors import cyan, red
 
@@ -16,15 +16,17 @@ def _read_cmd(prompt=None):
         prompt = 'Command to run: '
     return raw_input(cyan(prompt)).strip()
 
-def cmd():
+def cmd(cmd=''):
     """"Run a command in ``path``. Usable from other commands or CLI."""
-    cmd = _read_cmd()
+    if not cmd:
+        cmd = _read_cmd()
     if cmd:
         run(cmd)
 
-def sdo():
+def sdo(cmd=''):
     """Sudo a command in ``path``. Usable from other commands or CLI."""
-    cmd = _read_cmd()
+    if not cmd:
+        cmd = _read_cmd()
     if cmd:
         sudo(cmd)
 
@@ -36,8 +38,9 @@ def trac(cmd=''):
     if not cmd:
         cmd = _read_cmd('Insert trac command: ')
     if cmd:
-        trac_admin_cmd = ' '.join(['trac-admin', env.forge_path, cmd]) 
-        sudo(trac_admin_cmd)  
+        with cd(env.forge_path):
+            trac_admin_cmd = ' '.join(['trac-admin . ', cmd]) 
+            sudo(trac_admin_cmd)  
 
 def aptitude():
     """"Execute an ``aptitude`` command. Usable from other commands or CLI."""
@@ -63,6 +66,13 @@ def restart():
     """Restart the server."""
     if confirm(red('Are you sure that you want to restart the server?')):
         sudo('apache2ctl restart', pty=True)
+
+def svn():
+    """Mirrors the current repository state with the svn repository."""
+    local("git checkout svn")
+    local("git svn dcommit")
+    local("git merge master")
+    local("git checkout master")
 
 # Local tasks
 def clean():
