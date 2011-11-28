@@ -1,8 +1,10 @@
+import datetime
+
 from django.contrib.auth.models import User as BaseUser
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from taggit.managers import TaggableManager
 
-import datetime
 
 
 class Category(models.Model):
@@ -31,7 +33,7 @@ class Trade(models.Model):
     description = models.TextField(_('description'))
     # XXX Are we going to allow uncategorized trades? 
     category    = models.ForeignKey(Category)
-    # TODO tags
+    tags        = TaggableManager()
 
     def __unicode__(self):
         return u'%s' % self.name
