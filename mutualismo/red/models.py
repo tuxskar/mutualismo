@@ -34,12 +34,35 @@ class Trade(models.Model):
     # XXX Are we going to allow uncategorized trades? 
     category    = models.ForeignKey(Category)
     tags        = TaggableManager()
+    # XXX For implementing the one (User) to many (Trade) relationship maybe we
+    #     should include a field with a Foreign Key to User instead of having
+    #     ManyToManyFields from User to Trade.
 
+    class Meta:
+        abstract = True
+        
     def __unicode__(self):
         return u'%s' % self.name
 
 
-class Loan(Trade):
+class TradeOffer(Trade):
+    pass
+
+
+class TradeDemand(Trade):
+    # XXX very provisional.
+    TYPE_CHOICE = (
+        (0, _('All')),
+        (1, _('Service')),
+        (2, _('Good for loan')),
+        (3, _('Good for gift')),
+        (4, _('Communal good')),
+    )
+    type_ = models.IntegerField(_('type'), choices = TYPE_CHOICE, default = 1)
+    # TODO field for specifying if the demand is still being required.
+
+
+class Loan(TradeOffer):
     """
     Represents a good that is available for loan.
     """
@@ -49,27 +72,37 @@ class Loan(Trade):
         (3, _('Not available')),
     )
     status = models.IntegerField(_('status'), choices = STATUS_CHOICES, default = 1)
+    # XXX: Are we going to specify time ranges for loans? Could be optional
 
     class Meta:
         verbose_name = _('loan')
         verbose_name_plural = _('loans')
 
 
-class Gift(Trade):
+class Gift(TradeOffer):
     """
     Represents a good that is gifted by its owner.
     """
-    communal = models.BooleanField(_('communal'))
-    
+    # XXX A gift can pass from non-communal to communal, but not the other way!
+    communal  = models.BooleanField(_('communal'))
+    available = models.BooleanField(_('available'))
+
     class Meta:
         verbose_name = _('gift')
         verbose_name_plural = _('gifts')
 
 
-class Service(Trade):
+class Service(TradeOffer):
     """
     Represents a service that can be offered or demanded.  
     """
+    # XXX This is a bit rudimentary, check the Django fields to find
+    #     a range of dates with more granularity. We want to be able to specify
+    #     the ranges of hours when the service is available in every single
+    #     day. 
+    #
+    #     If there are not suitable fields for this, check for 3rd party apps
+    #     that provide the wanted functionality.
     starts       = models.DateTimeField(_('start date'))
     ends         = models.DateTimeField(_('end date'))
     availability = models.TextField(_('availability'))
@@ -84,6 +117,8 @@ class User(BaseUser):
     Extends the ``django.contrib.auth.User`` class to store offers, demands, a
     history of the exchanges and more suitable information.
     """
+    # XXX offerings and demands are related to ONE user; the two relations are
+    #     are mutually exclusive.
     offerings = models.ManyToManyField(Trade, related_name='offer')
     demands   = models.ManyToManyField(Trade, related_name='demand')
     location  = models.CharField(max_length=124)
@@ -93,10 +128,12 @@ class Exchange(models.Model):
     """
     Represents an exchange between users.
     """
-    from_user = models.ForeignKey(User, related_name = 'from')
-    to_user   = models.ForeignKey(User, related_name = 'to')
-    trade     = models.ForeignKey(Trade)
-    date      = models.DateTimeField(_('date'), default = datetime.datetime.now)
+    # XXX We can discard the `from_user` field since that the `trade` field
+    #     contains a reference to its owner.
+    #from_user = models.ForeignKey(User, related_name = 'from')
+    to_user = models.ForeignKey(User, related_name = 'to')
+    trade   = models.ForeignKey(TradeOffer)
+    date    = models.DateTimeField(_('date'), default = datetime.datetime.now)
 
     class Meta:
         verbose_name = _('exchange')

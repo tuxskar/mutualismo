@@ -20,11 +20,11 @@ msgstr ""
 
 #: red/models.py:9 red/models.py:30
 msgid "name"
-msgstr ""
+msgstr "nombre"
 
 #: red/models.py:10 red/models.py:31
 msgid "description"
-msgstr ""
+msgstr "descripción"
 
 #: red/models.py:11
 msgid "slug"
