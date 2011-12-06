@@ -62,10 +62,10 @@ def resync_repos(repo=''):
         cmd  = ' '.join(['repository resync', repo])
         trac(cmd)
 
-def restart():
-    """Restart the server."""
-    if confirm(red('Are you sure that you want to restart the server?')):
-        sudo('apache2ctl restart', pty=True)
+def reload():
+    """Reload the server."""
+    if confirm(red('Are you sure that you want to reload the server?')):
+        sudo('nginx -s reload', pty=True)
 
 def svn():
     """Mirrors the current repository state with the svn repository."""
@@ -73,6 +73,10 @@ def svn():
     local("git merge master")
     local("git svn dcommit")
     local("git checkout master")
+
+def github():
+    """Mirrors the current repository state with the svn repository."""
+    local("git push -u github master")
 
 # Local tasks
 def clean():
