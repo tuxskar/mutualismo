@@ -58,7 +58,7 @@ class TradeDemand(Trade):
         (3, _('Good for gift')),
         (4, _('Communal good')),
     )
-    type_ = models.IntegerField(_('type'), choices = TYPE_CHOICE, default = 1)
+    trade_type = models.IntegerField(_('type'), choices = TYPE_CHOICE, default = 1)
     # TODO field for specifying if the demand is still being required.
 
 
@@ -119,8 +119,8 @@ class User(BaseUser):
     """
     # XXX offerings and demands are related to ONE user; the two relations are
     #     are mutually exclusive.
-    offerings = models.ManyToManyField(Trade, related_name='offer')
-    demands   = models.ManyToManyField(Trade, related_name='demand')
+    offerings = models.ManyToManyField(TradeOffer, related_name='offer')
+    demands   = models.ManyToManyField(TradeDemand, related_name='demand')
     location  = models.CharField(max_length=124)
 
 
