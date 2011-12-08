@@ -6,7 +6,6 @@ from django.utils.translation import ugettext_lazy as _
 from taggit.managers import TaggableManager
 
 
-
 class Category(models.Model):
     name        = models.CharField(_('name'), max_length=124)
     description = models.TextField(_('description'))
@@ -33,10 +32,11 @@ class Trade(models.Model):
     description = models.TextField(_('description'))
     # XXX Are we going to allow uncategorized trades? 
     category    = models.ForeignKey(Category)
-    tags        = TaggableManager()
     # XXX For implementing the one (User) to many (Trade) relationship maybe we
     #     should include a field with a Foreign Key to User instead of having
     #     ManyToManyFields from User to Trade.
+    owner       = models.ForeignKey(BaseUser)
+    tags        = TaggableManager()
 
     class Meta:
         abstract = True
@@ -46,7 +46,13 @@ class Trade(models.Model):
 
 
 class TradeOffer(Trade):
-    pass
+    """
+    Represents a trade that is offered by its owner.
+    """
+    # XXX Maybe we should include a field to control the trade's visibility.
+    #     This way, when the user gives it to somebody else or it's no longer
+    #     available can be 'erased' changing this field to False.
+    visible = models.BooleanField(_('visible'), default=True)
 
 
 class TradeDemand(Trade):
@@ -119,6 +125,7 @@ class User(BaseUser):
     """
     # XXX offerings and demands are related to ONE user; the two relations are
     #     are mutually exclusive.
+    # XXX avatar, self description, etc.
     offerings = models.ManyToManyField(TradeOffer, related_name='offer')
     demands   = models.ManyToManyField(TradeDemand, related_name='demand')
     location  = models.CharField(max_length=124)
@@ -131,9 +138,9 @@ class Exchange(models.Model):
     # XXX We can discard the `from_user` field since that the `trade` field
     #     contains a reference to its owner.
     #from_user = models.ForeignKey(User, related_name = 'from')
-    to_user = models.ForeignKey(User, related_name = 'to')
-    trade   = models.ForeignKey(TradeOffer)
-    date    = models.DateTimeField(_('date'), default = datetime.datetime.now)
+    trade = models.ForeignKey(TradeOffer)
+    to    = models.ForeignKey(User, related_name = 'to')
+    date  = models.DateTimeField(_('date'), default = datetime.datetime.now)
 
     class Meta:
         verbose_name = _('exchange')
