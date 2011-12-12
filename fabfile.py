@@ -1,5 +1,3 @@
-from __future__ import with_statement
-
 from fabric.api import env, cd, run, sudo, local
 from fabric.contrib.console import confirm
 from fabric.colors import cyan, red
@@ -16,15 +14,24 @@ def _read_cmd(prompt=None):
         prompt = 'Command to run: '
     return raw_input(cyan(prompt)).strip()
 
+def _read_args(cmd=None):
+    if cmd is None:
+        cmd = _read_cmd()
+    if cmd:
+        args = _read_cmd('Arguments for %s: ' %cmd)
+
+    if cmd and args:
+        return ' '.join([cmd, args])
+
 def cmd(cmd=''):
-    """"Run a command in ``path``. Usable from other commands or CLI."""
+    """"Run a command. Usable from other commands or CLI."""
     if not cmd:
         cmd = _read_cmd()
     if cmd:
         run(cmd)
 
 def sdo(cmd=''):
-    """Sudo a command in ``path``. Usable from other commands or CLI."""
+    """Sudo a command. Usable from other commands or CLI."""
     if not cmd:
         cmd = _read_cmd()
     if cmd:
@@ -44,17 +51,15 @@ def trac(cmd=''):
 
 def aptitude():
     """"Execute an ``aptitude`` command. Usable from other commands or CLI."""
-    cmd = _read_cmd('Insert an aptitude command: ')
+    cmd = _read_args('aptitude')
     if cmd:
-        aptitude = ' '.join(['aptitude', cmd])
-        run(aptitude)
+        sudo(cmd)
 
 def apt_get():
     """"Execute an ``apt-get`` command. Usable from other commands or CLI."""
-    cmd = _read_cmd('Insert an apt-get command: ')
+    cmd = _read_args('apt-get')
     if cmd:
-        apt_get_cmd = ' '.join(['apt-get', cmd])
-        sudo(apt_get_cmd)
+        sudo(cmd)
 
 def resync_repos(repo=''):
     """Resyncs repos with Trac."""
