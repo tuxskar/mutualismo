@@ -75,7 +75,12 @@ def reload():
 def svn():
     """Mirrors the current repository state with the svn repository."""
     local("git checkout svn")
+    print '>> Fetching latest changes on the svn repo'
+    local("git svn fetch")
+    local("git svn rebase")
+    print '>> Merging svn repo with master branch'
     local("git merge master")
+    print '>> Comitting to svn repo'
     local("git svn dcommit")
     local("git checkout master")
 
