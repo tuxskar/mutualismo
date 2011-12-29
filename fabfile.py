@@ -67,10 +67,16 @@ def resync_repos(repo=''):
         cmd  = ' '.join(['repository resync', repo])
         trac(cmd)
 
-def reload():
+def reload_nginx():
     """Reload the server."""
     if confirm(red('Are you sure that you want to reload the server?')):
         sudo('nginx -s reload', pty=True)
+
+def reload_tracd():
+    """Reload Trac server."""
+    if confirm(red('Are you sure that you want to reload the server?')):
+        sudo('kill -9 `cat /var/run/tracd/tracd.pid`', pty=True)
+        sudo('invoke-rc.d tracd start')
 
 def svn():
     """Mirrors the current repository state with the svn repository."""
