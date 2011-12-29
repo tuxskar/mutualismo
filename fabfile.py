@@ -66,6 +66,7 @@ def resync_repos(repo=''):
     for repo in env.repositories:
         cmd  = ' '.join(['repository resync', repo])
         trac(cmd)
+        reload_tracd()
 
 def reload_nginx():
     """Reload the server."""
