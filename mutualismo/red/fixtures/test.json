@@ -1,0 +1,1130 @@
+[
+    {
+        "fields": {
+            "app_label": "taggit", 
+            "model": "tag", 
+            "name": "Tag"
+        }, 
+        "model": "contenttypes.contenttype", 
+        "pk": 9
+    }, 
+    {
+        "fields": {
+            "app_label": "taggit", 
+            "model": "taggeditem", 
+            "name": "Tagged Item"
+        }, 
+        "model": "contenttypes.contenttype", 
+        "pk": 10
+    }, 
+    {
+        "fields": {
+            "app_label": "contenttypes", 
+            "model": "contenttype", 
+            "name": "content type"
+        }, 
+        "model": "contenttypes.contenttype", 
+        "pk": 5
+    }, 
+    {
+        "fields": {
+            "app_label": "red", 
+            "model": "demand", 
+            "name": "demand"
+        }, 
+        "model": "contenttypes.contenttype", 
+        "pk": 12
+    }, 
+    {
+        "fields": {
+            "app_label": "red", 
+            "model": "exchange", 
+            "name": "exchange"
+        }, 
+        "model": "contenttypes.contenttype", 
+        "pk": 17
+    }, 
+    {
+        "fields": {
+            "app_label": "red", 
+            "model": "gift", 
+            "name": "gift"
+        }, 
+        "model": "contenttypes.contenttype", 
+        "pk": 14
+    }, 
+    {
+        "fields": {
+            "app_label": "auth", 
+            "model": "group", 
+            "name": "group"
+        }, 
+        "model": "contenttypes.contenttype", 
+        "pk": 2
+    }, 
+    {
+        "fields": {
+            "app_label": "red", 
+            "model": "loan", 
+            "name": "loan"
+        }, 
+        "model": "contenttypes.contenttype", 
+        "pk": 13
+    }, 
+    {
+        "fields": {
+            "app_label": "admin", 
+            "model": "logentry", 
+            "name": "log entry"
+        }, 
+        "model": "contenttypes.contenttype", 
+        "pk": 8
+    }, 
+    {
+        "fields": {
+            "app_label": "auth", 
+            "model": "message", 
+            "name": "message"
+        }, 
+        "model": "contenttypes.contenttype", 
+        "pk": 4
+    }, 
+    {
+        "fields": {
+            "app_label": "red", 
+            "model": "offer", 
+            "name": "offer"
+        }, 
+        "model": "contenttypes.contenttype", 
+        "pk": 11
+    }, 
+    {
+        "fields": {
+            "app_label": "auth", 
+            "model": "permission", 
+            "name": "permission"
+        }, 
+        "model": "contenttypes.contenttype", 
+        "pk": 1
+    }, 
+    {
+        "fields": {
+            "app_label": "red", 
+            "model": "service", 
+            "name": "service"
+        }, 
+        "model": "contenttypes.contenttype", 
+        "pk": 15
+    }, 
+    {
+        "fields": {
+            "app_label": "sessions", 
+            "model": "session", 
+            "name": "session"
+        }, 
+        "model": "contenttypes.contenttype", 
+        "pk": 6
+    }, 
+    {
+        "fields": {
+            "app_label": "sites", 
+            "model": "site", 
+            "name": "site"
+        }, 
+        "model": "contenttypes.contenttype", 
+        "pk": 7
+    }, 
+    {
+        "fields": {
+            "app_label": "auth", 
+            "model": "user", 
+            "name": "user"
+        }, 
+        "model": "contenttypes.contenttype", 
+        "pk": 3
+    }, 
+    {
+        "fields": {
+            "app_label": "red", 
+            "model": "user", 
+            "name": "user"
+        }, 
+        "model": "contenttypes.contenttype", 
+        "pk": 16
+    }, 
+    {
+        "fields": {
+            "expire_date": "2012-01-30 22:55:29", 
+            "session_data": "MjFlNWVmY2VkMjMzZTNiNjhhNGUxYTcxMjNjMWNmNjVlYzM5MWM2NjqAAn1xAVUKdGVzdGNvb2tp\nZXECVQZ3b3JrZWRxA3Mu\n"
+        }, 
+        "model": "sessions.session", 
+        "pk": "4c5aa7482c7c9ca9f7373ffc5df32ac8"
+    }, 
+    {
+        "fields": {
+            "domain": "example.com", 
+            "name": "example.com"
+        }, 
+        "model": "sites.site", 
+        "pk": 1
+    }, 
+    {
+        "fields": {
+            "name": "inform\u00e1tica", 
+            "slug": "informatica"
+        }, 
+        "model": "taggit.tag", 
+        "pk": 1
+    }, 
+    {
+        "fields": {
+            "name": "linux", 
+            "slug": "linux"
+        }, 
+        "model": "taggit.tag", 
+        "pk": 2
+    }, 
+    {
+        "fields": {
+            "name": "vestido", 
+            "slug": "vestido"
+        }, 
+        "model": "taggit.tag", 
+        "pk": 3
+    }, 
+    {
+        "fields": {
+            "name": "juego de tronos", 
+            "slug": "juego-de-tronos"
+        }, 
+        "model": "taggit.tag", 
+        "pk": 4
+    }, 
+    {
+        "fields": {
+            "name": "libro", 
+            "slug": "libro"
+        }, 
+        "model": "taggit.tag", 
+        "pk": 5
+    }, 
+    {
+        "fields": {
+            "name": "ingl\u00e9s", 
+            "slug": "ingles"
+        }, 
+        "model": "taggit.tag", 
+        "pk": 6
+    }, 
+    {
+        "fields": {
+            "name": "english", 
+            "slug": "english"
+        }, 
+        "model": "taggit.tag", 
+        "pk": 7
+    }, 
+    {
+        "fields": {
+            "name": "clases", 
+            "slug": "clases"
+        }, 
+        "model": "taggit.tag", 
+        "pk": 8
+    }, 
+    {
+        "fields": {
+            "name": "lavadora", 
+            "slug": "lavadora"
+        }, 
+        "model": "taggit.tag", 
+        "pk": 9
+    }, 
+    {
+        "fields": {
+            "name": "ropa", 
+            "slug": "ropa"
+        }, 
+        "model": "taggit.tag", 
+        "pk": 10
+    }, 
+    {
+        "fields": {
+            "name": "coche", 
+            "slug": "coche"
+        }, 
+        "model": "taggit.tag", 
+        "pk": 11
+    }, 
+    {
+        "fields": {
+            "name": "divorcio", 
+            "slug": "divorcio"
+        }, 
+        "model": "taggit.tag", 
+        "pk": 12
+    }, 
+    {
+        "fields": {
+            "name": "matrimonio", 
+            "slug": "matrimonio"
+        }, 
+        "model": "taggit.tag", 
+        "pk": 13
+    }, 
+    {
+        "fields": {
+            "name": "ruina", 
+            "slug": "ruina"
+        }, 
+        "model": "taggit.tag", 
+        "pk": 14
+    }, 
+    {
+        "fields": {
+            "name": "palomitas", 
+            "slug": "palomitas"
+        }, 
+        "model": "taggit.tag", 
+        "pk": 15
+    }, 
+    {
+        "fields": {
+            "name": "microondas", 
+            "slug": "microondas"
+        }, 
+        "model": "taggit.tag", 
+        "pk": 16
+    }, 
+    {
+        "fields": {
+            "content_type": 11, 
+            "object_id": 1, 
+            "tag": 1
+        }, 
+        "model": "taggit.taggeditem", 
+        "pk": 1
+    }, 
+    {
+        "fields": {
+            "content_type": 11, 
+            "object_id": 1, 
+            "tag": 2
+        }, 
+        "model": "taggit.taggeditem", 
+        "pk": 2
+    }, 
+    {
+        "fields": {
+            "content_type": 12, 
+            "object_id": 1, 
+            "tag": 3
+        }, 
+        "model": "taggit.taggeditem", 
+        "pk": 3
+    }, 
+    {
+        "fields": {
+            "content_type": 13, 
+            "object_id": 2, 
+            "tag": 4
+        }, 
+        "model": "taggit.taggeditem", 
+        "pk": 4
+    }, 
+    {
+        "fields": {
+            "content_type": 13, 
+            "object_id": 2, 
+            "tag": 5
+        }, 
+        "model": "taggit.taggeditem", 
+        "pk": 5
+    }, 
+    {
+        "fields": {
+            "content_type": 12, 
+            "object_id": 2, 
+            "tag": 8
+        }, 
+        "model": "taggit.taggeditem", 
+        "pk": 6
+    }, 
+    {
+        "fields": {
+            "content_type": 12, 
+            "object_id": 2, 
+            "tag": 6
+        }, 
+        "model": "taggit.taggeditem", 
+        "pk": 7
+    }, 
+    {
+        "fields": {
+            "content_type": 12, 
+            "object_id": 2, 
+            "tag": 7
+        }, 
+        "model": "taggit.taggeditem", 
+        "pk": 8
+    }, 
+    {
+        "fields": {
+            "content_type": 14, 
+            "object_id": 3, 
+            "tag": 9
+        }, 
+        "model": "taggit.taggeditem", 
+        "pk": 9
+    }, 
+    {
+        "fields": {
+            "content_type": 14, 
+            "object_id": 3, 
+            "tag": 10
+        }, 
+        "model": "taggit.taggeditem", 
+        "pk": 10
+    }, 
+    {
+        "fields": {
+            "content_type": 12, 
+            "object_id": 3, 
+            "tag": 11
+        }, 
+        "model": "taggit.taggeditem", 
+        "pk": 11
+    }, 
+    {
+        "fields": {
+            "content_type": 14, 
+            "object_id": 4, 
+            "tag": 3
+        }, 
+        "model": "taggit.taggeditem", 
+        "pk": 12
+    }, 
+    {
+        "fields": {
+            "content_type": 14, 
+            "object_id": 4, 
+            "tag": 12
+        }, 
+        "model": "taggit.taggeditem", 
+        "pk": 13
+    }, 
+    {
+        "fields": {
+            "content_type": 14, 
+            "object_id": 4, 
+            "tag": 13
+        }, 
+        "model": "taggit.taggeditem", 
+        "pk": 14
+    }, 
+    {
+        "fields": {
+            "content_type": 14, 
+            "object_id": 4, 
+            "tag": 14
+        }, 
+        "model": "taggit.taggeditem", 
+        "pk": 15
+    }, 
+    {
+        "fields": {
+            "content_type": 12, 
+            "object_id": 4, 
+            "tag": 16
+        }, 
+        "model": "taggit.taggeditem", 
+        "pk": 16
+    }, 
+    {
+        "fields": {
+            "content_type": 12, 
+            "object_id": 4, 
+            "tag": 15
+        }, 
+        "model": "taggit.taggeditem", 
+        "pk": 17
+    }, 
+    {
+        "fields": {
+            "description": "Puedo instalar Linux en tu ordenador y cambiarte la vida", 
+            "name": "Instalaci\u00f3n de GNU/Linux", 
+            "owner": 1, 
+            "visible": true
+        }, 
+        "model": "red.offer", 
+        "pk": 1
+    }, 
+    {
+        "fields": {
+            "description": "El segundo libro de la saga Juego de Tronos, tapa dura.", 
+            "name": "Juego de Tronos 2", 
+            "owner": 2, 
+            "visible": true
+        }, 
+        "model": "red.offer", 
+        "pk": 2
+    }, 
+    {
+        "fields": {
+            "description": "Para tener la ropa bien limpita.", 
+            "name": "Lavadora", 
+            "owner": 3, 
+            "visible": true
+        }, 
+        "model": "red.offer", 
+        "pk": 3
+    }, 
+    {
+        "fields": {
+            "description": "El vestido de novia de mi abuela, 100 a\u00f1os y cuatro bodas ha visto pasar.", 
+            "name": "Vestido de novia", 
+            "owner": 4, 
+            "visible": true
+        }, 
+        "model": "red.offer", 
+        "pk": 4
+    }, 
+    {
+        "fields": {
+            "description": "Necesito un vestido, para una amiga.", 
+            "name": "Vestido", 
+            "owner": 1, 
+            "trade_type": 3
+        }, 
+        "model": "red.demand", 
+        "pk": 1
+    }, 
+    {
+        "fields": {
+            "description": "Necesito hablar la lengua de Shakespeare", 
+            "name": "Clases de ingl\u00e9s", 
+            "owner": 2, 
+            "trade_type": 2
+        }, 
+        "model": "red.demand", 
+        "pk": 2
+    }, 
+    {
+        "fields": {
+            "description": "Necesito un utilitario para ir a comprar muebles a Ikea.", 
+            "name": "Coche", 
+            "owner": 3, 
+            "trade_type": 1
+        }, 
+        "model": "red.demand", 
+        "pk": 3
+    }, 
+    {
+        "fields": {
+            "description": "Me gustan mucho las palomitas pero no tengo microondas.", 
+            "name": "Microondas", 
+            "owner": 4, 
+            "trade_type": 4
+        }, 
+        "model": "red.demand", 
+        "pk": 4
+    }, 
+    {
+        "fields": {
+            "status": 1
+        }, 
+        "model": "red.loan", 
+        "pk": 2
+    }, 
+    {
+        "fields": {
+            "available": true, 
+            "communal": false
+        }, 
+        "model": "red.gift", 
+        "pk": 3
+    }, 
+    {
+        "fields": {
+            "available": true, 
+            "communal": true
+        }, 
+        "model": "red.gift", 
+        "pk": 4
+    }, 
+    {
+        "fields": {
+            "codename": "add_logentry", 
+            "content_type": 8, 
+            "name": "Can add log entry"
+        }, 
+        "model": "auth.permission", 
+        "pk": 22
+    }, 
+    {
+        "fields": {
+            "codename": "change_logentry", 
+            "content_type": 8, 
+            "name": "Can change log entry"
+        }, 
+        "model": "auth.permission", 
+        "pk": 23
+    }, 
+    {
+        "fields": {
+            "codename": "delete_logentry", 
+            "content_type": 8, 
+            "name": "Can delete log entry"
+        }, 
+        "model": "auth.permission", 
+        "pk": 24
+    }, 
+    {
+        "fields": {
+            "codename": "add_group", 
+            "content_type": 2, 
+            "name": "Can add group"
+        }, 
+        "model": "auth.permission", 
+        "pk": 4
+    }, 
+    {
+        "fields": {
+            "codename": "change_group", 
+            "content_type": 2, 
+            "name": "Can change group"
+        }, 
+        "model": "auth.permission", 
+        "pk": 5
+    }, 
+    {
+        "fields": {
+            "codename": "delete_group", 
+            "content_type": 2, 
+            "name": "Can delete group"
+        }, 
+        "model": "auth.permission", 
+        "pk": 6
+    }, 
+    {
+        "fields": {
+            "codename": "add_message", 
+            "content_type": 4, 
+            "name": "Can add message"
+        }, 
+        "model": "auth.permission", 
+        "pk": 10
+    }, 
+    {
+        "fields": {
+            "codename": "change_message", 
+            "content_type": 4, 
+            "name": "Can change message"
+        }, 
+        "model": "auth.permission", 
+        "pk": 11
+    }, 
+    {
+        "fields": {
+            "codename": "delete_message", 
+            "content_type": 4, 
+            "name": "Can delete message"
+        }, 
+        "model": "auth.permission", 
+        "pk": 12
+    }, 
+    {
+        "fields": {
+            "codename": "add_permission", 
+            "content_type": 1, 
+            "name": "Can add permission"
+        }, 
+        "model": "auth.permission", 
+        "pk": 1
+    }, 
+    {
+        "fields": {
+            "codename": "change_permission", 
+            "content_type": 1, 
+            "name": "Can change permission"
+        }, 
+        "model": "auth.permission", 
+        "pk": 2
+    }, 
+    {
+        "fields": {
+            "codename": "delete_permission", 
+            "content_type": 1, 
+            "name": "Can delete permission"
+        }, 
+        "model": "auth.permission", 
+        "pk": 3
+    }, 
+    {
+        "fields": {
+            "codename": "add_user", 
+            "content_type": 3, 
+            "name": "Can add user"
+        }, 
+        "model": "auth.permission", 
+        "pk": 7
+    }, 
+    {
+        "fields": {
+            "codename": "change_user", 
+            "content_type": 3, 
+            "name": "Can change user"
+        }, 
+        "model": "auth.permission", 
+        "pk": 8
+    }, 
+    {
+        "fields": {
+            "codename": "delete_user", 
+            "content_type": 3, 
+            "name": "Can delete user"
+        }, 
+        "model": "auth.permission", 
+        "pk": 9
+    }, 
+    {
+        "fields": {
+            "codename": "add_contenttype", 
+            "content_type": 5, 
+            "name": "Can add content type"
+        }, 
+        "model": "auth.permission", 
+        "pk": 13
+    }, 
+    {
+        "fields": {
+            "codename": "change_contenttype", 
+            "content_type": 5, 
+            "name": "Can change content type"
+        }, 
+        "model": "auth.permission", 
+        "pk": 14
+    }, 
+    {
+        "fields": {
+            "codename": "delete_contenttype", 
+            "content_type": 5, 
+            "name": "Can delete content type"
+        }, 
+        "model": "auth.permission", 
+        "pk": 15
+    }, 
+    {
+        "fields": {
+            "codename": "add_demand", 
+            "content_type": 12, 
+            "name": "Can add demand"
+        }, 
+        "model": "auth.permission", 
+        "pk": 34
+    }, 
+    {
+        "fields": {
+            "codename": "change_demand", 
+            "content_type": 12, 
+            "name": "Can change demand"
+        }, 
+        "model": "auth.permission", 
+        "pk": 35
+    }, 
+    {
+        "fields": {
+            "codename": "delete_demand", 
+            "content_type": 12, 
+            "name": "Can delete demand"
+        }, 
+        "model": "auth.permission", 
+        "pk": 36
+    }, 
+    {
+        "fields": {
+            "codename": "add_exchange", 
+            "content_type": 17, 
+            "name": "Can add exchange"
+        }, 
+        "model": "auth.permission", 
+        "pk": 49
+    }, 
+    {
+        "fields": {
+            "codename": "change_exchange", 
+            "content_type": 17, 
+            "name": "Can change exchange"
+        }, 
+        "model": "auth.permission", 
+        "pk": 50
+    }, 
+    {
+        "fields": {
+            "codename": "delete_exchange", 
+            "content_type": 17, 
+            "name": "Can delete exchange"
+        }, 
+        "model": "auth.permission", 
+        "pk": 51
+    }, 
+    {
+        "fields": {
+            "codename": "add_gift", 
+            "content_type": 14, 
+            "name": "Can add gift"
+        }, 
+        "model": "auth.permission", 
+        "pk": 40
+    }, 
+    {
+        "fields": {
+            "codename": "change_gift", 
+            "content_type": 14, 
+            "name": "Can change gift"
+        }, 
+        "model": "auth.permission", 
+        "pk": 41
+    }, 
+    {
+        "fields": {
+            "codename": "delete_gift", 
+            "content_type": 14, 
+            "name": "Can delete gift"
+        }, 
+        "model": "auth.permission", 
+        "pk": 42
+    }, 
+    {
+        "fields": {
+            "codename": "add_loan", 
+            "content_type": 13, 
+            "name": "Can add loan"
+        }, 
+        "model": "auth.permission", 
+        "pk": 37
+    }, 
+    {
+        "fields": {
+            "codename": "change_loan", 
+            "content_type": 13, 
+            "name": "Can change loan"
+        }, 
+        "model": "auth.permission", 
+        "pk": 38
+    }, 
+    {
+        "fields": {
+            "codename": "delete_loan", 
+            "content_type": 13, 
+            "name": "Can delete loan"
+        }, 
+        "model": "auth.permission", 
+        "pk": 39
+    }, 
+    {
+        "fields": {
+            "codename": "add_offer", 
+            "content_type": 11, 
+            "name": "Can add offer"
+        }, 
+        "model": "auth.permission", 
+        "pk": 31
+    }, 
+    {
+        "fields": {
+            "codename": "change_offer", 
+            "content_type": 11, 
+            "name": "Can change offer"
+        }, 
+        "model": "auth.permission", 
+        "pk": 32
+    }, 
+    {
+        "fields": {
+            "codename": "delete_offer", 
+            "content_type": 11, 
+            "name": "Can delete offer"
+        }, 
+        "model": "auth.permission", 
+        "pk": 33
+    }, 
+    {
+        "fields": {
+            "codename": "add_service", 
+            "content_type": 15, 
+            "name": "Can add service"
+        }, 
+        "model": "auth.permission", 
+        "pk": 43
+    }, 
+    {
+        "fields": {
+            "codename": "change_service", 
+            "content_type": 15, 
+            "name": "Can change service"
+        }, 
+        "model": "auth.permission", 
+        "pk": 44
+    }, 
+    {
+        "fields": {
+            "codename": "delete_service", 
+            "content_type": 15, 
+            "name": "Can delete service"
+        }, 
+        "model": "auth.permission", 
+        "pk": 45
+    }, 
+    {
+        "fields": {
+            "codename": "add_user", 
+            "content_type": 16, 
+            "name": "Can add user"
+        }, 
+        "model": "auth.permission", 
+        "pk": 46
+    }, 
+    {
+        "fields": {
+            "codename": "change_user", 
+            "content_type": 16, 
+            "name": "Can change user"
+        }, 
+        "model": "auth.permission", 
+        "pk": 47
+    }, 
+    {
+        "fields": {
+            "codename": "delete_user", 
+            "content_type": 16, 
+            "name": "Can delete user"
+        }, 
+        "model": "auth.permission", 
+        "pk": 48
+    }, 
+    {
+        "fields": {
+            "codename": "add_session", 
+            "content_type": 6, 
+            "name": "Can add session"
+        }, 
+        "model": "auth.permission", 
+        "pk": 16
+    }, 
+    {
+        "fields": {
+            "codename": "change_session", 
+            "content_type": 6, 
+            "name": "Can change session"
+        }, 
+        "model": "auth.permission", 
+        "pk": 17
+    }, 
+    {
+        "fields": {
+            "codename": "delete_session", 
+            "content_type": 6, 
+            "name": "Can delete session"
+        }, 
+        "model": "auth.permission", 
+        "pk": 18
+    }, 
+    {
+        "fields": {
+            "codename": "add_site", 
+            "content_type": 7, 
+            "name": "Can add site"
+        }, 
+        "model": "auth.permission", 
+        "pk": 19
+    }, 
+    {
+        "fields": {
+            "codename": "change_site", 
+            "content_type": 7, 
+            "name": "Can change site"
+        }, 
+        "model": "auth.permission", 
+        "pk": 20
+    }, 
+    {
+        "fields": {
+            "codename": "delete_site", 
+            "content_type": 7, 
+            "name": "Can delete site"
+        }, 
+        "model": "auth.permission", 
+        "pk": 21
+    }, 
+    {
+        "fields": {
+            "codename": "add_tag", 
+            "content_type": 9, 
+            "name": "Can add Tag"
+        }, 
+        "model": "auth.permission", 
+        "pk": 25
+    }, 
+    {
+        "fields": {
+            "codename": "change_tag", 
+            "content_type": 9, 
+            "name": "Can change Tag"
+        }, 
+        "model": "auth.permission", 
+        "pk": 26
+    }, 
+    {
+        "fields": {
+            "codename": "delete_tag", 
+            "content_type": 9, 
+            "name": "Can delete Tag"
+        }, 
+        "model": "auth.permission", 
+        "pk": 27
+    }, 
+    {
+        "fields": {
+            "codename": "add_taggeditem", 
+            "content_type": 10, 
+            "name": "Can add Tagged Item"
+        }, 
+        "model": "auth.permission", 
+        "pk": 28
+    }, 
+    {
+        "fields": {
+            "codename": "change_taggeditem", 
+            "content_type": 10, 
+            "name": "Can change Tagged Item"
+        }, 
+        "model": "auth.permission", 
+        "pk": 29
+    }, 
+    {
+        "fields": {
+            "codename": "delete_taggeditem", 
+            "content_type": 10, 
+            "name": "Can delete Tagged Item"
+        }, 
+        "model": "auth.permission", 
+        "pk": 30
+    }, 
+    {
+        "fields": {
+            "date_joined": "2012-01-16 22:59:35", 
+            "email": "alice@mutualismo.es", 
+            "first_name": "Alice", 
+            "groups": [], 
+            "is_active": true, 
+            "is_staff": false, 
+            "is_superuser": false, 
+            "last_login": "2012-01-16 22:59:35", 
+            "last_name": "", 
+            "password": "", 
+            "user_permissions": [], 
+            "username": "Alice"
+        }, 
+        "model": "auth.user", 
+        "pk": 1
+    }, 
+    {
+        "fields": {
+            "date_joined": "2012-01-16 23:00:03", 
+            "email": "bob@mutualismo.es", 
+            "first_name": "Bob", 
+            "groups": [], 
+            "is_active": true, 
+            "is_staff": false, 
+            "is_superuser": false, 
+            "last_login": "2012-01-16 23:00:03", 
+            "last_name": "", 
+            "password": "", 
+            "user_permissions": [], 
+            "username": "bob"
+        }, 
+        "model": "auth.user", 
+        "pk": 2
+    }, 
+    {
+        "fields": {
+            "date_joined": "2012-01-16 23:00:40", 
+            "email": "herman@mutualismo.es", 
+            "first_name": "Herman", 
+            "groups": [], 
+            "is_active": true, 
+            "is_staff": false, 
+            "is_superuser": false, 
+            "last_login": "2012-01-16 23:00:40", 
+            "last_name": "", 
+            "password": "", 
+            "user_permissions": [], 
+            "username": "herman"
+        }, 
+        "model": "auth.user", 
+        "pk": 3
+    }, 
+    {
+        "fields": {
+            "date_joined": "2012-01-16 23:01:09", 
+            "email": "beatrice@mutualismo.es", 
+            "first_name": "Beatrice", 
+            "groups": [], 
+            "is_active": true, 
+            "is_staff": false, 
+            "is_superuser": false, 
+            "last_login": "2012-01-16 23:01:09", 
+            "last_name": "", 
+            "password": "", 
+            "user_permissions": [], 
+            "username": "beatrice"
+        }, 
+        "model": "auth.user", 
+        "pk": 4
+    }, 
+    {
+        "fields": {
+            "demands": [], 
+            "groups": [], 
+            "location": "", 
+            "offerings": [], 
+            "user_permissions": []
+        }, 
+        "model": "red.user", 
+        "pk": 1
+    }, 
+    {
+        "fields": {
+            "demands": [], 
+            "groups": [], 
+            "location": "", 
+            "offerings": [], 
+            "user_permissions": []
+        }, 
+        "model": "red.user", 
+        "pk": 2
+    }, 
+    {
+        "fields": {
+            "demands": [], 
+            "groups": [], 
+            "location": "", 
+            "offerings": [], 
+            "user_permissions": []
+        }, 
+        "model": "red.user", 
+        "pk": 3
+    }, 
+    {
+        "fields": {
+            "demands": [], 
+            "groups": [], 
+            "location": "", 
+            "offerings": [], 
+            "user_permissions": []
+        }, 
+        "model": "red.user", 
+        "pk": 4
+    }
+]
