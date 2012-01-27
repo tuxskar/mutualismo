@@ -45,7 +45,7 @@ class Trade(models.Model):
         return u'%s' % self.name
 
 
-class TradeOffer(Trade):
+class Offer(Trade):
     """
     Represents a trade that is offered by its owner.
     """
@@ -55,7 +55,7 @@ class TradeOffer(Trade):
     visible = models.BooleanField(_('visible'), default=True)
 
 
-class TradeDemand(Trade):
+class Demand(Trade):
     # XXX very provisional.
     TYPE_CHOICE = (
         (0, _('All')),
@@ -68,7 +68,7 @@ class TradeDemand(Trade):
     # TODO field for specifying if the demand is still being required.
 
 
-class Loan(TradeOffer):
+class Loan(Offer):
     """
     Represents a good that is available for loan.
     """
@@ -85,7 +85,7 @@ class Loan(TradeOffer):
         verbose_name_plural = _('loans')
 
 
-class Gift(TradeOffer):
+class Gift(Offer):
     """
     Represents a good that is gifted by its owner.
     """
@@ -98,7 +98,7 @@ class Gift(TradeOffer):
         verbose_name_plural = _('gifts')
 
 
-class Service(TradeOffer):
+class Service(Offer):
     """
     Represents a service that can be offered or demanded.  
     """
@@ -126,8 +126,8 @@ class User(BaseUser):
     # XXX offerings and demands are related to ONE user; the two relations are
     #     are mutually exclusive.
     # XXX avatar, self description, etc.
-    offerings = models.ManyToManyField(TradeOffer, related_name='offer')
-    demands   = models.ManyToManyField(TradeDemand, related_name='demand')
+    offerings = models.ManyToManyField(Offer, related_name='offer')
+    demands   = models.ManyToManyField(Demand, related_name='demand')
     location  = models.CharField(max_length=124)
 
 
@@ -138,7 +138,7 @@ class Exchange(models.Model):
     # XXX We can discard the `from_user` field since that the `trade` field
     #     contains a reference to its owner.
     #from_user = models.ForeignKey(User, related_name = 'from')
-    trade = models.ForeignKey(TradeOffer)
+    trade = models.ForeignKey(Offer)
     to    = models.ForeignKey(User, related_name = 'to')
     date  = models.DateTimeField(_('date'), default = datetime.datetime.now)
 
