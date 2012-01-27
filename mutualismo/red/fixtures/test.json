@@ -1,1130 +1,1387 @@
 [
     {
+        "pk": 9,
+        "model": "contenttypes.contenttype",
         "fields": {
-            "app_label": "taggit", 
-            "model": "tag", 
-            "name": "Tag"
-        }, 
-        "model": "contenttypes.contenttype", 
-        "pk": 9
-    }, 
+            "model": "tag",
+            "name": "Tag",
+            "app_label": "taggit"
+        }
+    },
     {
+        "pk": 10,
+        "model": "contenttypes.contenttype",
         "fields": {
-            "app_label": "taggit", 
-            "model": "taggeditem", 
-            "name": "Tagged Item"
-        }, 
-        "model": "contenttypes.contenttype", 
-        "pk": 10
-    }, 
+            "model": "taggeditem",
+            "name": "Tagged Item",
+            "app_label": "taggit"
+        }
+    },
     {
+        "pk": 5,
+        "model": "contenttypes.contenttype",
         "fields": {
-            "app_label": "contenttypes", 
-            "model": "contenttype", 
-            "name": "content type"
-        }, 
-        "model": "contenttypes.contenttype", 
-        "pk": 5
-    }, 
+            "model": "contenttype",
+            "name": "content type",
+            "app_label": "contenttypes"
+        }
+    },
     {
+        "pk": 12,
+        "model": "contenttypes.contenttype",
         "fields": {
-            "app_label": "red", 
-            "model": "demand", 
-            "name": "demand"
-        }, 
-        "model": "contenttypes.contenttype", 
-        "pk": 12
-    }, 
+            "model": "demand",
+            "name": "demand",
+            "app_label": "red"
+        }
+    },
     {
+        "pk": 17,
+        "model": "contenttypes.contenttype",
         "fields": {
-            "app_label": "red", 
-            "model": "exchange", 
-            "name": "exchange"
-        }, 
-        "model": "contenttypes.contenttype", 
-        "pk": 17
-    }, 
+            "model": "exchange",
+            "name": "exchange",
+            "app_label": "red"
+        }
+    },
     {
+        "pk": 14,
+        "model": "contenttypes.contenttype",
         "fields": {
-            "app_label": "red", 
-            "model": "gift", 
-            "name": "gift"
-        }, 
-        "model": "contenttypes.contenttype", 
-        "pk": 14
-    }, 
+            "model": "gift",
+            "name": "gift",
+            "app_label": "red"
+        }
+    },
     {
+        "pk": 2,
+        "model": "contenttypes.contenttype",
         "fields": {
-            "app_label": "auth", 
-            "model": "group", 
-            "name": "group"
-        }, 
-        "model": "contenttypes.contenttype", 
-        "pk": 2
-    }, 
+            "model": "group",
+            "name": "group",
+            "app_label": "auth"
+        }
+    },
     {
+        "pk": 13,
+        "model": "contenttypes.contenttype",
         "fields": {
-            "app_label": "red", 
-            "model": "loan", 
-            "name": "loan"
-        }, 
-        "model": "contenttypes.contenttype", 
-        "pk": 13
-    }, 
+            "model": "loan",
+            "name": "loan",
+            "app_label": "red"
+        }
+    },
     {
+        "pk": 8,
+        "model": "contenttypes.contenttype",
         "fields": {
-            "app_label": "admin", 
-            "model": "logentry", 
-            "name": "log entry"
-        }, 
-        "model": "contenttypes.contenttype", 
-        "pk": 8
-    }, 
+            "model": "logentry",
+            "name": "log entry",
+            "app_label": "admin"
+        }
+    },
     {
+        "pk": 4,
+        "model": "contenttypes.contenttype",
         "fields": {
-            "app_label": "auth", 
-            "model": "message", 
-            "name": "message"
-        }, 
-        "model": "contenttypes.contenttype", 
-        "pk": 4
-    }, 
+            "model": "message",
+            "name": "message",
+            "app_label": "auth"
+        }
+    },
     {
+        "pk": 11,
+        "model": "contenttypes.contenttype",
         "fields": {
-            "app_label": "red", 
-            "model": "offer", 
-            "name": "offer"
-        }, 
-        "model": "contenttypes.contenttype", 
-        "pk": 11
-    }, 
+            "model": "offer",
+            "name": "offer",
+            "app_label": "red"
+        }
+    },
     {
+        "pk": 1,
+        "model": "contenttypes.contenttype",
         "fields": {
-            "app_label": "auth", 
-            "model": "permission", 
-            "name": "permission"
-        }, 
-        "model": "contenttypes.contenttype", 
-        "pk": 1
-    }, 
+            "model": "permission",
+            "name": "permission",
+            "app_label": "auth"
+        }
+    },
     {
+        "pk": 15,
+        "model": "contenttypes.contenttype",
         "fields": {
-            "app_label": "red", 
-            "model": "service", 
-            "name": "service"
-        }, 
-        "model": "contenttypes.contenttype", 
-        "pk": 15
-    }, 
+            "model": "service",
+            "name": "service",
+            "app_label": "red"
+        }
+    },
     {
+        "pk": 6,
+        "model": "contenttypes.contenttype",
         "fields": {
-            "app_label": "sessions", 
-            "model": "session", 
-            "name": "session"
-        }, 
-        "model": "contenttypes.contenttype", 
-        "pk": 6
-    }, 
+            "model": "session",
+            "name": "session",
+            "app_label": "sessions"
+        }
+    },
     {
+        "pk": 7,
+        "model": "contenttypes.contenttype",
         "fields": {
-            "app_label": "sites", 
-            "model": "site", 
-            "name": "site"
-        }, 
-        "model": "contenttypes.contenttype", 
-        "pk": 7
-    }, 
+            "model": "site",
+            "name": "site",
+            "app_label": "sites"
+        }
+    },
     {
+        "pk": 3,
+        "model": "contenttypes.contenttype",
         "fields": {
-            "app_label": "auth", 
-            "model": "user", 
-            "name": "user"
-        }, 
-        "model": "contenttypes.contenttype", 
-        "pk": 3
-    }, 
+            "model": "user",
+            "name": "user",
+            "app_label": "auth"
+        }
+    },
     {
+        "pk": 16,
+        "model": "contenttypes.contenttype",
         "fields": {
-            "app_label": "red", 
-            "model": "user", 
-            "name": "user"
-        }, 
-        "model": "contenttypes.contenttype", 
-        "pk": 16
-    }, 
+            "model": "user",
+            "name": "user",
+            "app_label": "red"
+        }
+    },
     {
+        "pk": "7173bd3e23fecb7bbaf650ad72c4367e",
+        "model": "sessions.session",
         "fields": {
-            "expire_date": "2012-01-30 22:55:29", 
-            "session_data": "MjFlNWVmY2VkMjMzZTNiNjhhNGUxYTcxMjNjMWNmNjVlYzM5MWM2NjqAAn1xAVUKdGVzdGNvb2tp\nZXECVQZ3b3JrZWRxA3Mu\n"
-        }, 
-        "model": "sessions.session", 
-        "pk": "4c5aa7482c7c9ca9f7373ffc5df32ac8"
-    }, 
+            "expire_date": "2012-02-10 19:54:50",
+            "session_data": "ZDBjZGYxMTc1Y2Y4MGNjYjdkYzY1MTI2Njk0ZDZiOGUzMzQ4ZmEyODqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQRLAXUu\n"
+        }
+    },
     {
+        "pk": 1,
+        "model": "sites.site",
         "fields": {
-            "domain": "example.com", 
+            "domain": "example.com",
             "name": "example.com"
-        }, 
-        "model": "sites.site", 
-        "pk": 1
-    }, 
+        }
+    },
     {
+        "pk": 13,
+        "model": "admin.logentry",
         "fields": {
-            "name": "inform\u00e1tica", 
-            "slug": "informatica"
-        }, 
-        "model": "taggit.tag", 
-        "pk": 1
-    }, 
+            "action_flag": 1,
+            "action_time": "2012-01-27 20:03:26",
+            "object_repr": "Microondas",
+            "object_id": "4",
+            "change_message": "",
+            "user": 1,
+            "content_type": 12
+        }
+    },
     {
+        "pk": 12,
+        "model": "admin.logentry",
         "fields": {
-            "name": "linux", 
+            "action_flag": 1,
+            "action_time": "2012-01-27 20:02:50",
+            "object_repr": "Vestido de novia",
+            "object_id": "4",
+            "change_message": "",
+            "user": 1,
+            "content_type": 14
+        }
+    },
+    {
+        "pk": 11,
+        "model": "admin.logentry",
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2012-01-27 20:01:55",
+            "object_repr": "Clases de inglés",
+            "object_id": "3",
+            "change_message": "",
+            "user": 1,
+            "content_type": 12
+        }
+    },
+    {
+        "pk": 10,
+        "model": "admin.logentry",
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2012-01-27 20:01:17",
+            "object_repr": "Juego de Tronos 2 (Libro)",
+            "object_id": "3",
+            "change_message": "",
+            "user": 1,
+            "content_type": 13
+        }
+    },
+    {
+        "pk": 9,
+        "model": "admin.logentry",
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2012-01-27 20:00:27",
+            "object_repr": "Coche",
+            "object_id": "2",
+            "change_message": "",
+            "user": 1,
+            "content_type": 12
+        }
+    },
+    {
+        "pk": 8,
+        "model": "admin.logentry",
+        "fields": {
+            "action_flag": 2,
+            "action_time": "2012-01-27 19:59:49",
+            "object_repr": "Lavadora",
+            "object_id": "2",
+            "change_message": "Changed owner and tags.",
+            "user": 1,
+            "content_type": 14
+        }
+    },
+    {
+        "pk": 7,
+        "model": "admin.logentry",
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2012-01-27 19:59:38",
+            "object_repr": "Beatrice",
+            "object_id": "5",
+            "change_message": "",
+            "user": 1,
+            "content_type": 16
+        }
+    },
+    {
+        "pk": 6,
+        "model": "admin.logentry",
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2012-01-27 19:59:26",
+            "object_repr": "Herman",
+            "object_id": "4",
+            "change_message": "",
+            "user": 1,
+            "content_type": 16
+        }
+    },
+    {
+        "pk": 5,
+        "model": "admin.logentry",
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2012-01-27 19:59:06",
+            "object_repr": "Lavadora",
+            "object_id": "2",
+            "change_message": "",
+            "user": 1,
+            "content_type": 14
+        }
+    },
+    {
+        "pk": 4,
+        "model": "admin.logentry",
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2012-01-27 19:58:03",
+            "object_repr": "Bob",
+            "object_id": "3",
+            "change_message": "",
+            "user": 1,
+            "content_type": 16
+        }
+    },
+    {
+        "pk": 3,
+        "model": "admin.logentry",
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2012-01-27 19:56:13",
+            "object_repr": "Vestido",
+            "object_id": "1",
+            "change_message": "",
+            "user": 1,
+            "content_type": 12
+        }
+    },
+    {
+        "pk": 2,
+        "model": "admin.logentry",
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2012-01-27 19:55:29",
+            "object_repr": "Instalación de GNU/Linux",
+            "object_id": "1",
+            "change_message": "",
+            "user": 1,
+            "content_type": 15
+        }
+    },
+    {
+        "pk": 1,
+        "model": "admin.logentry",
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2012-01-27 19:55:01",
+            "object_repr": "Alice",
+            "object_id": "2",
+            "change_message": "",
+            "user": 1,
+            "content_type": 16
+        }
+    },
+    {
+        "pk": 1,
+        "model": "taggit.tag",
+        "fields": {
+            "name": "computer",
+            "slug": "computer"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "taggit.tag",
+        "fields": {
+            "name": "linux",
             "slug": "linux"
-        }, 
-        "model": "taggit.tag", 
-        "pk": 2
-    }, 
+        }
+    },
     {
+        "pk": 3,
+        "model": "taggit.tag",
         "fields": {
-            "name": "vestido", 
-            "slug": "vestido"
-        }, 
-        "model": "taggit.tag", 
-        "pk": 3
-    }, 
-    {
-        "fields": {
-            "name": "juego de tronos", 
-            "slug": "juego-de-tronos"
-        }, 
-        "model": "taggit.tag", 
-        "pk": 4
-    }, 
-    {
-        "fields": {
-            "name": "libro", 
-            "slug": "libro"
-        }, 
-        "model": "taggit.tag", 
-        "pk": 5
-    }, 
-    {
-        "fields": {
-            "name": "ingl\u00e9s", 
-            "slug": "ingles"
-        }, 
-        "model": "taggit.tag", 
-        "pk": 6
-    }, 
-    {
-        "fields": {
-            "name": "english", 
-            "slug": "english"
-        }, 
-        "model": "taggit.tag", 
-        "pk": 7
-    }, 
-    {
-        "fields": {
-            "name": "clases", 
-            "slug": "clases"
-        }, 
-        "model": "taggit.tag", 
-        "pk": 8
-    }, 
-    {
-        "fields": {
-            "name": "lavadora", 
-            "slug": "lavadora"
-        }, 
-        "model": "taggit.tag", 
-        "pk": 9
-    }, 
-    {
-        "fields": {
-            "name": "ropa", 
+            "name": "ropa",
             "slug": "ropa"
-        }, 
-        "model": "taggit.tag", 
-        "pk": 10
-    }, 
+        }
+    },
     {
+        "pk": 4,
+        "model": "taggit.tag",
         "fields": {
-            "name": "coche", 
+            "name": "vestido",
+            "slug": "vestido"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "taggit.tag",
+        "fields": {
+            "name": "lavadora",
+            "slug": "lavadora"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "taggit.tag",
+        "fields": {
+            "name": "coche",
             "slug": "coche"
-        }, 
-        "model": "taggit.tag", 
-        "pk": 11
-    }, 
+        }
+    },
     {
+        "pk": 7,
+        "model": "taggit.tag",
         "fields": {
-            "name": "divorcio", 
+            "name": "juego de tronos",
+            "slug": "juego-de-tronos"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "taggit.tag",
+        "fields": {
+            "name": "libro",
+            "slug": "libro"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "taggit.tag",
+        "fields": {
+            "name": "inglés",
+            "slug": "ingles"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "taggit.tag",
+        "fields": {
+            "name": "clases",
+            "slug": "clases"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "taggit.tag",
+        "fields": {
+            "name": "english",
+            "slug": "english"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "taggit.tag",
+        "fields": {
+            "name": "divorcio",
             "slug": "divorcio"
-        }, 
-        "model": "taggit.tag", 
-        "pk": 12
-    }, 
+        }
+    },
     {
+        "pk": 13,
+        "model": "taggit.tag",
         "fields": {
-            "name": "matrimonio", 
+            "name": "matrimonio",
             "slug": "matrimonio"
-        }, 
-        "model": "taggit.tag", 
-        "pk": 13
-    }, 
+        }
+    },
     {
+        "pk": 14,
+        "model": "taggit.tag",
         "fields": {
-            "name": "ruina", 
+            "name": "ruina",
             "slug": "ruina"
-        }, 
-        "model": "taggit.tag", 
-        "pk": 14
-    }, 
+        }
+    },
     {
+        "pk": 15,
+        "model": "taggit.tag",
         "fields": {
-            "name": "palomitas", 
+            "name": "palomitas",
             "slug": "palomitas"
-        }, 
-        "model": "taggit.tag", 
-        "pk": 15
-    }, 
+        }
+    },
     {
+        "pk": 16,
+        "model": "taggit.tag",
         "fields": {
-            "name": "microondas", 
+            "name": "microondas",
             "slug": "microondas"
-        }, 
-        "model": "taggit.tag", 
-        "pk": 16
-    }, 
+        }
+    },
     {
+        "pk": 1,
+        "model": "taggit.taggeditem",
         "fields": {
-            "content_type": 11, 
-            "object_id": 1, 
-            "tag": 1
-        }, 
-        "model": "taggit.taggeditem", 
-        "pk": 1
-    }, 
+            "tag": 1,
+            "content_type": 15,
+            "object_id": 1
+        }
+    },
     {
+        "pk": 2,
+        "model": "taggit.taggeditem",
         "fields": {
-            "content_type": 11, 
-            "object_id": 1, 
-            "tag": 2
-        }, 
-        "model": "taggit.taggeditem", 
-        "pk": 2
-    }, 
+            "tag": 2,
+            "content_type": 15,
+            "object_id": 1
+        }
+    },
     {
+        "pk": 3,
+        "model": "taggit.taggeditem",
         "fields": {
-            "content_type": 12, 
-            "object_id": 1, 
-            "tag": 3
-        }, 
-        "model": "taggit.taggeditem", 
-        "pk": 3
-    }, 
+            "tag": 3,
+            "content_type": 12,
+            "object_id": 1
+        }
+    },
     {
+        "pk": 4,
+        "model": "taggit.taggeditem",
         "fields": {
-            "content_type": 13, 
-            "object_id": 2, 
-            "tag": 4
-        }, 
-        "model": "taggit.taggeditem", 
-        "pk": 4
-    }, 
+            "tag": 4,
+            "content_type": 12,
+            "object_id": 1
+        }
+    },
     {
+        "pk": 5,
+        "model": "taggit.taggeditem",
         "fields": {
-            "content_type": 13, 
-            "object_id": 2, 
-            "tag": 5
-        }, 
-        "model": "taggit.taggeditem", 
-        "pk": 5
-    }, 
+            "tag": 3,
+            "content_type": 14,
+            "object_id": 2
+        }
+    },
     {
+        "pk": 6,
+        "model": "taggit.taggeditem",
         "fields": {
-            "content_type": 12, 
-            "object_id": 2, 
-            "tag": 8
-        }, 
-        "model": "taggit.taggeditem", 
-        "pk": 6
-    }, 
+            "tag": 5,
+            "content_type": 14,
+            "object_id": 2
+        }
+    },
     {
+        "pk": 7,
+        "model": "taggit.taggeditem",
         "fields": {
-            "content_type": 12, 
-            "object_id": 2, 
-            "tag": 6
-        }, 
-        "model": "taggit.taggeditem", 
-        "pk": 7
-    }, 
+            "tag": 6,
+            "content_type": 12,
+            "object_id": 2
+        }
+    },
     {
+        "pk": 8,
+        "model": "taggit.taggeditem",
         "fields": {
-            "content_type": 12, 
-            "object_id": 2, 
-            "tag": 7
-        }, 
-        "model": "taggit.taggeditem", 
-        "pk": 8
-    }, 
+            "tag": 8,
+            "content_type": 13,
+            "object_id": 3
+        }
+    },
     {
+        "pk": 9,
+        "model": "taggit.taggeditem",
         "fields": {
-            "content_type": 14, 
-            "object_id": 3, 
-            "tag": 9
-        }, 
-        "model": "taggit.taggeditem", 
-        "pk": 9
-    }, 
+            "tag": 7,
+            "content_type": 13,
+            "object_id": 3
+        }
+    },
     {
+        "pk": 10,
+        "model": "taggit.taggeditem",
         "fields": {
-            "content_type": 14, 
-            "object_id": 3, 
-            "tag": 10
-        }, 
-        "model": "taggit.taggeditem", 
-        "pk": 10
-    }, 
+            "tag": 9,
+            "content_type": 12,
+            "object_id": 3
+        }
+    },
     {
+        "pk": 11,
+        "model": "taggit.taggeditem",
         "fields": {
-            "content_type": 12, 
-            "object_id": 3, 
-            "tag": 11
-        }, 
-        "model": "taggit.taggeditem", 
-        "pk": 11
-    }, 
+            "tag": 10,
+            "content_type": 12,
+            "object_id": 3
+        }
+    },
     {
+        "pk": 12,
+        "model": "taggit.taggeditem",
         "fields": {
-            "content_type": 14, 
-            "object_id": 4, 
-            "tag": 3
-        }, 
-        "model": "taggit.taggeditem", 
-        "pk": 12
-    }, 
+            "tag": 11,
+            "content_type": 12,
+            "object_id": 3
+        }
+    },
     {
+        "pk": 13,
+        "model": "taggit.taggeditem",
         "fields": {
-            "content_type": 14, 
-            "object_id": 4, 
-            "tag": 12
-        }, 
-        "model": "taggit.taggeditem", 
-        "pk": 13
-    }, 
+            "tag": 12,
+            "content_type": 14,
+            "object_id": 4
+        }
+    },
     {
+        "pk": 14,
+        "model": "taggit.taggeditem",
         "fields": {
-            "content_type": 14, 
-            "object_id": 4, 
-            "tag": 13
-        }, 
-        "model": "taggit.taggeditem", 
-        "pk": 14
-    }, 
+            "tag": 4,
+            "content_type": 14,
+            "object_id": 4
+        }
+    },
     {
+        "pk": 15,
+        "model": "taggit.taggeditem",
         "fields": {
-            "content_type": 14, 
-            "object_id": 4, 
-            "tag": 14
-        }, 
-        "model": "taggit.taggeditem", 
-        "pk": 15
-    }, 
+            "tag": 13,
+            "content_type": 14,
+            "object_id": 4
+        }
+    },
     {
+        "pk": 16,
+        "model": "taggit.taggeditem",
         "fields": {
-            "content_type": 12, 
-            "object_id": 4, 
-            "tag": 16
-        }, 
-        "model": "taggit.taggeditem", 
-        "pk": 16
-    }, 
+            "tag": 14,
+            "content_type": 14,
+            "object_id": 4
+        }
+    },
     {
+        "pk": 17,
+        "model": "taggit.taggeditem",
         "fields": {
-            "content_type": 12, 
-            "object_id": 4, 
-            "tag": 15
-        }, 
-        "model": "taggit.taggeditem", 
-        "pk": 17
-    }, 
+            "tag": 16,
+            "content_type": 12,
+            "object_id": 4
+        }
+    },
     {
+        "pk": 18,
+        "model": "taggit.taggeditem",
         "fields": {
-            "description": "Puedo instalar Linux en tu ordenador y cambiarte la vida", 
-            "name": "Instalaci\u00f3n de GNU/Linux", 
-            "owner": 1, 
-            "visible": true
-        }, 
-        "model": "red.offer", 
-        "pk": 1
-    }, 
+            "tag": 15,
+            "content_type": 12,
+            "object_id": 4
+        }
+    },
     {
+        "pk": 1,
+        "model": "red.offer",
         "fields": {
-            "description": "El segundo libro de la saga Juego de Tronos, tapa dura.", 
-            "name": "Juego de Tronos 2", 
-            "owner": 2, 
-            "visible": true
-        }, 
-        "model": "red.offer", 
-        "pk": 2
-    }, 
+            "owner": 2,
+            "visible": true,
+            "name": "Instalación de GNU/Linux",
+            "description": "Puedo instalar Linux en tu ordenador y cambiarte la vida. "
+        }
+    },
     {
+        "pk": 2,
+        "model": "red.offer",
         "fields": {
-            "description": "Para tener la ropa bien limpita.", 
-            "name": "Lavadora", 
-            "owner": 3, 
-            "visible": true
-        }, 
-        "model": "red.offer", 
-        "pk": 3
-    }, 
+            "owner": 4,
+            "visible": true,
+            "name": "Lavadora",
+            "description": "Para tener la ropa bien limpita."
+        }
+    },
     {
+        "pk": 3,
+        "model": "red.offer",
         "fields": {
-            "description": "El vestido de novia de mi abuela, 100 a\u00f1os y cuatro bodas ha visto pasar.", 
-            "name": "Vestido de novia", 
-            "owner": 4, 
-            "visible": true
-        }, 
-        "model": "red.offer", 
-        "pk": 4
-    }, 
+            "owner": 3,
+            "visible": true,
+            "name": "Juego de Tronos 2 (Libro)",
+            "description": "El segundo libro de la saga Juego de Tronos, tapa dura."
+        }
+    },
     {
+        "pk": 4,
+        "model": "red.offer",
         "fields": {
-            "description": "Necesito un vestido, para una amiga.", 
-            "name": "Vestido", 
-            "owner": 1, 
-            "trade_type": 3
-        }, 
-        "model": "red.demand", 
-        "pk": 1
-    }, 
+            "owner": 5,
+            "visible": true,
+            "name": "Vestido de novia",
+            "description": "El vestido de novia de mi abuela, 100 años desde su costura."
+        }
+    },
     {
+        "pk": 1,
+        "model": "red.demand",
         "fields": {
-            "description": "Necesito hablar la lengua de Shakespeare", 
-            "name": "Clases de ingl\u00e9s", 
-            "owner": 2, 
-            "trade_type": 2
-        }, 
-        "model": "red.demand", 
-        "pk": 2
-    }, 
+            "owner": 2,
+            "trade_type": 2,
+            "name": "Vestido",
+            "description": "Necesito un vestido. Es para una amiga."
+        }
+    },
     {
+        "pk": 2,
+        "model": "red.demand",
         "fields": {
-            "description": "Necesito un utilitario para ir a comprar muebles a Ikea.", 
-            "name": "Coche", 
-            "owner": 3, 
-            "trade_type": 1
-        }, 
-        "model": "red.demand", 
-        "pk": 3
-    }, 
+            "owner": 4,
+            "trade_type": 0,
+            "name": "Coche",
+            "description": "Necesito un utilitario para ir a comprar muebles a Ikea. "
+        }
+    },
     {
+        "pk": 3,
+        "model": "red.demand",
         "fields": {
-            "description": "Me gustan mucho las palomitas pero no tengo microondas.", 
-            "name": "Microondas", 
-            "owner": 4, 
-            "trade_type": 4
-        }, 
-        "model": "red.demand", 
-        "pk": 4
-    }, 
+            "owner": 3,
+            "trade_type": 1,
+            "name": "Clases de inglés",
+            "description": "Necesito hablar la lengua de Shakespeare."
+        }
+    },
     {
+        "pk": 4,
+        "model": "red.demand",
+        "fields": {
+            "owner": 5,
+            "trade_type": 0,
+            "name": "Microondas",
+            "description": "Me gustan mucho las palomitas pero no tengo microondas."
+        }
+    },
+    {
+        "pk": 3,
+        "model": "red.loan",
         "fields": {
             "status": 1
-        }, 
-        "model": "red.loan", 
-        "pk": 2
-    }, 
+        }
+    },
     {
+        "pk": 2,
+        "model": "red.gift",
         "fields": {
-            "available": true, 
+            "available": true,
             "communal": false
-        }, 
-        "model": "red.gift", 
-        "pk": 3
-    }, 
+        }
+    },
     {
+        "pk": 4,
+        "model": "red.gift",
         "fields": {
-            "available": true, 
+            "available": false,
             "communal": true
-        }, 
-        "model": "red.gift", 
-        "pk": 4
-    }, 
+        }
+    },
     {
+        "pk": 1,
+        "model": "red.service",
         "fields": {
-            "codename": "add_logentry", 
-            "content_type": 8, 
-            "name": "Can add log entry"
-        }, 
-        "model": "auth.permission", 
-        "pk": 22
-    }, 
+            "starts": null,
+            "ends": null,
+            "availability": ""
+        }
+    },
     {
+        "pk": 22,
+        "model": "auth.permission",
         "fields": {
-            "codename": "change_logentry", 
-            "content_type": 8, 
-            "name": "Can change log entry"
-        }, 
-        "model": "auth.permission", 
-        "pk": 23
-    }, 
+            "codename": "add_logentry",
+            "name": "Can add log entry",
+            "content_type": 8
+        }
+    },
     {
+        "pk": 23,
+        "model": "auth.permission",
         "fields": {
-            "codename": "delete_logentry", 
-            "content_type": 8, 
-            "name": "Can delete log entry"
-        }, 
-        "model": "auth.permission", 
-        "pk": 24
-    }, 
+            "codename": "change_logentry",
+            "name": "Can change log entry",
+            "content_type": 8
+        }
+    },
     {
+        "pk": 24,
+        "model": "auth.permission",
         "fields": {
-            "codename": "add_group", 
-            "content_type": 2, 
-            "name": "Can add group"
-        }, 
-        "model": "auth.permission", 
-        "pk": 4
-    }, 
+            "codename": "delete_logentry",
+            "name": "Can delete log entry",
+            "content_type": 8
+        }
+    },
     {
+        "pk": 4,
+        "model": "auth.permission",
         "fields": {
-            "codename": "change_group", 
-            "content_type": 2, 
-            "name": "Can change group"
-        }, 
-        "model": "auth.permission", 
-        "pk": 5
-    }, 
+            "codename": "add_group",
+            "name": "Can add group",
+            "content_type": 2
+        }
+    },
     {
+        "pk": 5,
+        "model": "auth.permission",
         "fields": {
-            "codename": "delete_group", 
-            "content_type": 2, 
-            "name": "Can delete group"
-        }, 
-        "model": "auth.permission", 
-        "pk": 6
-    }, 
+            "codename": "change_group",
+            "name": "Can change group",
+            "content_type": 2
+        }
+    },
     {
+        "pk": 6,
+        "model": "auth.permission",
         "fields": {
-            "codename": "add_message", 
-            "content_type": 4, 
-            "name": "Can add message"
-        }, 
-        "model": "auth.permission", 
-        "pk": 10
-    }, 
+            "codename": "delete_group",
+            "name": "Can delete group",
+            "content_type": 2
+        }
+    },
     {
+        "pk": 10,
+        "model": "auth.permission",
         "fields": {
-            "codename": "change_message", 
-            "content_type": 4, 
-            "name": "Can change message"
-        }, 
-        "model": "auth.permission", 
-        "pk": 11
-    }, 
+            "codename": "add_message",
+            "name": "Can add message",
+            "content_type": 4
+        }
+    },
     {
+        "pk": 11,
+        "model": "auth.permission",
         "fields": {
-            "codename": "delete_message", 
-            "content_type": 4, 
-            "name": "Can delete message"
-        }, 
-        "model": "auth.permission", 
-        "pk": 12
-    }, 
+            "codename": "change_message",
+            "name": "Can change message",
+            "content_type": 4
+        }
+    },
     {
+        "pk": 12,
+        "model": "auth.permission",
         "fields": {
-            "codename": "add_permission", 
-            "content_type": 1, 
-            "name": "Can add permission"
-        }, 
-        "model": "auth.permission", 
-        "pk": 1
-    }, 
+            "codename": "delete_message",
+            "name": "Can delete message",
+            "content_type": 4
+        }
+    },
     {
+        "pk": 1,
+        "model": "auth.permission",
         "fields": {
-            "codename": "change_permission", 
-            "content_type": 1, 
-            "name": "Can change permission"
-        }, 
-        "model": "auth.permission", 
-        "pk": 2
-    }, 
+            "codename": "add_permission",
+            "name": "Can add permission",
+            "content_type": 1
+        }
+    },
     {
+        "pk": 2,
+        "model": "auth.permission",
         "fields": {
-            "codename": "delete_permission", 
-            "content_type": 1, 
-            "name": "Can delete permission"
-        }, 
-        "model": "auth.permission", 
-        "pk": 3
-    }, 
+            "codename": "change_permission",
+            "name": "Can change permission",
+            "content_type": 1
+        }
+    },
     {
+        "pk": 3,
+        "model": "auth.permission",
         "fields": {
-            "codename": "add_user", 
-            "content_type": 3, 
-            "name": "Can add user"
-        }, 
-        "model": "auth.permission", 
-        "pk": 7
-    }, 
+            "codename": "delete_permission",
+            "name": "Can delete permission",
+            "content_type": 1
+        }
+    },
     {
+        "pk": 7,
+        "model": "auth.permission",
         "fields": {
-            "codename": "change_user", 
-            "content_type": 3, 
-            "name": "Can change user"
-        }, 
-        "model": "auth.permission", 
-        "pk": 8
-    }, 
+            "codename": "add_user",
+            "name": "Can add user",
+            "content_type": 3
+        }
+    },
     {
+        "pk": 8,
+        "model": "auth.permission",
         "fields": {
-            "codename": "delete_user", 
-            "content_type": 3, 
-            "name": "Can delete user"
-        }, 
-        "model": "auth.permission", 
-        "pk": 9
-    }, 
+            "codename": "change_user",
+            "name": "Can change user",
+            "content_type": 3
+        }
+    },
     {
+        "pk": 9,
+        "model": "auth.permission",
         "fields": {
-            "codename": "add_contenttype", 
-            "content_type": 5, 
-            "name": "Can add content type"
-        }, 
-        "model": "auth.permission", 
-        "pk": 13
-    }, 
+            "codename": "delete_user",
+            "name": "Can delete user",
+            "content_type": 3
+        }
+    },
     {
+        "pk": 13,
+        "model": "auth.permission",
         "fields": {
-            "codename": "change_contenttype", 
-            "content_type": 5, 
-            "name": "Can change content type"
-        }, 
-        "model": "auth.permission", 
-        "pk": 14
-    }, 
+            "codename": "add_contenttype",
+            "name": "Can add content type",
+            "content_type": 5
+        }
+    },
     {
+        "pk": 14,
+        "model": "auth.permission",
         "fields": {
-            "codename": "delete_contenttype", 
-            "content_type": 5, 
-            "name": "Can delete content type"
-        }, 
-        "model": "auth.permission", 
-        "pk": 15
-    }, 
+            "codename": "change_contenttype",
+            "name": "Can change content type",
+            "content_type": 5
+        }
+    },
     {
+        "pk": 15,
+        "model": "auth.permission",
         "fields": {
-            "codename": "add_demand", 
-            "content_type": 12, 
-            "name": "Can add demand"
-        }, 
-        "model": "auth.permission", 
-        "pk": 34
-    }, 
+            "codename": "delete_contenttype",
+            "name": "Can delete content type",
+            "content_type": 5
+        }
+    },
     {
+        "pk": 34,
+        "model": "auth.permission",
         "fields": {
-            "codename": "change_demand", 
-            "content_type": 12, 
-            "name": "Can change demand"
-        }, 
-        "model": "auth.permission", 
-        "pk": 35
-    }, 
+            "codename": "add_demand",
+            "name": "Can add demand",
+            "content_type": 12
+        }
+    },
     {
+        "pk": 35,
+        "model": "auth.permission",
         "fields": {
-            "codename": "delete_demand", 
-            "content_type": 12, 
-            "name": "Can delete demand"
-        }, 
-        "model": "auth.permission", 
-        "pk": 36
-    }, 
+            "codename": "change_demand",
+            "name": "Can change demand",
+            "content_type": 12
+        }
+    },
     {
+        "pk": 36,
+        "model": "auth.permission",
         "fields": {
-            "codename": "add_exchange", 
-            "content_type": 17, 
-            "name": "Can add exchange"
-        }, 
-        "model": "auth.permission", 
-        "pk": 49
-    }, 
+            "codename": "delete_demand",
+            "name": "Can delete demand",
+            "content_type": 12
+        }
+    },
     {
+        "pk": 49,
+        "model": "auth.permission",
         "fields": {
-            "codename": "change_exchange", 
-            "content_type": 17, 
-            "name": "Can change exchange"
-        }, 
-        "model": "auth.permission", 
-        "pk": 50
-    }, 
+            "codename": "add_exchange",
+            "name": "Can add exchange",
+            "content_type": 17
+        }
+    },
     {
+        "pk": 50,
+        "model": "auth.permission",
         "fields": {
-            "codename": "delete_exchange", 
-            "content_type": 17, 
-            "name": "Can delete exchange"
-        }, 
-        "model": "auth.permission", 
-        "pk": 51
-    }, 
+            "codename": "change_exchange",
+            "name": "Can change exchange",
+            "content_type": 17
+        }
+    },
     {
+        "pk": 51,
+        "model": "auth.permission",
         "fields": {
-            "codename": "add_gift", 
-            "content_type": 14, 
-            "name": "Can add gift"
-        }, 
-        "model": "auth.permission", 
-        "pk": 40
-    }, 
+            "codename": "delete_exchange",
+            "name": "Can delete exchange",
+            "content_type": 17
+        }
+    },
     {
+        "pk": 40,
+        "model": "auth.permission",
         "fields": {
-            "codename": "change_gift", 
-            "content_type": 14, 
-            "name": "Can change gift"
-        }, 
-        "model": "auth.permission", 
-        "pk": 41
-    }, 
+            "codename": "add_gift",
+            "name": "Can add gift",
+            "content_type": 14
+        }
+    },
     {
+        "pk": 41,
+        "model": "auth.permission",
         "fields": {
-            "codename": "delete_gift", 
-            "content_type": 14, 
-            "name": "Can delete gift"
-        }, 
-        "model": "auth.permission", 
-        "pk": 42
-    }, 
+            "codename": "change_gift",
+            "name": "Can change gift",
+            "content_type": 14
+        }
+    },
     {
+        "pk": 42,
+        "model": "auth.permission",
         "fields": {
-            "codename": "add_loan", 
-            "content_type": 13, 
-            "name": "Can add loan"
-        }, 
-        "model": "auth.permission", 
-        "pk": 37
-    }, 
+            "codename": "delete_gift",
+            "name": "Can delete gift",
+            "content_type": 14
+        }
+    },
     {
+        "pk": 37,
+        "model": "auth.permission",
         "fields": {
-            "codename": "change_loan", 
-            "content_type": 13, 
-            "name": "Can change loan"
-        }, 
-        "model": "auth.permission", 
-        "pk": 38
-    }, 
+            "codename": "add_loan",
+            "name": "Can add loan",
+            "content_type": 13
+        }
+    },
     {
+        "pk": 38,
+        "model": "auth.permission",
         "fields": {
-            "codename": "delete_loan", 
-            "content_type": 13, 
-            "name": "Can delete loan"
-        }, 
-        "model": "auth.permission", 
-        "pk": 39
-    }, 
+            "codename": "change_loan",
+            "name": "Can change loan",
+            "content_type": 13
+        }
+    },
     {
+        "pk": 39,
+        "model": "auth.permission",
         "fields": {
-            "codename": "add_offer", 
-            "content_type": 11, 
-            "name": "Can add offer"
-        }, 
-        "model": "auth.permission", 
-        "pk": 31
-    }, 
+            "codename": "delete_loan",
+            "name": "Can delete loan",
+            "content_type": 13
+        }
+    },
     {
+        "pk": 31,
+        "model": "auth.permission",
         "fields": {
-            "codename": "change_offer", 
-            "content_type": 11, 
-            "name": "Can change offer"
-        }, 
-        "model": "auth.permission", 
-        "pk": 32
-    }, 
+            "codename": "add_offer",
+            "name": "Can add offer",
+            "content_type": 11
+        }
+    },
     {
+        "pk": 32,
+        "model": "auth.permission",
         "fields": {
-            "codename": "delete_offer", 
-            "content_type": 11, 
-            "name": "Can delete offer"
-        }, 
-        "model": "auth.permission", 
-        "pk": 33
-    }, 
+            "codename": "change_offer",
+            "name": "Can change offer",
+            "content_type": 11
+        }
+    },
     {
+        "pk": 33,
+        "model": "auth.permission",
         "fields": {
-            "codename": "add_service", 
-            "content_type": 15, 
-            "name": "Can add service"
-        }, 
-        "model": "auth.permission", 
-        "pk": 43
-    }, 
+            "codename": "delete_offer",
+            "name": "Can delete offer",
+            "content_type": 11
+        }
+    },
     {
+        "pk": 43,
+        "model": "auth.permission",
         "fields": {
-            "codename": "change_service", 
-            "content_type": 15, 
-            "name": "Can change service"
-        }, 
-        "model": "auth.permission", 
-        "pk": 44
-    }, 
+            "codename": "add_service",
+            "name": "Can add service",
+            "content_type": 15
+        }
+    },
     {
+        "pk": 44,
+        "model": "auth.permission",
         "fields": {
-            "codename": "delete_service", 
-            "content_type": 15, 
-            "name": "Can delete service"
-        }, 
-        "model": "auth.permission", 
-        "pk": 45
-    }, 
+            "codename": "change_service",
+            "name": "Can change service",
+            "content_type": 15
+        }
+    },
     {
+        "pk": 45,
+        "model": "auth.permission",
         "fields": {
-            "codename": "add_user", 
-            "content_type": 16, 
-            "name": "Can add user"
-        }, 
-        "model": "auth.permission", 
-        "pk": 46
-    }, 
+            "codename": "delete_service",
+            "name": "Can delete service",
+            "content_type": 15
+        }
+    },
     {
+        "pk": 46,
+        "model": "auth.permission",
         "fields": {
-            "codename": "change_user", 
-            "content_type": 16, 
-            "name": "Can change user"
-        }, 
-        "model": "auth.permission", 
-        "pk": 47
-    }, 
+            "codename": "add_user",
+            "name": "Can add user",
+            "content_type": 16
+        }
+    },
     {
+        "pk": 47,
+        "model": "auth.permission",
         "fields": {
-            "codename": "delete_user", 
-            "content_type": 16, 
-            "name": "Can delete user"
-        }, 
-        "model": "auth.permission", 
-        "pk": 48
-    }, 
+            "codename": "change_user",
+            "name": "Can change user",
+            "content_type": 16
+        }
+    },
     {
+        "pk": 48,
+        "model": "auth.permission",
         "fields": {
-            "codename": "add_session", 
-            "content_type": 6, 
-            "name": "Can add session"
-        }, 
-        "model": "auth.permission", 
-        "pk": 16
-    }, 
+            "codename": "delete_user",
+            "name": "Can delete user",
+            "content_type": 16
+        }
+    },
     {
+        "pk": 16,
+        "model": "auth.permission",
         "fields": {
-            "codename": "change_session", 
-            "content_type": 6, 
-            "name": "Can change session"
-        }, 
-        "model": "auth.permission", 
-        "pk": 17
-    }, 
+            "codename": "add_session",
+            "name": "Can add session",
+            "content_type": 6
+        }
+    },
     {
+        "pk": 17,
+        "model": "auth.permission",
         "fields": {
-            "codename": "delete_session", 
-            "content_type": 6, 
-            "name": "Can delete session"
-        }, 
-        "model": "auth.permission", 
-        "pk": 18
-    }, 
+            "codename": "change_session",
+            "name": "Can change session",
+            "content_type": 6
+        }
+    },
     {
+        "pk": 18,
+        "model": "auth.permission",
         "fields": {
-            "codename": "add_site", 
-            "content_type": 7, 
-            "name": "Can add site"
-        }, 
-        "model": "auth.permission", 
-        "pk": 19
-    }, 
+            "codename": "delete_session",
+            "name": "Can delete session",
+            "content_type": 6
+        }
+    },
     {
+        "pk": 19,
+        "model": "auth.permission",
         "fields": {
-            "codename": "change_site", 
-            "content_type": 7, 
-            "name": "Can change site"
-        }, 
-        "model": "auth.permission", 
-        "pk": 20
-    }, 
+            "codename": "add_site",
+            "name": "Can add site",
+            "content_type": 7
+        }
+    },
     {
+        "pk": 20,
+        "model": "auth.permission",
         "fields": {
-            "codename": "delete_site", 
-            "content_type": 7, 
-            "name": "Can delete site"
-        }, 
-        "model": "auth.permission", 
-        "pk": 21
-    }, 
+            "codename": "change_site",
+            "name": "Can change site",
+            "content_type": 7
+        }
+    },
     {
+        "pk": 21,
+        "model": "auth.permission",
         "fields": {
-            "codename": "add_tag", 
-            "content_type": 9, 
-            "name": "Can add Tag"
-        }, 
-        "model": "auth.permission", 
-        "pk": 25
-    }, 
+            "codename": "delete_site",
+            "name": "Can delete site",
+            "content_type": 7
+        }
+    },
     {
+        "pk": 25,
+        "model": "auth.permission",
         "fields": {
-            "codename": "change_tag", 
-            "content_type": 9, 
-            "name": "Can change Tag"
-        }, 
-        "model": "auth.permission", 
-        "pk": 26
-    }, 
+            "codename": "add_tag",
+            "name": "Can add Tag",
+            "content_type": 9
+        }
+    },
     {
+        "pk": 26,
+        "model": "auth.permission",
         "fields": {
-            "codename": "delete_tag", 
-            "content_type": 9, 
-            "name": "Can delete Tag"
-        }, 
-        "model": "auth.permission", 
-        "pk": 27
-    }, 
+            "codename": "change_tag",
+            "name": "Can change Tag",
+            "content_type": 9
+        }
+    },
     {
+        "pk": 27,
+        "model": "auth.permission",
         "fields": {
-            "codename": "add_taggeditem", 
-            "content_type": 10, 
-            "name": "Can add Tagged Item"
-        }, 
-        "model": "auth.permission", 
-        "pk": 28
-    }, 
+            "codename": "delete_tag",
+            "name": "Can delete Tag",
+            "content_type": 9
+        }
+    },
     {
+        "pk": 28,
+        "model": "auth.permission",
         "fields": {
-            "codename": "change_taggeditem", 
-            "content_type": 10, 
-            "name": "Can change Tagged Item"
-        }, 
-        "model": "auth.permission", 
-        "pk": 29
-    }, 
+            "codename": "add_taggeditem",
+            "name": "Can add Tagged Item",
+            "content_type": 10
+        }
+    },
     {
+        "pk": 29,
+        "model": "auth.permission",
         "fields": {
-            "codename": "delete_taggeditem", 
-            "content_type": 10, 
-            "name": "Can delete Tagged Item"
-        }, 
-        "model": "auth.permission", 
-        "pk": 30
-    }, 
+            "codename": "change_taggeditem",
+            "name": "Can change Tagged Item",
+            "content_type": 10
+        }
+    },
     {
+        "pk": 30,
+        "model": "auth.permission",
         "fields": {
-            "date_joined": "2012-01-16 22:59:35", 
-            "email": "alice@mutualismo.es", 
-            "first_name": "Alice", 
-            "groups": [], 
-            "is_active": true, 
-            "is_staff": false, 
-            "is_superuser": false, 
-            "last_login": "2012-01-16 22:59:35", 
-            "last_name": "", 
-            "password": "", 
-            "user_permissions": [], 
-            "username": "Alice"
-        }, 
-        "model": "auth.user", 
-        "pk": 1
-    }, 
+            "codename": "delete_taggeditem",
+            "name": "Can delete Tagged Item",
+            "content_type": 10
+        }
+    },
     {
+        "pk": 1,
+        "model": "auth.user",
         "fields": {
-            "date_joined": "2012-01-16 23:00:03", 
-            "email": "bob@mutualismo.es", 
-            "first_name": "Bob", 
-            "groups": [], 
-            "is_active": true, 
-            "is_staff": false, 
-            "is_superuser": false, 
-            "last_login": "2012-01-16 23:00:03", 
-            "last_name": "", 
-            "password": "", 
-            "user_permissions": [], 
-            "username": "bob"
-        }, 
-        "model": "auth.user", 
-        "pk": 2
-    }, 
+            "username": "admin",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": true,
+            "is_staff": true,
+            "last_login": "2012-01-27 19:54:50",
+            "groups": [
+
+            ],
+            "user_permissions": [
+
+            ],
+            "password": "sha1$51d9f$e23151276e6c06e5d2536e321448ad52ea64cc7a",
+            "email": "admin@admin.com",
+            "date_joined": "2012-01-27 19:54:26"
+        }
+    },
     {
+        "pk": 2,
+        "model": "auth.user",
         "fields": {
-            "date_joined": "2012-01-16 23:00:40", 
-            "email": "herman@mutualismo.es", 
-            "first_name": "Herman", 
-            "groups": [], 
-            "is_active": true, 
-            "is_staff": false, 
-            "is_superuser": false, 
-            "last_login": "2012-01-16 23:00:40", 
-            "last_name": "", 
-            "password": "", 
-            "user_permissions": [], 
-            "username": "herman"
-        }, 
-        "model": "auth.user", 
-        "pk": 3
-    }, 
+            "username": "Alice",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": false,
+            "is_staff": false,
+            "last_login": "2012-01-27 19:54:54",
+            "groups": [
+
+            ],
+            "user_permissions": [
+
+            ],
+            "password": "alice",
+            "email": "",
+            "date_joined": "2012-01-27 19:54:54"
+        }
+    },
     {
+        "pk": 3,
+        "model": "auth.user",
         "fields": {
-            "date_joined": "2012-01-16 23:01:09", 
-            "email": "beatrice@mutualismo.es", 
-            "first_name": "Beatrice", 
-            "groups": [], 
-            "is_active": true, 
-            "is_staff": false, 
-            "is_superuser": false, 
-            "last_login": "2012-01-16 23:01:09", 
-            "last_name": "", 
-            "password": "", 
-            "user_permissions": [], 
-            "username": "beatrice"
-        }, 
-        "model": "auth.user", 
-        "pk": 4
-    }, 
+            "username": "Bob",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": false,
+            "is_staff": false,
+            "last_login": "2012-01-27 19:57:41",
+            "groups": [
+
+            ],
+            "user_permissions": [
+
+            ],
+            "password": "bob",
+            "email": "",
+            "date_joined": "2012-01-27 19:57:41"
+        }
+    },
     {
+        "pk": 4,
+        "model": "auth.user",
         "fields": {
-            "demands": [], 
-            "groups": [], 
-            "location": "", 
-            "offerings": [], 
-            "user_permissions": []
-        }, 
-        "model": "red.user", 
-        "pk": 1
-    }, 
+            "username": "Herman",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": false,
+            "is_staff": false,
+            "last_login": "2012-01-27 19:59:17",
+            "groups": [
+
+            ],
+            "user_permissions": [
+
+            ],
+            "password": "herman",
+            "email": "",
+            "date_joined": "2012-01-27 19:59:17"
+        }
+    },
     {
+        "pk": 5,
+        "model": "auth.user",
         "fields": {
-            "demands": [], 
-            "groups": [], 
-            "location": "", 
-            "offerings": [], 
-            "user_permissions": []
-        }, 
-        "model": "red.user", 
-        "pk": 2
-    }, 
+            "username": "Beatrice",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": false,
+            "is_staff": false,
+            "last_login": "2012-01-27 19:59:29",
+            "groups": [
+
+            ],
+            "user_permissions": [
+
+            ],
+            "password": "beatrice",
+            "email": "",
+            "date_joined": "2012-01-27 19:59:29"
+        }
+    },
     {
+        "pk": 2,
+        "model": "red.user",
         "fields": {
-            "demands": [], 
-            "groups": [], 
-            "location": "", 
-            "offerings": [], 
-            "user_permissions": []
-        }, 
-        "model": "red.user", 
-        "pk": 3
-    }, 
+            "user_permissions": [
+
+            ],
+            "offerings": [
+
+            ],
+            "location": "",
+            "groups": [
+
+            ],
+            "demands": [
+
+            ]
+        }
+    },
     {
+        "pk": 3,
+        "model": "red.user",
         "fields": {
-            "demands": [], 
-            "groups": [], 
-            "location": "", 
-            "offerings": [], 
-            "user_permissions": []
-        }, 
-        "model": "red.user", 
-        "pk": 4
+            "user_permissions": [
+
+            ],
+            "offerings": [
+                1
+            ],
+            "location": "",
+            "groups": [
+
+            ],
+            "demands": [
+
+            ]
+        }
+    },
+    {
+        "pk": 4,
+        "model": "red.user",
+        "fields": {
+            "user_permissions": [
+
+            ],
+            "offerings": [
+
+            ],
+            "location": "",
+            "groups": [
+
+            ],
+            "demands": [
+
+            ]
+        }
+    },
+    {
+        "pk": 5,
+        "model": "red.user",
+        "fields": {
+            "user_permissions": [
+
+            ],
+            "offerings": [
+
+            ],
+            "location": "",
+            "groups": [
+
+            ],
+            "demands": [
+
+            ]
+        }
     }
 ]
