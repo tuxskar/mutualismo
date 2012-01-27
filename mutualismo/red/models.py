@@ -6,32 +6,13 @@ from django.utils.translation import ugettext_lazy as _
 from taggit.managers import TaggableManager
 
 
-class Category(models.Model):
-    name        = models.CharField(_('name'), max_length=124)
-    description = models.TextField(_('description'))
-    slug        = models.SlugField(_('slug'), unique=True)
-
-    class Meta:
-        verbose_name        = _('category')
-        verbose_name_plural = _('categories')
-        ordering            = ('name',)
-
-    def __unicode__(self):
-        return u'%s' % self.name
-
-
-class SubCategory(Category):
-    parent = models.ForeignKey(Category, related_name='sub')
-
-
 class Trade(models.Model):
     """
     Represents an object or action which can be part of a trade within our network. 
     """
     name        = models.CharField(_('name'), max_length=124)
     description = models.TextField(_('description'))
-    # XXX Are we going to allow uncategorized trades? 
-    category    = models.ForeignKey(Category)
+    # TODO: categorize trades with a 3rd party app
     # XXX For implementing the one (User) to many (Trade) relationship maybe we
     #     should include a field with a Foreign Key to User instead of having
     #     ManyToManyFields from User to Trade.
@@ -109,9 +90,9 @@ class Service(Offer):
     #
     #     If there are not suitable fields for this, check for 3rd party apps
     #     that provide the wanted functionality.
-    starts       = models.DateTimeField(_('start date'))
-    ends         = models.DateTimeField(_('end date'))
-    availability = models.TextField(_('availability'))
+    starts       = models.DateTimeField(_('start date'), blank=True, null=True)
+    ends         = models.DateTimeField(_('end date'), blank=True, null=True)
+    availability = models.TextField(_('availability'), blank=True)
 
     class Meta:
         verbose_name = _('service')
@@ -126,9 +107,9 @@ class User(BaseUser):
     # XXX offerings and demands are related to ONE user; the two relations are
     #     are mutually exclusive.
     # XXX avatar, self description, etc.
-    offerings = models.ManyToManyField(Offer, related_name='offer')
-    demands   = models.ManyToManyField(Demand, related_name='demand')
-    location  = models.CharField(max_length=124)
+    offerings = models.ManyToManyField(Offer, related_name='offer', blank=True)
+    demands   = models.ManyToManyField(Demand, related_name='demand', blank=True)
+    location  = models.CharField(max_length=124, blank=True)
 
 
 class Exchange(models.Model):
