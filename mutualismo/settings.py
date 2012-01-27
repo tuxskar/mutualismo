@@ -35,9 +35,9 @@ USE_L10N = True
 MEDIA_ROOT = path.join(BASE_DIR, 'media')
 MEDIA_URL  = '/media'
 
-STATIC_ROOT        = ''
+STATIC_ROOT        = path.join(BASE_DIR, 'static')
 STATIC_URL         = '/static/'
-ADMIN_MEDIA_PREFIX = '/media/admin/'
+ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
