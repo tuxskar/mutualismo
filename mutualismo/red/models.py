@@ -5,19 +5,21 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from taggit.managers import TaggableManager
 
-
 class Trade(models.Model):
     """
     Represents an object or action which can be part of a trade within our network. 
     """
     name        = models.CharField(_('name'), max_length=124)
     description = models.TextField(_('description'))
+    date  = models.DateTimeField(_('date'), default = datetime.datetime.now)
     # TODO: categorize trades with a 3rd party app
     # XXX For implementing the one (User) to many (Trade) relationship maybe we
     #     should include a field with a Foreign Key to User instead of having
     #     ManyToManyFields from User to Trade.
     owner       = models.ForeignKey(BaseUser)
     tags        = TaggableManager()
+
+    objects     = models.Manager()
 
     class Meta:
         abstract = True

@@ -1,15 +1,17 @@
-from django.test import Client, TestCase
+from django.test import TestCase
 
-class ViewTestCase(TestCase):
+from red.managers import TradeManager
+
+class TradeManagerTest(TestCase):
     """Helper class for testing URLs."""
     fixtures = ['test.json']
 
     def setUp(self):
-        self.client = Client()
-        self.url_prefix = '/red'
+        self.manager = TradeManager()
     
-    def create_urls(self, urls):
-        return ['/'.join([self.url_prefix, url]) for url in urls]
+    def test_all(self, urls):
+        all_trades = self.manager.all()
+        # TODO
 
     def test_create_urls_correct(self):
         urls = ['', 'about/', 'contact']

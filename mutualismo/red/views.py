@@ -1,9 +1,14 @@
-from django.views.generic.simple import direct_to_template
+from django.shortcuts import render_to_response
+
+from red.managers import TradeManager
 
 def index(request):
     """Index page."""
-    return direct_to_template(request, template='index.html',)
+    trades = TradeManager()
+    latest_trades = trades.latest()
+    data = {'trades': latest_trades,}
+    return render_to_response('index.html', data)
 
 def about(request):
     """About page."""
-    return direct_to_template(request, template='about.html',)
+    return render_to_response('about.html',)
