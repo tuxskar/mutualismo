@@ -1,9 +1,9 @@
-from django.shortcuts import render_to_response
+from django.views.generic.simple import direct_to_template
 
 def index(request):
     """Index page."""
-    return render_to_response('index.html',)
+    return direct_to_template(request, template='index.html',)
 
 def about(request):
     """About page."""
-    return render_to_response('about.html',)
+    return direct_to_template(request, template='about.html',)
