@@ -5,7 +5,6 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from taggit.managers import TaggableManager
 
-
 class Trade(models.Model):
     """
     Represents an object or action which can be part of a trade within our network. 
@@ -18,6 +17,8 @@ class Trade(models.Model):
     #     ManyToManyFields from User to Trade.
     owner       = models.ForeignKey(BaseUser)
     tags        = TaggableManager()
+
+    objects     = models.Manager()
 
     class Meta:
         abstract = True

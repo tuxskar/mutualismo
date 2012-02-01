@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 
 {% block main %}
-This is the main page.
+<h1>This is the main page.</h1>
+  <ul>
+  {% for trade in trades %}
+    <li>
+      <p>{{ trade.name }}</p>
+    </li>
+  {% endfor %}
+  </ul>
 {% endblock %}
