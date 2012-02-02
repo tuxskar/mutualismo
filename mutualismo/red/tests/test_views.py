@@ -1,3 +1,4 @@
+from django.core import mail
 from django.test import Client, TestCase
 
 class ViewTestCase(TestCase):
@@ -40,7 +41,7 @@ class TestIndex(ViewTestCase):
     def setUp(self):
         ViewTestCase.setUp(self)
         self.urls = self.create_urls([''])
-        self.templates = ['base.html', 'index.html']
+        self.templates = ['base.html', 'index.html', 'includes/trade.html']
 
     def test_index_http_ok(self):
         for url in self.urls:
@@ -73,7 +74,7 @@ class TestContact(ViewTestCase):
     def setUp(self):
         ViewTestCase.setUp(self)
         self.urls = self.create_urls(['contact', 'contact/'])
-        self.templates = ['base.html', 'contact.html']
+        self.templates = ['base.html', 'contact.html', 'includes/form.html']
 
     def test_about_http_ok(self):
         for url in self.urls:
@@ -83,3 +84,47 @@ class TestContact(ViewTestCase):
         for url in self.urls:
             response = self.client.get(url)
             self.assertTemplatesUsed(response, self.templates)
+
+    def test_invalid_contact_form_post_templates(self):
+        # when an invalid form is submitted, the contact page 
+        # is rendered again
+        form = {'subject': 'test',
+                'message': 'test message',
+                'sender': 'invalidemail',
+                'cc_myself': True}
+        for url in self.urls:
+            response = self.client.post(url, form)
+            self.assertTemplatesUsed(response, self.templates)
+
+    def test_valid_contact_form_post_templates(self):
+        # when a valid form is submitted, redirect to "thank you" page
+        form = {'subject': 'test',
+                'message': 'test message',
+                'sender': 'validemail@foo.bar',
+                'cc_myself': True}
+        templates = ['base.html', 'thankyou.html']
+        for url in self.urls:
+            response = self.client.post(url, form)
+            self.assertTemplatesUsed(response, templates)
+
+    def test_mail_to_admins_with_valid_contact_form_post(self):
+        # without self CC
+        form = {'subject': 'test',
+                'message': 'test message',
+                'sender': 'validemail@foo.bar',
+                'cc_myself': False}
+        for url in self.urls:
+            self.client.post(url, form)
+            self.assertEqual(1, len(mail.outbox))
+            mail.outbox = []
+
+    def test_mail_to_admins_and_user_with_valid_contact_form_post(self):
+        # with self CC
+        form = {'subject': 'test',
+                'message': 'test message',
+                'sender': 'validemail@foo.bar',
+                'cc_myself': True}
+        for url in self.urls:
+            self.client.post(url, form)
+            self.assertEqual(1, len(mail.outbox))
+            mail.outbox = []
