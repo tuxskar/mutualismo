@@ -10,6 +10,9 @@ class TradeManager(Manager):
         loans = Loan.objects.all()
         gifts = Gift.objects.all()
         services = Service.objects.all()
-        latest = sorted(chain(loans, gifts, services), key=lambda trade: trade.date)
-        latest.reverse()
+        latest = sorted(chain(loans, gifts, services), 
+                        key=lambda trade: trade.date,
+                        reverse=True)
+        if count < 0:
+            count = 0
         return latest[:count]
