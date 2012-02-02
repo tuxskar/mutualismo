@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from django.core.mail import EmailMessage
 from django.views.generic.simple import direct_to_template
 from django.shortcuts import render_to_response
