@@ -67,3 +67,19 @@ class TestAbout(ViewTestCase):
         for url in self.urls:
             response = self.client.get(url)
             self.assertTemplatesUsed(response, self.templates)
+
+class TestContact(ViewTestCase):
+    """Contact page."""
+    def setUp(self):
+        ViewTestCase.setUp(self)
+        self.urls = self.create_urls(['contact', 'contact/'])
+        self.templates = ['base.html', 'contact.html']
+
+    def test_about_http_ok(self):
+        for url in self.urls:
+            self.assertHTTPOk(url)
+
+    def test_templates(self):
+        for url in self.urls:
+            response = self.client.get(url)
+            self.assertTemplatesUsed(response, self.templates)

@@ -12,3 +12,7 @@ def index(request):
 def about(request):
     """About page."""
     return render_to_response('about.html',)
+
+def contact(request):
+    """Contact page."""
+    return render_to_response('contact.html',)
