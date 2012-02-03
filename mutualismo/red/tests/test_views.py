@@ -1,6 +1,8 @@
 from django.core import mail
 from django.test import Client, TestCase
 
+from red.managers import TradeManager
+
 class ViewTestCase(TestCase):
     """Helper class for testing URLs."""
     fixtures = ['test.json']
@@ -40,8 +42,11 @@ class TestIndex(ViewTestCase):
     """Index page."""
     def setUp(self):
         ViewTestCase.setUp(self)
+        self.trades = TradeManager()
         self.urls = self.create_urls([''])
-        self.templates = ['base.html', 'index.html', 'includes/trade.html']
+        self.templates = ['base.html', 'index.html',]
+        if len(self.trades.latest()):
+            self.templates.append('includes/trade.html')
 
     def test_index_http_ok(self):
         for url in self.urls:
@@ -68,6 +73,7 @@ class TestAbout(ViewTestCase):
         for url in self.urls:
             response = self.client.get(url)
             self.assertTemplatesUsed(response, self.templates)
+
 
 class TestContact(ViewTestCase):
     """Contact page."""
