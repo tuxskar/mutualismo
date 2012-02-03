@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.conf.urls.defaults import patterns, include, url
 
 from views import index, about, contact
@@ -7,3 +8,11 @@ urlpatterns = patterns('red.views',
     url(r'^about',   about),
     url(r'^contact', contact),
 )
+
+if settings.DEBUG:
+    from os import path
+    red_dir = path.normpath(path.dirname(__file__))
+    static_dir = path.join(red_dir, 'static')
+    urlpatterns += patterns('red.static',
+        (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': static_dir}),
+    )
