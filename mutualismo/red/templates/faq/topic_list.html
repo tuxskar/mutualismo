@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block main %}
+    {% load faqtags %}
+
+    {% faq_list 3 as faqs %}
+
+    {% for faq in faqs %}
+      {{ faq.text }} {% if not forloop.last %}/{% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block aside %}
+
+{% endblock %}
+
