@@ -10,8 +10,10 @@ from red.forms import ContactForm
 def index(request):
     """Index page."""
     trades = TradeManager()
-    latest_trades = trades.latest()
-    data = {'trades': latest_trades,}
+    latest_offers = trades.latest_offers()
+    latest_demands = trades.latest_demands()
+    data = {'latest_offers':  latest_offers,
+            'latest_demands': latest_demands,}
     return render_to_response('index.html', data)
 
 def about(request):

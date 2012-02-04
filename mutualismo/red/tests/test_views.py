@@ -38,16 +38,19 @@ class ViewTestCase(TestCase):
 
 class TestIndex(ViewTestCase):
     """Index page."""
+    templates = ['base.html', 'index.html',]
+
     def setUp(self):
         ViewTestCase.setUp(self)
         self.urls = self.create_urls([''])
-        self.templates = ['base.html', 'index.html', 'includes/trade.html']
 
     def test_index_http_ok(self):
         for url in self.urls:
             self.assertHTTPOk(url)
 
     def test_templates(self):
+        # TODO test that, if we have any offer or demand to show, the proper 
+        #      template is rendered
         for url in self.urls:
             response = self.client.get(url)
             self.assertTemplatesUsed(response, self.templates)
@@ -68,6 +71,7 @@ class TestAbout(ViewTestCase):
         for url in self.urls:
             response = self.client.get(url)
             self.assertTemplatesUsed(response, self.templates)
+
 
 class TestContact(ViewTestCase):
     """Contact page."""
