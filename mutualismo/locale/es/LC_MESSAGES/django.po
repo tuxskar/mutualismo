@@ -28,92 +28,92 @@ msgstr "descripción"
 
 #: red/models.py:11
 msgid "slug"
-msgstr ""
+msgstr "slug"
 
 #: red/models.py:14
 msgid "category"
-msgstr ""
+msgstr "categoría"
 
 #: red/models.py:15
 msgid "categories"
-msgstr ""
+msgstr "categorías"
 
 #: red/models.py:46
 msgid "Available"
-msgstr ""
+msgstr "Disponible"
 
 #: red/models.py:47
 msgid "Not available"
-msgstr ""
+msgstr "No disponible"
 
 #: red/models.py:49
 msgid "status"
-msgstr ""
+msgstr "estado"
 
 #: red/models.py:57
 msgid "maximum time"
-msgstr ""
+msgstr "tiempo máximo"
 
 #: red/models.py:60
 msgid "loan"
-msgstr ""
+msgstr "préstamo"
 
 #: red/models.py:61
 msgid "loans"
-msgstr ""
+msgstr "préstamos"
 
 #: red/models.py:68
 msgid "communal"
-msgstr ""
+msgstr "comunitario"
 
 #: red/models.py:71
 msgid "gift"
-msgstr ""
+msgstr "regalo"
 
 #: red/models.py:72
 msgid "gifts"
-msgstr ""
+msgstr "regalos"
 
 #: red/models.py:79
 msgid "start date"
-msgstr ""
+msgstr "fecha de comienzo"
 
 #: red/models.py:80
 msgid "end date"
-msgstr ""
+msgstr "fecha de fin"
 
 #: red/models.py:81
 msgid "availability"
-msgstr ""
+msgstr "disponibilidad"
 
 #: red/models.py:84
 msgid "service"
-msgstr ""
+msgstr "servicio"
 
 #: red/models.py:85
 msgid "services"
-msgstr ""
+msgstr "servicios"
 
 #: red/models.py:93
 msgid "Give"
-msgstr ""
+msgstr "Dar"
 
 #: red/models.py:94
 msgid "Receive"
-msgstr ""
+msgstr "Recibir"
 
 #: red/models.py:96
 msgid "type"
-msgstr ""
+msgstr "tipo"
 
 #: red/models.py:98
 msgid "date"
-msgstr ""
+msgstr "fecha"
 
 #: red/models.py:101
 msgid "exchange"
-msgstr ""
+msgstr "intercambio"
 
 #: red/models.py:102
 msgid "exchanges"
-msgstr ""
+msgstr "intercambios"
