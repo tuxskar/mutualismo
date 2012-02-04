@@ -9,7 +9,7 @@ class ViewTestCase(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.url_prefix = '/red'
+        self.url_prefix = ''
     
     def create_urls(self, urls):
         return ['/'.join([self.url_prefix, url]) for url in urls]
