@@ -4,13 +4,13 @@
   <ul>
     <div id="last_offers">
     <h3 class="large">&Uacute;ltimas ofertas</h3>
-    {% for offer in latest_offers %}
+    {% for trade in latest_offers %}
         {% include "includes/trade.html" %}
     {% endfor %}
     </div> 
     <div id="last_demands">
     <h3 class="large">&Uacute;ltimas demandas</h3>
-    {% for demand in latest_demands %}
+    {% for trade in latest_demands %}
         {% include "includes/trade.html" %}
     {% endfor %}
     </div> 
