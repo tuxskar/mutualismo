@@ -156,3 +156,16 @@ class TestLogin(ViewTestCase):
         for url in self.urls:
             response = self.client.get(url)
             self.assertTemplatesUsed(response, self.templates)
+
+
+class TestLogout(ViewTestCase):
+    """Logout page."""
+
+    def setUp(self):
+        ViewTestCase.setUp(self)
+        self.urls = self.create_urls(['logout', 'logout/'])
+
+    def test_redirection(self):
+        for url in self.urls:
+            response = self.client.get(url)
+            self.assertRedirects(response, '/')
