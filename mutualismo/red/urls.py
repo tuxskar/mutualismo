@@ -7,8 +7,8 @@ urlpatterns = patterns('red.views',
     url(r'^$',        index),
     url(r'^about',    about),
     url(r'^contact',  contact),
-    url(r'^login',  login),
-    #url(r'^logout/$', logout, {'next_page': ''}),
+    url(r'^login',    login),
+    url(r'^logout',   logout, {'next_page': '/'}),
 )
 
 import settings

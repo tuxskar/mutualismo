@@ -1,6 +1,6 @@
 import datetime
 
-from django.contrib.auth.models import User as BaseUser
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from taggit.managers import TaggableManager
@@ -11,13 +11,10 @@ class Trade(models.Model):
     """
     name        = models.CharField(_('name'), max_length=124)
     description = models.TextField(_('description'))
-    date  = models.DateTimeField(_('date'), default = datetime.datetime.now)
-    # TODO: categorize trades with a 3rd party app
-    # XXX For implementing the one (User) to many (Trade) relationship maybe we
-    #     should include a field with a Foreign Key to User instead of having
-    #     ManyToManyFields from User to Trade.
-    owner       = models.ForeignKey(BaseUser)
+    date        = models.DateTimeField(_('date'), default = datetime.datetime.now)
+    owner       = models.ForeignKey(User)
     tags        = TaggableManager()
+    # TODO: categorize trades with a 3rd party app
 
     objects     = models.Manager()
 
@@ -47,7 +44,7 @@ class Demand(Trade):
         (3, _('Good for gift')),
         (4, _('Communal good')),
     )
-    trade_type = models.IntegerField(_('type'), choices = TYPE_CHOICE, default = 1)
+    trade_type = models.IntegerField(_('type'), choices = TYPE_CHOICE, default = 0)
     # TODO field for specifying if the demand is still being required.
 
 
@@ -99,19 +96,6 @@ class Service(Offer):
     class Meta:
         verbose_name = _('service')
         verbose_name_plural = _('services')
-
-
-class User(BaseUser):
-    """
-    Extends the ``django.contrib.auth.User`` class to store offers, demands, a
-    history of the exchanges and more suitable information.
-    """
-    # XXX offerings and demands are related to ONE user; the two relations are
-    #     are mutually exclusive.
-    # XXX avatar, self description, etc.
-    offerings = models.ManyToManyField(Offer, related_name='offer', blank=True)
-    demands   = models.ManyToManyField(Demand, related_name='demand', blank=True)
-    location  = models.CharField(max_length=124, blank=True)
 
 
 class Exchange(models.Model):
