@@ -1,5 +1,5 @@
+from django.template import RequestContext
 from django.core.mail import EmailMessage
-from django.views.generic.simple import direct_to_template
 from django.shortcuts import render_to_response
 
 from settings import ADMINS
@@ -42,8 +42,10 @@ def contact(request):
             if cc_myself:
                 email.cc = [sender]
             email.send()
-            return direct_to_template(request, 'thankyou.html')
+            return render_to_response('thankyou.html', 
+                                      RequestContext(request))
     else:
         form = ContactForm()
 
-    return render_to_response('contact.html', {'form': form,})
+    return render_to_response('contact.html', 
+                              {'form': form,}, RequestContext(request))
