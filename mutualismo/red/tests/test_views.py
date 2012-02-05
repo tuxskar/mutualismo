@@ -2,7 +2,7 @@ from django.core import mail
 from django.test import Client, TestCase
 
 class ViewTestCase(TestCase):
-    """Helper class for testing URLs."""
+    """Helper class for testing views."""
     fixtures = ['test.json']
 
     def setUp(self):
@@ -58,10 +58,11 @@ class TestIndex(ViewTestCase):
 
 class TestAbout(ViewTestCase):
     """About page."""
+    templates = ['base.html', 'about.html',]
+
     def setUp(self):
         ViewTestCase.setUp(self)
         self.urls = self.create_urls(['about', 'about/'])
-        self.templates = ['base.html', 'about.html']
 
     def test_about_http_ok(self):
         for url in self.urls:
@@ -75,10 +76,11 @@ class TestAbout(ViewTestCase):
 
 class TestContact(ViewTestCase):
     """Contact page."""
+    templates = ['base.html', 'contact.html', 'includes/form.html']
+
     def setUp(self):
         ViewTestCase.setUp(self)
         self.urls = self.create_urls(['contact', 'contact/'])
-        self.templates = ['base.html', 'contact.html', 'includes/form.html']
 
     def test_about_http_ok(self):
         for url in self.urls:
@@ -120,6 +122,8 @@ class TestContact(ViewTestCase):
         for url in self.urls:
             self.client.post(url, form)
             self.assertEqual(1, len(mail.outbox))
+            cc_sender = mail.outbox[0].cc
+            self.assertEqual(cc_sender, [])
             mail.outbox = []
 
     def test_mail_to_admins_and_user_with_valid_contact_form_post(self):
@@ -131,4 +135,6 @@ class TestContact(ViewTestCase):
         for url in self.urls:
             self.client.post(url, form)
             self.assertEqual(1, len(mail.outbox))
+            cc_sender = mail.outbox[0].cc[0]
+            self.assertEqual(cc_sender, unicode(form['sender']))
             mail.outbox = []
