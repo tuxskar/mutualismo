@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block main %}
+<h1>This is the main page.</h1>
+  <ul>
+  {% for trade in trades %}
+      {% include "red/includes/trade.html" %}
+  {% endfor %}
+  </ul>
+{% endblock %}
