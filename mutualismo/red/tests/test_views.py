@@ -64,7 +64,7 @@ class TestAbout(ViewTestCase):
         ViewTestCase.setUp(self)
         self.urls = self.create_urls(['about', 'about/'])
 
-    def test_about_http_ok(self):
+    def test_http_ok(self):
         for url in self.urls:
             self.assertHTTPOk(url)
 
@@ -82,7 +82,7 @@ class TestContact(ViewTestCase):
         ViewTestCase.setUp(self)
         self.urls = self.create_urls(['contact', 'contact/'])
 
-    def test_about_http_ok(self):
+    def test_http_ok(self):
         for url in self.urls:
             self.assertHTTPOk(url)
 
@@ -148,7 +148,7 @@ class TestLogin(ViewTestCase):
         ViewTestCase.setUp(self)
         self.urls = self.create_urls(['login', 'login/'])
 
-    def test_about_http_ok(self):
+    def test_http_ok(self):
         for url in self.urls:
             self.assertHTTPOk(url)
 
@@ -169,3 +169,21 @@ class TestLogout(ViewTestCase):
         for url in self.urls:
             response = self.client.get(url)
             self.assertRedirects(response, '/')
+
+
+class TestRegister(ViewTestCase):
+    """Registration page."""
+    templates = ['base.html', 'registration/registration_form.html',]
+
+    def setUp(self):
+        ViewTestCase.setUp(self)
+        self.urls = self.create_urls(['accounts/register', 'accounts/register/'])
+
+    def test_http_ok(self):
+        for url in self.urls:
+            self.assertHTTPOk(url)
+
+    def test_templates(self):
+        for url in self.urls:
+            response = self.client.get(url)
+            self.assertTemplatesUsed(response, self.templates)

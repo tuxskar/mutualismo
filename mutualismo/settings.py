@@ -86,6 +86,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'registration',
     'taggit',
     'red',
     'django_nose',
@@ -109,8 +110,10 @@ LOGGING = {
     }
 }
 
-# Testing
+# Registration
+ACCOUNT_ACTIVATION_DAYS = 7
 
+# Testing
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 NOSE_ARGS = [
