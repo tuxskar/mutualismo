@@ -1,0 +1,12 @@
+<div class="demand">
+  <li>
+    <h3>{{ demand.name }}</h3>
+    <span class="trade_date">{{ trade.date }}</span>
+    <p>{{ trade.description }}</p>
+    <div class="trade_tags">
+    {% for tag in trade.tags.all %}
+        <span class="trade_tag">{{ tag }}</span>
+    {% endfor %}
+    </div>
+  </li>
+</div>
