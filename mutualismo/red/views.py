@@ -14,11 +14,11 @@ def index(request):
     latest_demands = trades.latest_demands()
     data = {'latest_offers':  latest_offers,
             'latest_demands': latest_demands,}
-    return render_to_response('index.html', data)
+    return render_to_response('red/index.html', data)
 
 def about(request):
     """About page."""
-    return render_to_response('about.html',)
+    return render_to_response('red/about.html',)
 
 def contact(request):
     """Contact page."""
@@ -42,10 +42,11 @@ def contact(request):
             if cc_myself:
                 email.cc = [sender]
             email.send()
-            return render_to_response('thankyou.html', 
+            return render_to_response('red/thankyou.html', 
                                       RequestContext(request))
     else:
         form = ContactForm()
 
-    return render_to_response('contact.html', 
-                              {'form': form,}, RequestContext(request))
+    return render_to_response('red/contact.html', 
+                              {'form': form,}, 
+                              RequestContext(request))

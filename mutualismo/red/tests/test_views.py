@@ -38,7 +38,7 @@ class ViewTestCase(TestCase):
 
 class TestIndex(ViewTestCase):
     """Index page."""
-    templates = ['base.html', 'index.html',]
+    templates = ['base.html', 'red/index.html',]
 
     def setUp(self):
         ViewTestCase.setUp(self)
@@ -58,7 +58,7 @@ class TestIndex(ViewTestCase):
 
 class TestAbout(ViewTestCase):
     """About page."""
-    templates = ['base.html', 'about.html',]
+    templates = ['base.html', 'red/about.html',]
 
     def setUp(self):
         ViewTestCase.setUp(self)
@@ -76,7 +76,7 @@ class TestAbout(ViewTestCase):
 
 class TestContact(ViewTestCase):
     """Contact page."""
-    templates = ['base.html', 'contact.html', 'includes/form.html']
+    templates = ['base.html', 'red/contact.html', 'red/includes/form.html']
 
     def setUp(self):
         ViewTestCase.setUp(self)
@@ -108,7 +108,7 @@ class TestContact(ViewTestCase):
                 'message': 'test message',
                 'sender': 'validemail@foo.bar',
                 'cc_myself': True}
-        templates = ['base.html', 'thankyou.html']
+        templates = ['base.html', 'red/thankyou.html']
         for url in self.urls:
             response = self.client.post(url, form)
             self.assertTemplatesUsed(response, templates)
