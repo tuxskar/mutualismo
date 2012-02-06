@@ -1,5 +1,5 @@
+from django.template import RequestContext
 from django.core.mail import EmailMessage
-from django.views.generic.simple import direct_to_template
 from django.shortcuts import render_to_response
 
 from settings import ADMINS
@@ -10,13 +10,15 @@ from red.forms import ContactForm
 def index(request):
     """Index page."""
     trades = TradeManager()
-    latest_trades = trades.latest()
-    data = {'trades': latest_trades,}
-    return render_to_response('index.html', data)
+    latest_offers = trades.latest_offers()
+    latest_demands = trades.latest_demands()
+    data = {'latest_offers':  latest_offers,
+            'latest_demands': latest_demands,}
+    return render_to_response('red/index.html', data)
 
 def about(request):
     """About page."""
-    return render_to_response('about.html',)
+    return render_to_response('red/about.html',)
 
 def contact(request):
     """Contact page."""
@@ -40,8 +42,11 @@ def contact(request):
             if cc_myself:
                 email.cc = [sender]
             email.send()
-            return direct_to_template(request, 'thankyou.html')
+            return render_to_response('red/thankyou.html', 
+                                      RequestContext(request))
     else:
         form = ContactForm()
 
-    return render_to_response('contact.html', {'form': form,})
+    return render_to_response('red/contact.html', 
+                              {'form': form,}, 
+                              RequestContext(request))

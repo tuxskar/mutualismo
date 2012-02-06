@@ -89,6 +89,7 @@ INSTALLED_APPS = (
     'faq',
     'taggit',
     'red',
+    'django_nose',
 )
 
 LOGGING = {
@@ -108,3 +109,12 @@ LOGGING = {
         },
     }
 }
+
+# Testing
+
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=red',
+]

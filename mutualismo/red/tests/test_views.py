@@ -4,7 +4,7 @@ from django.test import Client, TestCase
 from red.managers import TradeManager
 
 class ViewTestCase(TestCase):
-    """Helper class for testing URLs."""
+    """Helper class for testing views."""
     fixtures = ['test.json']
 
     def setUp(self):
@@ -40,19 +40,20 @@ class ViewTestCase(TestCase):
 
 class TestIndex(ViewTestCase):
     """Index page."""
+    templates = ['base.html', 'red/index.html',]
+
     def setUp(self):
         ViewTestCase.setUp(self)
         self.trades = TradeManager()
         self.urls = self.create_urls([''])
-        self.templates = ['base.html', 'index.html',]
-        if len(self.trades.latest()):
-            self.templates.append('includes/trade.html')
 
     def test_index_http_ok(self):
         for url in self.urls:
             self.assertHTTPOk(url)
 
     def test_templates(self):
+        # TODO test that, if we have any offer or demand to show, the proper 
+        #      template is rendered
         for url in self.urls:
             response = self.client.get(url)
             self.assertTemplatesUsed(response, self.templates)
@@ -60,10 +61,11 @@ class TestIndex(ViewTestCase):
 
 class TestAbout(ViewTestCase):
     """About page."""
+    templates = ['base.html', 'red/about.html',]
+
     def setUp(self):
         ViewTestCase.setUp(self)
         self.urls = self.create_urls(['about', 'about/'])
-        self.templates = ['base.html', 'about.html']
 
     def test_about_http_ok(self):
         for url in self.urls:
@@ -77,10 +79,11 @@ class TestAbout(ViewTestCase):
 
 class TestContact(ViewTestCase):
     """Contact page."""
+    templates = ['base.html', 'red/contact.html', 'red/includes/form.html']
+
     def setUp(self):
         ViewTestCase.setUp(self)
         self.urls = self.create_urls(['contact', 'contact/'])
-        self.templates = ['base.html', 'contact.html', 'includes/form.html']
 
     def test_about_http_ok(self):
         for url in self.urls:
@@ -108,7 +111,7 @@ class TestContact(ViewTestCase):
                 'message': 'test message',
                 'sender': 'validemail@foo.bar',
                 'cc_myself': True}
-        templates = ['base.html', 'thankyou.html']
+        templates = ['base.html', 'red/thankyou.html']
         for url in self.urls:
             response = self.client.post(url, form)
             self.assertTemplatesUsed(response, templates)
@@ -122,6 +125,8 @@ class TestContact(ViewTestCase):
         for url in self.urls:
             self.client.post(url, form)
             self.assertEqual(1, len(mail.outbox))
+            cc_sender = mail.outbox[0].cc
+            self.assertEqual(cc_sender, [])
             mail.outbox = []
 
     def test_mail_to_admins_and_user_with_valid_contact_form_post(self):
@@ -133,4 +138,37 @@ class TestContact(ViewTestCase):
         for url in self.urls:
             self.client.post(url, form)
             self.assertEqual(1, len(mail.outbox))
+            cc_sender = mail.outbox[0].cc[0]
+            self.assertEqual(cc_sender, unicode(form['sender']))
             mail.outbox = []
+
+
+class TestLogin(ViewTestCase):
+    """Login page."""
+    templates = ['base.html', 'registration/login.html',]
+
+    def setUp(self):
+        ViewTestCase.setUp(self)
+        self.urls = self.create_urls(['login', 'login/'])
+
+    def test_about_http_ok(self):
+        for url in self.urls:
+            self.assertHTTPOk(url)
+
+    def test_templates(self):
+        for url in self.urls:
+            response = self.client.get(url)
+            self.assertTemplatesUsed(response, self.templates)
+
+
+class TestLogout(ViewTestCase):
+    """Logout page."""
+
+    def setUp(self):
+        ViewTestCase.setUp(self)
+        self.urls = self.create_urls(['logout', 'logout/'])
+
+    def test_redirection(self):
+        for url in self.urls:
+            response = self.client.get(url)
+            self.assertRedirects(response, '/')

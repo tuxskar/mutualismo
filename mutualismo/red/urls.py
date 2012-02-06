@@ -1,19 +1,18 @@
-from django.conf.urls.defaults import patterns, include, url
+from django.conf.urls.defaults import patterns, url
+from django.contrib.auth.views import login, logout
 
 from views import index, about, contact
 
-import settings
-
 urlpatterns = patterns('red.views',
-    url(r'^$',       index),
-    url(r'^about',   about),
-    url(r'^contact', contact),
+    url(r'^$',        index),
+    url(r'^about',    about),
+    url(r'^contact',  contact),
+    url(r'^login',    login),
+    url(r'^logout',   logout, {'next_page': '/'}),
 )
 
+import settings
 if settings.DEBUG:
-    from os import path
-    red_dir = path.normpath(path.dirname(__file__))
-    static_dir = path.join(red_dir, 'static')
     urlpatterns += patterns('',
-        (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': static_dir}),
+        (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
     )
