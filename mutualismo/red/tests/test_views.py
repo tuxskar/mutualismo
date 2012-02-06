@@ -47,7 +47,7 @@ class TestIndex(ViewTestCase):
         self.trades = TradeManager()
         self.urls = self.create_urls([''])
 
-    def test_index_http_ok(self):
+    def test_http_ok(self):
         for url in self.urls:
             self.assertHTTPOk(url)
 
@@ -67,7 +67,7 @@ class TestAbout(ViewTestCase):
         ViewTestCase.setUp(self)
         self.urls = self.create_urls(['about', 'about/'])
 
-    def test_about_http_ok(self):
+    def test_http_ok(self):
         for url in self.urls:
             self.assertHTTPOk(url)
 
@@ -85,7 +85,7 @@ class TestContact(ViewTestCase):
         ViewTestCase.setUp(self)
         self.urls = self.create_urls(['contact', 'contact/'])
 
-    def test_about_http_ok(self):
+    def test_http_ok(self):
         for url in self.urls:
             self.assertHTTPOk(url)
 
@@ -151,7 +151,7 @@ class TestLogin(ViewTestCase):
         ViewTestCase.setUp(self)
         self.urls = self.create_urls(['login', 'login/'])
 
-    def test_about_http_ok(self):
+    def test_http_ok(self):
         for url in self.urls:
             self.assertHTTPOk(url)
 
