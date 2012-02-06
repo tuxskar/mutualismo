@@ -50,3 +50,7 @@ def contact(request):
     return render_to_response('red/contact.html', 
                               {'form': form,}, 
                               RequestContext(request))
+
+def profile(request):
+    """User's profile."""
+    pass
