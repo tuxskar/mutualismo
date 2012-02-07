@@ -74,8 +74,11 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'mutualismo.urls'
 
+PROJECT_TEMPLATES = path.join(BASE_DIR, 'templates')
+RED_TEMPLATES = path.join(BASE_DIR, 'red/templates')
 TEMPLATE_DIRS = (
-    path.join(BASE_DIR, 'templates')
+    PROJECT_TEMPLATES,
+    RED_TEMPLATES
 )
 
 INSTALLED_APPS = (
@@ -87,6 +90,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'registration',
+    'faq',
     'taggit',
     'red',
     'django_nose',

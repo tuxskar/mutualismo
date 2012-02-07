@@ -1,6 +1,8 @@
 from django.core import mail
 from django.test import Client, TestCase
 
+from red.managers import TradeManager
+
 class ViewTestCase(TestCase):
     """Helper class for testing views."""
     fixtures = ['test.json']
@@ -42,9 +44,10 @@ class TestIndex(ViewTestCase):
 
     def setUp(self):
         ViewTestCase.setUp(self)
+        self.trades = TradeManager()
         self.urls = self.create_urls([''])
 
-    def test_index_http_ok(self):
+    def test_http_ok(self):
         for url in self.urls:
             self.assertHTTPOk(url)
 
@@ -169,21 +172,3 @@ class TestLogout(ViewTestCase):
         for url in self.urls:
             response = self.client.get(url)
             self.assertRedirects(response, '/')
-
-
-class TestRegister(ViewTestCase):
-    """Registration page."""
-    templates = ['base.html', 'registration/registration_form.html',]
-
-    def setUp(self):
-        ViewTestCase.setUp(self)
-        self.urls = self.create_urls(['accounts/register', 'accounts/register/'])
-
-    def test_http_ok(self):
-        for url in self.urls:
-            self.assertHTTPOk(url)
-
-    def test_templates(self):
-        for url in self.urls:
-            response = self.client.get(url)
-            self.assertTemplatesUsed(response, self.templates)
