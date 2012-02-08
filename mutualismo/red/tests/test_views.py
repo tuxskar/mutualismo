@@ -40,7 +40,7 @@ class ViewTestCase(TestCase):
 
 class TestIndex(ViewTestCase):
     """Index page."""
-    templates = ['base.html', 'red/index.html',]
+    templates = ['base.html', 'index.html',]
 
     def setUp(self):
         ViewTestCase.setUp(self)
@@ -61,7 +61,7 @@ class TestIndex(ViewTestCase):
 
 class TestAbout(ViewTestCase):
     """About page."""
-    templates = ['base.html', 'red/about.html',]
+    templates = ['base.html', 'about.html',]
 
     def setUp(self):
         ViewTestCase.setUp(self)
@@ -79,7 +79,7 @@ class TestAbout(ViewTestCase):
 
 class TestContact(ViewTestCase):
     """Contact page."""
-    templates = ['base.html', 'red/contact.html', 'red/includes/form.html']
+    templates = ['base.html', 'contact.html', 'includes/form.html']
 
     def setUp(self):
         ViewTestCase.setUp(self)
@@ -111,7 +111,7 @@ class TestContact(ViewTestCase):
                 'message': 'test message',
                 'sender': 'validemail@foo.bar',
                 'cc_myself': True}
-        templates = ['base.html', 'red/thankyou.html']
+        templates = ['base.html', 'thankyou.html']
         for url in self.urls:
             response = self.client.post(url, form)
             self.assertTemplatesUsed(response, templates)
@@ -146,8 +146,8 @@ class TestContact(ViewTestCase):
 class TestDashboard(ViewTestCase):
     """User's dashboard page."""
     # we know that the user that we are going to user has trades, that's 
-    # why we include ``red/includes/trade.html`` in the templates
-    templates = ['base.html', 'red/dashboard.html', 'red/includes/trade.html']
+    # why we include ``includes/trade.html`` in the templates
+    templates = ['base.html', 'dashboard.html', 'includes/trade.html']
 
     def setUp(self):
         ViewTestCase.setUp(self)

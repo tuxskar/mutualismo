@@ -4,10 +4,10 @@
     <h3>Hola {{ username }}</h3>
     <h4>Ofertas</h4>
     {% for trade in offers %}
-        {% include "red/includes/trade.html" %}
+        {% include "includes/trade.html" %}
     {% endfor %}
     <h4>Demandas</h4>
     {% for trade in demands %}
-        {% include "red/includes/trade.html" %}
+        {% include "includes/trade.html" %}
     {% endfor %}
 {% endblock %}

@@ -9,7 +9,7 @@ class Trade(models.Model):
     """
     Represents an object or action which can be part of a trade within our network. 
     """
-    name        = models.CharField(_('name'), max_length=124)
+    name        = models.CharField(_('name'), max_length=124, unique=True)
     description = models.TextField(_('description'))
     date        = models.DateTimeField(_('date'), default = datetime.datetime.now)
     owner       = models.ForeignKey(User)
