@@ -37,6 +37,10 @@ class Offer(Trade):
     #     available can be 'erased' changing this field to False.
     visible = models.BooleanField(_('visible'), default=True)
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('red.views.offer', (), {'offer_slug': self.slug})
+
 
 class Demand(Trade):
     # XXX very provisional.
@@ -49,6 +53,10 @@ class Demand(Trade):
     )
     trade_type = models.IntegerField(_('type'), choices = TYPE_CHOICE, default = 0)
     # TODO field for specifying if the demand is still being required.
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('red.views.demand', (), {'demand_slug': self.slug})
 
 
 class Loan(Offer):
