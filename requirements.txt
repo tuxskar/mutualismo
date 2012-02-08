@@ -1,11 +1,15 @@
 Django==1.3.1
 Fabric==1.3.3
+South==0.7.3
 Werkzeug==0.8.3
 coverage==3.5.1
+django-autoslug-field==0.2.3
 django-debug-toolbar==0.9.4
 django-extensions==0.8-pre
 django-faq==0.1.0
 django-nose==0.1.3
+django-registration==0.8-alpha-1
+django-registration-defaults==0.3
 django-taggit==0.9.3
 gunicorn==0.13.4
 ipython==0.10.1

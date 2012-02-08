@@ -2,6 +2,7 @@ from django.core import mail
 from django.test import Client, TestCase
 
 from red.managers import TradeManager
+from red.models import Offer, Demand
 
 class ViewTestCase(TestCase):
     """Helper class for testing views."""
@@ -156,6 +157,52 @@ class TestDashboard(ViewTestCase):
 
     def login(self):
         return self.client.login(username='Alice', password='alice')
+
+    def test_http_ok(self):
+        for url in self.urls:
+            self.assertHTTPOk(url)
+
+    def test_templates(self):
+        for url in self.urls:
+            response = self.client.get(url)
+            self.assertTemplatesUsed(response, self.templates)
+
+
+class TestOffer(ViewTestCase):
+    """Page for a certain offer."""
+    templates = ['base.html', 'offer.html',]
+
+    def setUp(self):
+        ViewTestCase.setUp(self)
+        offers = Offer.objects.all()
+        urls = []
+        for offer in offers:
+            urls.append('offer/' + offer.slug)
+            urls.append('offer/' + offer.slug + '/')
+        self.urls = self.create_urls(urls)
+
+    def test_http_ok(self):
+        for url in self.urls:
+            self.assertHTTPOk(url)
+
+    def test_templates(self):
+        for url in self.urls:
+            response = self.client.get(url)
+            self.assertTemplatesUsed(response, self.templates)
+
+
+class TestDemand(ViewTestCase):
+    """Page for a certain demand."""
+    templates = ['base.html', 'demand.html',]
+
+    def setUp(self):
+        ViewTestCase.setUp(self)
+        demands = Demand.objects.all()
+        urls = []
+        for demand in demands:
+            urls.append('demand/' + demand.slug)
+            urls.append('demand/' + demand.slug + '/')
+        self.urls = self.create_urls(urls)
 
     def test_http_ok(self):
         for url in self.urls:

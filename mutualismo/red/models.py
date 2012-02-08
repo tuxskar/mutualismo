@@ -3,6 +3,8 @@ import datetime
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+
+from django_autoslug.fields import AutoSlugField
 from taggit.managers import TaggableManager
 
 class Trade(models.Model):
@@ -16,6 +18,7 @@ class Trade(models.Model):
     tags        = TaggableManager()
     # TODO: categorize trades with a 3rd party app
 
+    slug        = AutoSlugField(populate_from=('name',), unique=True, max_length=255)
     objects     = models.Manager()
 
     class Meta:

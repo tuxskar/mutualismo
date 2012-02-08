@@ -6,6 +6,7 @@ from django.shortcuts import render_to_response
 from settings import ADMINS
 
 from red.managers import TradeManager
+from red.models import Offer, Demand
 from red.forms import ContactForm
 
 def index(request):
@@ -66,3 +67,25 @@ def dashboard(request):
     return render_to_response('dashboard.html', 
                               data,
                               RequestContext(request))
+
+def _trade(request, cls, template, slug):
+    """
+    Helper function to render a certain trade given its slug, template 
+    and class.
+    """
+    try:
+        trade = cls.objects.get(slug=slug)
+    except cls.DoesNotExist:
+        trade = None
+    data = {'trade': trade,}
+    return render_to_response(template,
+                              data,
+                              RequestContext(request))
+
+def offer(request, offer_slug):
+    """Shows information about a certain offer."""
+    return _trade(request, Offer, 'offer.html', offer_slug)
+
+def demand(request, demand_slug):
+    """Shows information about a certain demand."""
+    return _trade(request, Demand, 'demand.html', demand_slug)

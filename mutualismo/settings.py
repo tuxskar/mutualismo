@@ -89,11 +89,12 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'django_autoslug',
     'registration',
     'faq',
     'taggit',
-    'red',
     'django_nose',
+    'red',
 )
 
 LOGGING = {
