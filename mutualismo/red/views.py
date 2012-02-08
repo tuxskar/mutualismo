@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.core.mail import EmailMessage
 from django.shortcuts import render_to_response
@@ -51,6 +52,17 @@ def contact(request):
                               {'form': form,}, 
                               RequestContext(request))
 
-def profile(request):
-    """User's profile."""
-    pass
+@login_required
+def dashboard(request):
+    """User's dashboard page."""
+    user = request.user
+    username = user.username
+    trades = TradeManager()
+    offers = trades.offers(username)
+    demands = trades.demands(username)
+    data = {'username': username,
+            'offers':   offers,
+            'demands':  demands,}
+    return render_to_response('red/dashboard.html', 
+                              data,
+                              RequestContext(request))

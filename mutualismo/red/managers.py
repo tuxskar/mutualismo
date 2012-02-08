@@ -1,8 +1,9 @@
 from itertools import chain
 
 from django.db.models import Manager
+from django.contrib.auth.models import User
 
-from red.models import Demand, Gift, Loan, Service
+from red.models import Offer, Demand, Gift, Loan, Service
 
 class TradeManager(Manager):
     def latest_offers(self, count=20):
@@ -24,3 +25,19 @@ class TradeManager(Manager):
         if count < 0:
             count = 0
         return Demand.objects.all()[:count]
+
+    def offers(self, username, count=20):
+        """Returns the offers for the given ``username``."""
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return Offer.objects.none()
+        return Offer.objects.filter(owner=user)
+
+    def demands(self, username, count=20):
+        """Returns the demands for the given ``username``."""
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return Demand.objects.none()
+        return Demand.objects.filter(owner=user)

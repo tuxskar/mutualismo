@@ -1,5 +1,6 @@
 from operator import attrgetter
 
+from django.contrib.auth.models import User
 from django.test import TestCase
 
 from red.managers import TradeManager
@@ -42,3 +43,15 @@ class TradeManagerTest(TestCase):
         self.assertEqual(latest_offers, sorted(latest_offers, 
                                                key=attrgetter('date'),
                                                reverse=True))
+
+    def test_user_offers(self):
+        alice = User.objects.get(username=u'Alice')
+        offers = self.manager.offers(alice)
+        for offer in offers:
+            self.assertEqual(offer.owner, alice)
+
+    def test_user_demands(self):
+        alice = User.objects.get(username=u'Alice')
+        demands = self.manager.demands(alice)
+        for demand in demands:
+            self.assertEqual(demand.owner, alice)

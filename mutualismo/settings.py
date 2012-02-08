@@ -124,3 +124,9 @@ NOSE_ARGS = [
     '--with-coverage',
     '--cover-package=red',
 ]
+
+# Debugging
+
+# Fake email backend for development
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = path.join(BASE_DIR, 'tmp')

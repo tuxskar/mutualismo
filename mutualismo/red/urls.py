@@ -1,14 +1,12 @@
 from django.conf.urls.defaults import patterns, url
-from django.contrib.auth.views import login, logout
 
-from views import index, about, contact
+from views import index, about, contact, dashboard
 
 urlpatterns = patterns('red.views',
-    url(r'^$',        index),
-    url(r'^about',    about),
-    url(r'^contact',  contact),
-    url(r'^login',    login),
-    url(r'^logout',   logout, {'next_page': '/'}),
+    url(r'^$',         index),
+    url(r'^about',     about),
+    url(r'^contact',   contact),
+    url(r'^dashboard', dashboard),
 )
 
 import settings

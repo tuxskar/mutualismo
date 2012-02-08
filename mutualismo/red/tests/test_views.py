@@ -143,13 +143,19 @@ class TestContact(ViewTestCase):
             mail.outbox = []
 
 
-class TestLogin(ViewTestCase):
-    """Login page."""
-    templates = ['base.html', 'registration/login.html',]
+class TestDashboard(ViewTestCase):
+    """User's dashboard page."""
+    # we know that the user that we are going to user has trades, that's 
+    # why we include ``red/includes/trade.html`` in the templates
+    templates = ['base.html', 'red/dashboard.html', 'red/includes/trade.html']
 
     def setUp(self):
         ViewTestCase.setUp(self)
-        self.urls = self.create_urls(['login', 'login/'])
+        self.urls = self.create_urls(['dashboard', 'dashboard/'])
+        self.assertTrue(self.login())
+
+    def login(self):
+        return self.client.login(username='Alice', password='alice')
 
     def test_http_ok(self):
         for url in self.urls:
@@ -159,16 +165,3 @@ class TestLogin(ViewTestCase):
         for url in self.urls:
             response = self.client.get(url)
             self.assertTemplatesUsed(response, self.templates)
-
-
-class TestLogout(ViewTestCase):
-    """Logout page."""
-
-    def setUp(self):
-        ViewTestCase.setUp(self)
-        self.urls = self.create_urls(['logout', 'logout/'])
-
-    def test_redirection(self):
-        for url in self.urls:
-            response = self.client.get(url)
-            self.assertRedirects(response, '/')
