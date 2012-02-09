@@ -209,7 +209,6 @@ class TestDemand(ViewTestCase):
             self.assertTemplatesUsed(response, self.templates)
 
 
-
 class TestDeleteOffer(ViewTestCase):
     """Page for deleteing a certain offer."""
     templates = ['base.html', 'dashboard.html']
