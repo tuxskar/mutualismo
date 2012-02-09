@@ -15,7 +15,7 @@ class Trade(models.Model):
     description = models.TextField(_('description'))
     date        = models.DateTimeField(_('date'), default = datetime.datetime.now)
     owner       = models.ForeignKey(User)
-    tags        = TaggableManager()
+    tags        = TaggableManager(blank=True)
     # TODO: categorize trades with a 3rd party app
 
     slug        = AutoSlugField(populate_from=('name',), unique=True, max_length=255)

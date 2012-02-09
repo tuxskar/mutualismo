@@ -295,3 +295,69 @@ class TestDeleteDemand(ViewTestCase):
         url = '/delete/demand/random'
         response = self.client.get(url)
         self.assertEqual(404, response.status_code)
+
+
+class TestCreateDemand(ViewTestCase):
+    """Page for creating or modifyng a certain demand."""
+    templates = ['base.html', 'create_demand.html', 'includes/demand_form.html']
+
+    def setUp(self):
+        ViewTestCase.setUp(self)
+        self.login()
+        # create urls
+        self.urls = ['/create/demand', '/create/demand/']
+
+    def test_http_ok(self):
+        for url in self.urls:
+            self.assertHTTPOk(url)
+
+    def test_templates(self):
+        for url in self.urls:
+            response = self.client.get(url)
+            self.assertTemplatesUsed(response, self.templates)
+
+    def test_invalid_demand_form_post_templates(self):
+        # when an invalid form is submitted, same templates are rendered again
+        form = {'name': '',
+                'description': '',
+                'trade_type': 0,}
+        for url in self.urls:
+            response = self.client.post(url, form)
+            self.assertTemplatesUsed(response, self.templates)
+
+    def test_invalid_demand_form_post_does_not_create_demand(self):
+        # when an invalid form is submitted the demand is not created
+        trades = TradeManager()
+        user_demands = trades.demands(self.username) 
+        expected_user_demands = len(user_demands)
+        form = {'name': '',
+                'description': '',
+                'trade_type': 0,}
+        for url in self.urls:
+            self.client.post(url, form)
+            user_demands = trades.demands(self.username)
+            self.assertEqual(expected_user_demands, len(user_demands))
+
+    # FIXME: test does not pass
+    #def test_valid_demand_form_post_templates(self):
+        ## when a valid form is submitted, dashboard templates are rendered
+        #form = {'name': 'test',
+                #'description': 'test',
+                #'trade_type': 0,}
+        #templates = ['base.html', 'dashboard.html', 'includes/demand.html']
+        #for url in self.urls:
+            #response = self.client.post(url, form)
+            #self.assertTemplatesUsed(response, templates)
+
+    def test_valid_demand_form_post_creates_demand(self):
+        # when a valid form is submitted the demand is created
+        trades = TradeManager()
+        user_demands = trades.demands(self.username) 
+        before_user_demands = len(user_demands)
+        form = {'name': 'test',
+                'description': 'test',
+                'trade_type': 0,}
+        for url in self.urls:
+            self.client.post(url, form)
+            user_demands = trades.demands(self.username)
+            self.assertEqual(before_user_demands + 1, len(user_demands))

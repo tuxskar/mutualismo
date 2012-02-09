@@ -7,7 +7,7 @@ from settings import ADMINS
 
 from red.managers import TradeManager
 from red.models import Offer, Demand
-from red.forms import ContactForm
+from red.forms import ContactForm, DemandForm
 
 def index(request):
     """Index page."""
@@ -106,6 +106,28 @@ def delete_offer(request, offer_slug):
     if offer_to_delete:
         offer_to_delete.delete()
     return dashboard(request)
+
+@login_required
+def create_demand(request):
+    """
+    Creates a demand belonging to the logged in user.
+
+    After that, redirects to the dashboard.
+    """
+    user = request.user
+    if request.method == 'POST': 
+        demand = Demand(owner=user,)
+        demand_form = DemandForm(request.POST, instance=demand) 
+        if demand_form.is_valid(): 
+            demand_form.save()
+            return dashboard(request)
+        else:
+            form = demand_form
+    else:
+        form = DemandForm()
+    return render_to_response('create_demand.html', 
+                              {'form': form,}, 
+                              RequestContext(request))
 
 @login_required
 def delete_demand(request, demand_slug):
