@@ -5,9 +5,11 @@
     <h4>Ofertas</h4>
     {% for offer in offers %}
         {% include "includes/offer.html" %}
+        <a href="{% url red.views.delete_offer offer.slug %}">Borrar</a>
     {% endfor %}
     <h4>Demandas</h4>
     {% for demand in demands %}
         {% include "includes/demand.html" %}
+        <a href="{% url red.views.delete_demand demand.slug %}">Borrar</a>
     {% endfor %}
 {% endblock %}

@@ -1,13 +1,14 @@
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.core.mail import EmailMessage
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 
 from settings import ADMINS
 
 from red.managers import TradeManager
 from red.models import Offer, Demand
 from red.forms import ContactForm
+
 def index(request):
     """Index page."""
     trades = TradeManager()
@@ -88,3 +89,37 @@ def offer(request, offer_slug):
 def demand(request, demand_slug):
     """Shows information about a certain demand."""
     return _trade(request, Demand, demand_slug)
+
+@login_required
+def delete_offer(request, offer_slug):
+    """
+    Deletes the offer corresponding to the given slug if it belongs
+    to the user who is logged in.
+
+    After that, redirects to the dashboard.
+    """
+    user = request.user
+    username = user.username
+    trades = TradeManager()
+    user_offers = trades.offers(username)
+    offer_to_delete = get_object_or_404(user_offers, slug=offer_slug) 
+    if offer_to_delete:
+        offer_to_delete.delete()
+    return dashboard(request)
+
+@login_required
+def delete_demand(request, demand_slug):
+    """
+    Deletes the demand corresponding to the given slug if it belongs
+    to the user who is logged in.
+
+    After that, redirects to the dashboard.
+    """
+    user = request.user
+    username = user.username
+    trades = TradeManager()
+    user_demands = trades.demands(username)
+    demand_to_delete = get_object_or_404(user_demands, slug=demand_slug) 
+    if demand_to_delete:
+        demand_to_delete.delete()
+    return dashboard(request)

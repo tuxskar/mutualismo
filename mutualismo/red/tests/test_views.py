@@ -25,6 +25,10 @@ class ViewTestCase(TestCase):
         for original, created in original_and_created_urls:
             self.assertEqual(self.url_prefix + '/' + original, created)
 
+    def login(self):
+        self.username = 'Alice'
+        self.assertTrue(self.client.login(username='Alice', password='alice'))
+
     def assertHTTPOk(self, url):
         """Checks that the given URL returns a 200 HTTP code."""
         response = self.client.get(url)
@@ -151,10 +155,7 @@ class TestDashboard(ViewTestCase):
     def setUp(self):
         ViewTestCase.setUp(self)
         self.urls = self.create_urls(['dashboard', 'dashboard/'])
-        self.assertTrue(self.login())
-
-    def login(self):
-        return self.client.login(username='Alice', password='alice')
+        self.login()
 
     def test_http_ok(self):
         for url in self.urls:
@@ -206,3 +207,92 @@ class TestDemand(ViewTestCase):
         for url in self.urls:
             response = self.client.get(url)
             self.assertTemplatesUsed(response, self.templates)
+
+
+
+class TestDeleteOffer(ViewTestCase):
+    """Page for deleteing a certain offer."""
+    templates = ['base.html', 'dashboard.html']
+
+    def setUp(self):
+        ViewTestCase.setUp(self)
+        self.login()
+        # offers for the user
+        trades = TradeManager()
+        self.offers = trades.offers(self.username) 
+        # create urls
+        self.urls = []
+        for offer in self.offers:
+            self.urls.append('/delete' + offer.get_absolute_url())
+
+    def test_http_ok(self):
+        for url in self.urls:
+            self.assertHTTPOk(url)
+
+    def test_templates(self):
+        for url in self.urls:
+            response = self.client.get(url)
+            self.assertTemplatesUsed(response, self.templates)
+
+    def test_deletion(self):
+        for offer in self.offers:
+            slug  = offer.slug
+            url = ('/delete' + offer.get_absolute_url())
+            # get the offer to make sure that it exists
+            Offer.objects.get(slug=slug)
+            self.client.get(url)
+            try:
+                Offer.objects.get(slug=slug)
+            except Offer.DoesNotExist:
+                pass
+            else:
+                raise self.failureException("The offer had to be deleted")
+
+    def test_http_not_found_if_offer_does_not_exist(self):
+        url = '/delete/offer/random'
+        response = self.client.get(url)
+        self.assertEqual(404, response.status_code)
+
+
+class TestDeleteDemand(ViewTestCase):
+    """Page for deleteing a certain demand."""
+    templates = ['base.html', 'dashboard.html']
+
+    def setUp(self):
+        ViewTestCase.setUp(self)
+        self.login()
+        # demands for the user
+        trades = TradeManager()
+        self.demands = trades.demands(self.username) 
+        # create urls
+        self.urls = []
+        for demand in self.demands:
+            self.urls.append('/delete' + demand.get_absolute_url())
+
+    def test_http_ok(self):
+        for url in self.urls:
+            self.assertHTTPOk(url)
+
+    def test_templates(self):
+        for url in self.urls:
+            response = self.client.get(url)
+            self.assertTemplatesUsed(response, self.templates)
+
+    def test_deletion(self):
+        for demand in self.demands:
+            slug  = demand.slug
+            url = ('/delete' + demand.get_absolute_url())
+            # get the demand to make sure that it exists
+            Demand.objects.get(slug=slug)
+            self.client.get(url)
+            try:
+                Demand.objects.get(slug=slug)
+            except Demand.DoesNotExist:
+                pass
+            else:
+                raise self.failureException("The demand had to be deleted")
+
+    def test_http_not_found_if_demand_does_not_exist(self):
+        url = '/delete/demand/random'
+        response = self.client.get(url)
+        self.assertEqual(404, response.status_code)
