@@ -8,7 +8,6 @@ from settings import ADMINS
 from red.managers import TradeManager
 from red.models import Offer, Demand
 from red.forms import ContactForm
-
 def index(request):
     """Index page."""
     trades = TradeManager()
@@ -68,24 +67,24 @@ def dashboard(request):
                               data,
                               RequestContext(request))
 
-def _trade(request, cls, template, slug):
+def _trade(request, cls, slug):
     """
-    Helper function to render a certain trade given its slug, template 
-    and class.
+    Helper function to render a certain trade given its class and slug.
     """
     try:
         trade = cls.objects.get(slug=slug)
     except cls.DoesNotExist:
         trade = None
-    data = {'trade': trade,}
-    return render_to_response(template,
+    trade_type = cls.__name__.lower()
+    data = {trade_type: trade,}
+    return render_to_response('trade.html',
                               data,
                               RequestContext(request))
 
 def offer(request, offer_slug):
     """Shows information about a certain offer."""
-    return _trade(request, Offer, 'offer.html', offer_slug)
+    return _trade(request, Offer, offer_slug)
 
 def demand(request, demand_slug):
     """Shows information about a certain demand."""
-    return _trade(request, Demand, 'demand.html', demand_slug)
+    return _trade(request, Demand, demand_slug)

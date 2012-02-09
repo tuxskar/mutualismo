@@ -3,11 +3,11 @@
 {% block main %}
     <h3>Hola {{ username }}</h3>
     <h4>Ofertas</h4>
-    {% for trade in offers %}
-        {% include "includes/trade.html" %}
+    {% for offer in offers %}
+        {% include "includes/offer.html" %}
     {% endfor %}
     <h4>Demandas</h4>
-    {% for trade in demands %}
-        {% include "includes/trade.html" %}
+    {% for demand in demands %}
+        {% include "includes/demand.html" %}
     {% endfor %}
 {% endblock %}

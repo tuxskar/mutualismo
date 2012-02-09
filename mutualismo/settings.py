@@ -93,6 +93,7 @@ INSTALLED_APPS = (
     'registration',
     'faq',
     'taggit',
+    'django_autoslug',
     'django_nose',
     'red',
 )

@@ -146,9 +146,7 @@ class TestContact(ViewTestCase):
 
 class TestDashboard(ViewTestCase):
     """User's dashboard page."""
-    # we know that the user that we are going to user has trades, that's 
-    # why we include ``includes/trade.html`` in the templates
-    templates = ['base.html', 'dashboard.html', 'includes/trade.html']
+    templates = ['base.html', 'dashboard.html', 'includes/offer.html', 'includes/demand.html']
 
     def setUp(self):
         ViewTestCase.setUp(self)
@@ -170,16 +168,14 @@ class TestDashboard(ViewTestCase):
 
 class TestOffer(ViewTestCase):
     """Page for a certain offer."""
-    templates = ['base.html', 'offer.html',]
+    templates = ['base.html', 'trade.html', 'includes/offer.html']
 
     def setUp(self):
         ViewTestCase.setUp(self)
         offers = Offer.objects.all()
-        urls = []
+        self.urls = []
         for offer in offers:
-            urls.append('offer/' + offer.slug)
-            urls.append('offer/' + offer.slug + '/')
-        self.urls = self.create_urls(urls)
+            self.urls.append(offer.get_absolute_url())
 
     def test_http_ok(self):
         for url in self.urls:
@@ -193,16 +189,14 @@ class TestOffer(ViewTestCase):
 
 class TestDemand(ViewTestCase):
     """Page for a certain demand."""
-    templates = ['base.html', 'demand.html',]
+    templates = ['base.html', 'trade.html', 'includes/demand.html']
 
     def setUp(self):
         ViewTestCase.setUp(self)
         demands = Demand.objects.all()
-        urls = []
+        self.urls = []
         for demand in demands:
-            urls.append('demand/' + demand.slug)
-            urls.append('demand/' + demand.slug + '/')
-        self.urls = self.create_urls(urls)
+            self.urls.append(demand.get_absolute_url())
 
     def test_http_ok(self):
         for url in self.urls:
