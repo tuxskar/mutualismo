@@ -20,6 +20,7 @@ class DemandForm(forms.ModelForm):
 
 class ServiceForm(forms.ModelForm):
     """Form for creating or modifying an offer."""
+    # TODO: ``starts`` and ``ends`` field validation
     class Meta:
         model = Service
         exclude = ('owner', 'date', 'slug', 'visible')

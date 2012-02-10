@@ -55,3 +55,9 @@ class TradeManagerTest(TestCase):
         demands = self.manager.demands(alice)
         for demand in demands:
             self.assertEqual(demand.owner, alice)
+
+    def test_user_services(self):
+        alice = User.objects.get(username=u'Alice')
+        services = self.manager.services(alice)
+        for service in services:
+            self.assertEqual(service.owner, alice)
