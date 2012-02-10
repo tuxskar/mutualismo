@@ -14,9 +14,3 @@ urlpatterns = patterns('red.views',
     url(r'^delete/offer/(?P<offer_slug>[\w-]+)',   delete_offer),
     url(r'^delete/demand/(?P<demand_slug>[\w-]+)', delete_demand),
 )
-
-import settings
-if settings.DEBUG:
-    urlpatterns += patterns('',
-        (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
-    )
