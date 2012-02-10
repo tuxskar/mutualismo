@@ -271,51 +271,47 @@ class TestCreateService(ViewTestCase):
             response = self.client.get(url)
             self.assertTemplatesUsed(response, self.templates)
 
-    #def test_invalid_offer_form_post_templates(self):
-        ## when an invalid form is submitted, same templates are rendered again
-        #form = {'name': '',
-                #'description': '',
-                #'trade_type': 0,}
-        #for url in self.urls:
-            #response = self.client.post(url, form)
-            #self.assertTemplatesUsed(response, self.templates)
+    def test_invalid_offer_form_post_templates(self):
+        # when an invalid form is submitted, same templates are rendered again
+        form = {'name': '',
+                'description': '',}
+        for url in self.urls:
+            response = self.client.post(url, form)
+            self.assertTemplatesUsed(response, self.templates)
 
-    #def test_invalid_offer_form_post_does_not_create_offer(self):
-        ## when an invalid form is submitted the offer is not created
-        #trades = TradeManager()
-        #user_offers = trades.offers(self.username) 
-        #expected_user_offers = len(user_offers)
-        #form = {'name': '',
-                #'description': '',
-                #'trade_type': 0,}
-        #for url in self.urls:
-            #self.client.post(url, form)
-            #user_offers = trades.offers(self.username)
-            #self.assertEqual(expected_user_offers, len(user_offers))
+    def test_invalid_offer_form_post_does_not_create_service(self):
+        # when an invalid form is submitted the service is not created
+        trades = TradeManager()
+        user_services = trades.services(self.username) 
+        expected_user_services = len(user_services)
+        form = {'name': '',
+                'description': '',}
+        for url in self.urls:
+            self.client.post(url, form)
+            user_services = trades.services(self.username)
+            self.assertEqual(expected_user_services, len(user_services))
 
-    # FIXME: test does not pass
-    #def test_valid_offer_form_post_templates(self):
+    # FIXME
+    #def test_valid_service_form_post_templates(self):
         ## when a valid form is submitted, dashboard templates are rendered
         #form = {'name': 'test',
-                #'description': 'test',
-                #'trade_type': 0,}
-        #templates = ['base.html', 'dashboard.html', 'includes/offer.html']
+                #'description': 'test',}
+        #templates = ['base.html', 'dashboard.html', 'includes/service.html']
         #for url in self.urls:
             #response = self.client.post(url, form)
             #self.assertTemplatesUsed(response, templates)
 
-    #def test_valid_offer_form_post_creates_offer(self):
-        ## when a valid form is submitted the offer is created
-        #trades = TradeManager()
-        #user_offers = trades.offers(self.username) 
-        #before_user_offers = len(user_offers)
-        #form = {'name': 'test',
-                #'description': 'test',
-                #'trade_type': 0,}
-        #for url in self.urls:
-            #self.client.post(url, form)
-            #user_offers = trades.offers(self.username)
-            #self.assertEqual(before_user_offers + 1, len(user_offers))
+    def test_valid_service_form_post_creates_service(self):
+        # when a valid form is submitted the service is created
+        trades = TradeManager()
+        user_services = trades.services(self.username) 
+        before_user_services = len(user_services)
+        form = {'name': 'test',
+                'description': 'test',}
+        for url in self.urls:
+            self.client.post(url, form)
+            user_services = trades.services(self.username)
+            self.assertEqual(before_user_services + 1, len(user_services))
 
 
 class TestDeleteDemand(ViewTestCase):

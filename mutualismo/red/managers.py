@@ -79,3 +79,22 @@ class TradeManager(Manager):
             return demands[:count]
         else:
             return Demand.objects.none()
+
+    def services(self, username, count=None):
+        """
+        Returns the latest ``count`` services owned by the given ``username``.
+        
+        By default it returns all the services.
+        """
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return Service.objects.none()
+
+        services = Service.objects.filter(owner=user)
+        if count is None:
+            return services
+        elif count > 0: 
+            return services[:count]
+        else:
+            return Service.objects.none()
