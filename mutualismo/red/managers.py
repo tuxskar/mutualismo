@@ -12,7 +12,6 @@ class TradeManager(Manager):
         
         By default it returns all the offers.
         """
-        # TODO use ``latest``
         loans = Loan.objects.all()
         gifts = Gift.objects.all()
         services = Service.objects.all()
@@ -33,8 +32,7 @@ class TradeManager(Manager):
         
         By default it returns all the demands.
         """
-        # TODO ordered by date: ``latest``
-        latest = Demand.objects.all()
+        latest = Demand.objects.all().order_by('-date')
         if count is None:
             return latest
         elif count > 0: 
@@ -44,7 +42,8 @@ class TradeManager(Manager):
 
     def offers(self, username, count=None):
         """
-        Returns the latest ``count`` offers for the given ``username``.
+        Returns the latest ``count`` offers for the given ``username``
+        ordered by date.
         
         By default it returns all the offers.
         """
@@ -63,7 +62,8 @@ class TradeManager(Manager):
 
     def demands(self, username, count=None):
         """
-        Returns the latest ``count`` demands for the given ``username``.
+        Returns the latest ``count`` demands for the given ``username``
+        ordered by date.
         
         By default it returns all the demands.
         """
@@ -72,7 +72,7 @@ class TradeManager(Manager):
         except User.DoesNotExist:
             return Demand.objects.none()
 
-        demands = Demand.objects.filter(owner=user)
+        demands = Demand.objects.filter(owner=user).order_by('-date')
         if count is None:
             return demands
         elif count > 0: 
