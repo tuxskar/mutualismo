@@ -2,14 +2,22 @@
 
 {% block main %}
     <h3>Hola {{ username }}</h3>
-    <h4>Ofertas</h4>
-    {% for offer in offers %}
-        {% include "includes/offer.html" %}
-        <a href="{% url red.views.delete_offer offer.slug %}">Borrar</a>
-    {% endfor %}
-    <h4>Demandas</h4>
-    {% for demand in demands %}
-        {% include "includes/demand.html" %}
-        <a href="{% url red.views.delete_demand demand.slug %}">Borrar</a>
-    {% endfor %}
+    <section id="user_control_panel">
+      <ul>
+          <li><a href="/create/demand">Nueva demanda</a></li>
+          <li><a href="/create/service">Nuevo servicio</a></li>
+      </ul>
+    </section>
+    <section id="user_trades">
+      <h4>Ofertas</h4>
+      {% for offer in offers %}
+          {% include "includes/offer.html" %}
+          <a href="{% url red.views.delete_offer offer.slug %}">Borrar</a>
+      {% endfor %}
+      <h4>Demandas</h4>
+      {% for demand in demands %}
+          {% include "includes/demand.html" %}
+          <a href="{% url red.views.delete_demand demand.slug %}">Borrar</a>
+      {% endfor %}
+    </section>
 {% endblock %}

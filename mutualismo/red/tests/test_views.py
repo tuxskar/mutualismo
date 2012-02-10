@@ -210,7 +210,7 @@ class TestDemand(ViewTestCase):
 
 
 class TestDeleteOffer(ViewTestCase):
-    """Page for deleteing a certain offer."""
+    """Page for deleting a certain offer."""
     templates = ['base.html', 'dashboard.html']
 
     def setUp(self):
@@ -251,6 +251,71 @@ class TestDeleteOffer(ViewTestCase):
         url = '/delete/offer/random'
         response = self.client.get(url)
         self.assertEqual(404, response.status_code)
+
+
+class TestCreateService(ViewTestCase):
+    """Page for creating or modifyng a certain service."""
+    templates = ['base.html', 'create_service.html', 'includes/service_form.html']
+
+    def setUp(self):
+        ViewTestCase.setUp(self)
+        self.login()
+        self.urls = ['/create/service', '/create/service/']
+
+    def test_http_ok(self):
+        for url in self.urls:
+            self.assertHTTPOk(url)
+
+    def test_templates(self):
+        for url in self.urls:
+            response = self.client.get(url)
+            self.assertTemplatesUsed(response, self.templates)
+
+    #def test_invalid_offer_form_post_templates(self):
+        ## when an invalid form is submitted, same templates are rendered again
+        #form = {'name': '',
+                #'description': '',
+                #'trade_type': 0,}
+        #for url in self.urls:
+            #response = self.client.post(url, form)
+            #self.assertTemplatesUsed(response, self.templates)
+
+    #def test_invalid_offer_form_post_does_not_create_offer(self):
+        ## when an invalid form is submitted the offer is not created
+        #trades = TradeManager()
+        #user_offers = trades.offers(self.username) 
+        #expected_user_offers = len(user_offers)
+        #form = {'name': '',
+                #'description': '',
+                #'trade_type': 0,}
+        #for url in self.urls:
+            #self.client.post(url, form)
+            #user_offers = trades.offers(self.username)
+            #self.assertEqual(expected_user_offers, len(user_offers))
+
+    # FIXME: test does not pass
+    #def test_valid_offer_form_post_templates(self):
+        ## when a valid form is submitted, dashboard templates are rendered
+        #form = {'name': 'test',
+                #'description': 'test',
+                #'trade_type': 0,}
+        #templates = ['base.html', 'dashboard.html', 'includes/offer.html']
+        #for url in self.urls:
+            #response = self.client.post(url, form)
+            #self.assertTemplatesUsed(response, templates)
+
+    #def test_valid_offer_form_post_creates_offer(self):
+        ## when a valid form is submitted the offer is created
+        #trades = TradeManager()
+        #user_offers = trades.offers(self.username) 
+        #before_user_offers = len(user_offers)
+        #form = {'name': 'test',
+                #'description': 'test',
+                #'trade_type': 0,}
+        #for url in self.urls:
+            #self.client.post(url, form)
+            #user_offers = trades.offers(self.username)
+            #self.assertEqual(before_user_offers + 1, len(user_offers))
 
 
 class TestDeleteDemand(ViewTestCase):

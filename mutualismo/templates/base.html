@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="/static/style.css">
   {% block extra_head %}
   {% endblock %}
+  {% block css %}
+  {% endblock %}
 </head>
 
 <body>
@@ -59,6 +61,7 @@ dolorem eum fugiat quo voluptas nulla pariatur?
   <!-- JavaScript at the bottom for fast page loading -->
   <script type="text/javascript" src="/static/jquery.js"></script>
   <script type="text/javascript" src="/static/less_grid.js"></script>
-  <!-- end scripts -->
+  {% block javascripts %}
+  {% endblock %}
 </body>
 </html>

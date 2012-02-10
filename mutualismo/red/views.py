@@ -6,8 +6,8 @@ from django.shortcuts import render_to_response, get_object_or_404
 from settings import ADMINS
 
 from red.managers import TradeManager
-from red.models import Offer, Demand
-from red.forms import ContactForm, DemandForm
+from red.models import Offer, Demand, Service
+from red.forms import ContactForm, DemandForm, ServiceForm
 
 def index(request):
     """Index page."""
@@ -126,6 +126,28 @@ def create_demand(request):
     else:
         form = DemandForm()
     return render_to_response('create_demand.html', 
+                              {'form': form,}, 
+                              RequestContext(request))
+
+@login_required
+def create_service(request):
+    """
+    Creates a service offer belonging to the logged in user.
+
+    After that, redirects to the dashboard.
+    """
+    user = request.user
+    if request.method == 'POST': 
+        service = Service(owner=user,)
+        service_form = ServiceForm(request.POST, instance=service) 
+        if service_form.is_valid(): 
+            service_form.save()
+            return dashboard(request)
+        else:
+            form = service_form
+    else:
+        form = ServiceForm()
+    return render_to_response('create_service.html', 
                               {'form': form,}, 
                               RequestContext(request))
 
