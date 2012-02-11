@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block main %}
+{% if trade %}
+  <div class="offer">
+      <a href="{% url red.views.demand trade.slug %}"><h3>{{ trade.name }}</h3></a>
+      <span class="trade_date">{{ trade.date }}</span>
+      <p>{{ trade.description }}</p>
+      <div class="trade_tags">
+      {% for tag in trade.tags.all %}
+          <span class="trade_tag">{{ tag }}</span>
+      {% endfor %}
+      </div>
+  </div>
+{% else %}
+  <p>No hemos encontrado la demanda que buscabas.</p>
+{% endif %}
+{% endblock %}

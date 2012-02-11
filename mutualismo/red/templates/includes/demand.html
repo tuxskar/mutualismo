@@ -1,0 +1,14 @@
+{% if demand %}
+  <div class="demand">
+      <a href="{% url red.views.demand demand.slug %}"><h3>{{ demand.name }}</h3></a>
+      <span class="demand_date">{{ demand.date }}</span>
+      <p>{{ demand.description }}</p>
+      <div class="demand_tags">
+      {% for tag in demand.tags.all %}
+          <span class="demand_tag">{{ tag }}</span>
+      {% endfor %}
+      </div>
+  </div>
+{% else %}
+  <p>No hemos encontrado la demanda que buscabas.</p>
+{% endif %}
