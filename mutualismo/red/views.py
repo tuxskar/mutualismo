@@ -6,8 +6,8 @@ from django.shortcuts import render_to_response, get_object_or_404
 from settings import ADMINS
 
 from red.managers import TradeManager
-from red.models import Offer, Demand, Service
-from red.forms import ContactForm, DemandForm, ServiceForm
+from red.models import Offer, Demand, Service, Gift, Loan
+from red.forms import ContactForm, DemandForm, ServiceForm, GiftForm, LoanForm
 
 def index(request):
     """Index page."""
@@ -148,6 +148,50 @@ def create_service(request):
     else:
         form = ServiceForm()
     return render_to_response('create_service.html', 
+                              {'form': form,}, 
+                              RequestContext(request))
+
+@login_required
+def create_gift(request):
+    """
+    Creates a gift offer belonging to the logged in user.
+
+    After that, redirects to the dashboard.
+    """
+    user = request.user
+    if request.method == 'POST': 
+        gift = Gift(owner=user,)
+        gift_form = GiftForm(request.POST, instance=gift) 
+        if gift_form.is_valid(): 
+            gift_form.save()
+            return dashboard(request)
+        else:
+            form = gift_form
+    else:
+        form = GiftForm()
+    return render_to_response('create_gift.html', 
+                              {'form': form,}, 
+                              RequestContext(request))
+
+@login_required
+def create_loan(request):
+    """
+    Creates a loan offer belonging to the logged in user.
+
+    After that, redirects to the dashboard.
+    """
+    user = request.user
+    if request.method == 'POST': 
+        loan = Loan(owner=user,)
+        loan_form = LoanForm(request.POST, instance=loan) 
+        if loan_form.is_valid(): 
+            loan_form.save()
+            return dashboard(request)
+        else:
+            form = loan_form
+    else:
+        form = LoanForm()
+    return render_to_response('create_loan.html', 
                               {'form': form,}, 
                               RequestContext(request))
 
