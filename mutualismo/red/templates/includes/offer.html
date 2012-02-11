@@ -1,3 +1,5 @@
+{% load i18n %}
+
 {% if offer %}
   <div class="offer">
       <a href="{% url red.views.offer offer.slug %}"><h3>{{ offer.name }}</h3></a>
@@ -10,5 +12,5 @@
       </div>
   </div>
 {% else %}
-  <p>No hemos encontrado la oferta que buscabas.</p>
+  <p>{% trans "We didn't found the offer that you were looking for." %}</p>
 {% endif %}

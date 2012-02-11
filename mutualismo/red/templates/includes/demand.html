@@ -1,3 +1,5 @@
+{% load i18n %}
+
 {% if demand %}
   <div class="demand">
       <a href="{% url red.views.demand demand.slug %}"><h3>{{ demand.name }}</h3></a>
@@ -10,5 +12,5 @@
       </div>
   </div>
 {% else %}
-  <p>No hemos encontrado la demanda que buscabas.</p>
+  <p>{% trans "We didn't found the demand that you were looking for." %}</p>
 {% endif %}
