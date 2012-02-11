@@ -1,26 +1,27 @@
-from django import forms
+from django.forms import Form, ModelForm, CharField, EmailField, BooleanField
 from django.utils.translation import ugettext_lazy as _
 
 from red.models import Demand, Service
 
-class ContactForm(forms.Form):
+
+class ContactForm(Form):
     """Form for submitting a message to the site administrators."""
-    subject = forms.CharField(label=_("Subject"), max_length=100)
-    message = forms.CharField(label=_("Message"))
-    sender = forms.EmailField(label=_("Sender"))
-    cc_myself = forms.BooleanField(label=_("Send me a copy"), required=False)
+    subject = CharField(label=_("Subject"), max_length=100)
+    message = CharField(label=_("Message"))
+    sender = EmailField(label=_("Sender"))
+    cc_myself = BooleanField(label=_("Send me a copy"), required=False)
 
 
-class DemandForm(forms.ModelForm):
+class DemandForm(ModelForm):
     """Form for creating or modifying a demand."""
     class Meta:
         model = Demand
-        exclude = ('owner', 'date', 'slug',)
+        fields = ('name', 'description', 'trade_type', 'tags',)
 
 
-class ServiceForm(forms.ModelForm):
+class ServiceForm(ModelForm):
     """Form for creating or modifying an offer."""
-    # TODO: ``starts`` and ``ends`` field validation
     class Meta:
         model = Service
-        exclude = ('owner', 'date', 'slug', 'visible')
+        # TODO: ``starts`` and ``ends`` fields with validation
+        fields = ('name', 'description', 'availability', 'tags',)
