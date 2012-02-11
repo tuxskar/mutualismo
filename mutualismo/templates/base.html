@@ -1,8 +1,9 @@
+{% load i18n %}
 <!doctype html>
 <head>
   <meta charset="utf-8">
 
-  <title>Mutualismo</title>
+  <title>{% block title %}Mutualismo{% endblock title %}</title>
   <!--<meta name="description" content="">-->
 
   <!-- Mobile viewport optimized: h5bp.com/viewport -->
@@ -18,9 +19,9 @@
 
 <body>
   <header>
-    <a href=""><h1>Mutualismo</h1></a>
-    <h2>Red de intercambio de bienes y servicios basada en el mutualismo.</h2>
+    <h1><a href="/">{% block header_title %}{% trans "Mutualism" %}{% endblock header_title %}</a></h1>
     {% block extra_header %}
+        <h2>{% trans "Network for exchanging goods and services based on mutualism." %}</h2>
     {% endblock %}
     <hr>
   </header>
