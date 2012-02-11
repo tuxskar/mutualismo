@@ -98,3 +98,41 @@ class TradeManager(Manager):
             return services[:count]
         else:
             return Service.objects.none()
+
+    def gifts(self, username, count=None):
+        """
+        Returns the latest ``count`` gifts owned by the given ``username``.
+        
+        By default it returns all the gifts.
+        """
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return Gift.objects.none()
+
+        gifts = Gift.objects.filter(owner=user)
+        if count is None:
+            return gifts
+        elif count > 0: 
+            return gifts[:count]
+        else:
+            return Gift.objects.none()
+
+    def loans(self, username, count=None):
+        """
+        Returns the latest ``count`` loans owned by the given ``username``.
+        
+        By default it returns all the loans.
+        """
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return Loan.objects.none()
+
+        loans = Loan.objects.filter(owner=user)
+        if count is None:
+            return loans
+        elif count > 0: 
+            return loans[:count]
+        else:
+            return Loan.objects.none()
