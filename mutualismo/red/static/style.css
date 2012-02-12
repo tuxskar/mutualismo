@@ -26,7 +26,34 @@ footer, header, nav, section, audio, video {
 
 a img {border: 0;}
 
+/*  Navlist
+	--------*/
+ul#list-nav {
+	list-style:none;
+	margin:20px;
+	padding:0;
+	width:525px
+}
 
+ul#list-nav li {
+	display:inline
+}
+
+ul#list-nav li a {
+	text-decoration:none;
+	padding:5px 0;
+	width:100px;
+	background:#485e49;
+	color:#eee;
+	float:left;
+	text-align:center;
+	border-left:1px solid #fff;
+}
+
+ul#list-nav li a:hover {
+	background:#a2b3a1;
+	color:#000
+}
 
 /*  Typography presets
     ------------------  */
