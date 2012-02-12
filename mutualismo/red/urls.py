@@ -3,9 +3,9 @@ from django.conf.urls.defaults import patterns, url
 from views import *
 
 urlpatterns = patterns('red.views',
-    url(r'^$',                                     index),
-    url(r'^about',                                 about),
-    url(r'^contact',                               contact),
+    url(r'^$',                                     index,),
+    url(r'^about',                                 about, name='about'),
+    url(r'^contact',                               contact, name='contact'),
     url(r'^dashboard',                             dashboard),
     url(r'^offer/(?P<offer_slug>[\w-]+)',          offer),
     url(r'^demand/(?P<demand_slug>[\w-]+)',        demand),
