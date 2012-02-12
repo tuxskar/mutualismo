@@ -9,6 +9,7 @@ from red.managers import TradeManager
 from red.models import Offer, Demand, Service, Gift, Loan
 from red.forms import ContactForm, DemandForm, ServiceForm, GiftForm, LoanForm
 
+
 def index(request):
     """Index page."""
     trades = TradeManager()
