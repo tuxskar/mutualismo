@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-26 14:58+0100\n"
+"POT-Creation-Date: 2012-02-11 21:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,102 +18,216 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: red/models.py:9 red/models.py:30
+#: red/forms.py:8
+msgid "Subject"
+msgstr ""
+
+#: red/forms.py:9
+msgid "Message"
+msgstr ""
+
+#: red/forms.py:11
+msgid "Send me a copy"
+msgstr ""
+
+#: red/models.py:14
 msgid "name"
 msgstr "nombre"
 
-#: red/models.py:10 red/models.py:31
+#: red/models.py:15
 msgid "description"
 msgstr "descripción"
 
-#: red/models.py:11
-msgid "slug"
-msgstr "slug"
-
-#: red/models.py:14
-msgid "category"
-msgstr "categoría"
-
-#: red/models.py:15
-msgid "categories"
-msgstr "categorías"
-
-#: red/models.py:46
-msgid "Available"
-msgstr "Disponible"
-
-#: red/models.py:47
-msgid "Not available"
-msgstr "No disponible"
-
-#: red/models.py:49
-msgid "status"
-msgstr "estado"
-
-#: red/models.py:57
-msgid "maximum time"
-msgstr "tiempo máximo"
-
-#: red/models.py:60
-msgid "loan"
-msgstr "préstamo"
-
-#: red/models.py:61
-msgid "loans"
-msgstr "préstamos"
-
-#: red/models.py:68
-msgid "communal"
-msgstr "comunitario"
-
-#: red/models.py:71
-msgid "gift"
-msgstr "regalo"
-
-#: red/models.py:72
-msgid "gifts"
-msgstr "regalos"
-
-#: red/models.py:79
-msgid "start date"
-msgstr "fecha de comienzo"
-
-#: red/models.py:80
-msgid "end date"
-msgstr "fecha de fin"
-
-#: red/models.py:81
-msgid "availability"
-msgstr "disponibilidad"
-
-#: red/models.py:84
-msgid "service"
-msgstr "servicio"
-
-#: red/models.py:85
-msgid "services"
-msgstr "servicios"
-
-#: red/models.py:93
-msgid "Give"
-msgstr "Dar"
-
-#: red/models.py:94
-msgid "Receive"
-msgstr "Recibir"
-
-#: red/models.py:96
-msgid "type"
-msgstr "tipo"
-
-#: red/models.py:98
+#: red/models.py:16 red/models.py:121
 msgid "date"
 msgstr "fecha"
 
-#: red/models.py:101
+#: red/models.py:38
+msgid "visible"
+msgstr ""
+
+#: red/models.py:48
+msgid "All"
+msgstr ""
+
+#: red/models.py:49
+#, fuzzy
+msgid "Service"
+msgstr "servicio"
+
+#: red/models.py:50
+msgid "Good for loan"
+msgstr ""
+
+#: red/models.py:51
+msgid "Good for gift"
+msgstr ""
+
+#: red/models.py:52
+#, fuzzy
+msgid "Communal good"
+msgstr "comunitario"
+
+#: red/models.py:54
+msgid "type"
+msgstr "tipo"
+
+#: red/models.py:67
+msgid "Available"
+msgstr "Disponible"
+
+#: red/models.py:68
+#, fuzzy
+msgid "Reserved"
+msgstr "servicio"
+
+#: red/models.py:69
+msgid "Not available"
+msgstr "No disponible"
+
+#: red/models.py:71
+msgid "status"
+msgstr "estado"
+
+#: red/models.py:75
+msgid "loan"
+msgstr "préstamo"
+
+#: red/models.py:76
+msgid "loans"
+msgstr "préstamos"
+
+#: red/models.py:84
+msgid "communal"
+msgstr "comunitario"
+
+#: red/models.py:85
+#, fuzzy
+msgid "available"
+msgstr "Disponible"
+
+#: red/models.py:88
+msgid "gift"
+msgstr "regalo"
+
+#: red/models.py:89
+msgid "gifts"
+msgstr "regalos"
+
+#: red/models.py:103
+msgid "start date"
+msgstr "fecha de comienzo"
+
+#: red/models.py:104
+msgid "end date"
+msgstr "fecha de fin"
+
+#: red/models.py:105
+msgid "availability"
+msgstr "disponibilidad"
+
+#: red/models.py:108
+msgid "service"
+msgstr "servicio"
+
+#: red/models.py:109
+msgid "services"
+msgstr "servicios"
+
+#: red/models.py:124
 msgid "exchange"
 msgstr "intercambio"
 
-#: red/models.py:102
+#: red/models.py:125
 msgid "exchanges"
 msgstr "intercambios"
+
+#: red/templates/about.html:6
+msgid "This is the about page."
+msgstr ""
+
+#: red/templates/contact.html:6
+msgid "This is the contact page."
+msgstr ""
+
+#: red/templates/dashboard.html:6
+#, python-format
+msgid "Hello %(username)s"
+msgstr ""
+
+#: red/templates/dashboard.html:9
+msgid "New demand"
+msgstr ""
+
+#: red/templates/dashboard.html:10
+#, fuzzy
+msgid "New service"
+msgstr "servicio"
+
+#: red/templates/dashboard.html:11
+#, fuzzy
+msgid "New gift"
+msgstr "regalo"
+
+#: red/templates/dashboard.html:12
+#, fuzzy
+msgid "New loan"
+msgstr "préstamo"
+
+#: red/templates/dashboard.html:16
+msgid "Your offers"
+msgstr "Tus ofertas"
+
+#: red/templates/dashboard.html:19 red/templates/dashboard.html.py:24
+msgid "Delete"
+msgstr "Eliminar"
+
+#: red/templates/dashboard.html:21
+msgid "Your demands"
+msgstr "Tus demandas"
+
+#: red/templates/index.html:7
+msgid "Latest offers"
+msgstr "Últimas ofertas"
+
+#: red/templates/index.html:15
+msgid "Latest demands"
+msgstr "Últimas demandas"
+
+#: red/templates/thankyou.html:6
+msgid "Thank you for contacting us, we will answer as soon as possible."
+msgstr "Gracias por ponerse en contacto con nosotros, le responderemos lo antes posible."
+
+#: red/templates/includes/demand.html:15
+msgid "We didn't found the demand that you were looking for."
+msgstr "No hemos encontrado la demanda que buscaba."
+
+#: red/templates/includes/offer.html:15
+msgid "We didn't found the offer that you were looking for."
+msgstr "No hemos encontrado la oferta que buscaba."
+
+#: templates/base.html:6 templates/base.html.py:22
+msgid "Mutualism"
+msgstr "Mutualismo"
+
+#: templates/base.html:24
+msgid "Network for exchanging goods and services based on mutualism."
+msgstr "Red de intercambio de bienes y servicios basada en el mutualismo."
+
+#~ msgid "slug"
+#~ msgstr "slug"
+
+#~ msgid "category"
+#~ msgstr "categoría"
+
+#~ msgid "categories"
+#~ msgstr "categorías"
+
+#~ msgid "maximum time"
+#~ msgstr "tiempo máximo"
+
+#~ msgid "Give"
+#~ msgstr "Dar"
+
+#~ msgid "Receive"
+#~ msgstr "Recibir"
