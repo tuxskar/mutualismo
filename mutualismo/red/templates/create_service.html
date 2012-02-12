@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+{% endblock extra_head %}
+
+{% block css %}
+  <link type="text/css" href="/statics/css/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+{% endblock css %}
+
+{% block main %}
+  {% include "includes/service_form.html" %}
+{% endblock main %}
+
+{% block javascripts %}
+  <script type="text/javascript" src="/statics/js/jquery-ui-timepicker-addon.js"></script>
+  <script>
+      $('#id_starts').datetimepicker();
+      $('#id_ends').datetimepicker();
+  </script>
+{% endblock javascripts %}

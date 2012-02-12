@@ -3,19 +3,23 @@ import datetime
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+
+from django_autoslug.fields import AutoSlugField
 from taggit.managers import TaggableManager
+
 
 class Trade(models.Model):
     """
     Represents an object or action which can be part of a trade within our network. 
     """
-    name        = models.CharField(_('name'), max_length=124)
+    name        = models.CharField(_('name'), max_length=124, unique=True)
     description = models.TextField(_('description'))
     date        = models.DateTimeField(_('date'), default = datetime.datetime.now)
     owner       = models.ForeignKey(User)
-    tags        = TaggableManager()
+    tags        = TaggableManager(blank=True)
     # TODO: categorize trades with a 3rd party app
 
+    slug        = AutoSlugField(populate_from=('name',), unique=True, max_length=255)
     objects     = models.Manager()
 
     class Meta:
@@ -34,6 +38,10 @@ class Offer(Trade):
     #     available can be 'erased' changing this field to False.
     visible = models.BooleanField(_('visible'), default=True)
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('red.views.offer', (), {'offer_slug': self.slug})
+
 
 class Demand(Trade):
     # XXX very provisional.
@@ -46,6 +54,10 @@ class Demand(Trade):
     )
     trade_type = models.IntegerField(_('type'), choices = TYPE_CHOICE, default = 0)
     # TODO field for specifying if the demand is still being required.
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('red.views.demand', (), {'demand_slug': self.slug})
 
 
 class Loan(Offer):

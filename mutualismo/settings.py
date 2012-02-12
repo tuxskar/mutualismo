@@ -48,7 +48,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    #'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 SECRET_KEY = 'nz^nz&lu2o46v#b^k5y7%p09gcgf&z^#^b+!jb$jhakx4oe6%_'
@@ -89,11 +89,13 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'django_autoslug',
     'registration',
     'faq',
     'taggit',
-    'red',
+    'django_autoslug',
     'django_nose',
+    'red',
 )
 
 LOGGING = {
