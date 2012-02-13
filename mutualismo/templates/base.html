@@ -1,23 +1,27 @@
+{% load i18n %}
 <!doctype html>
 <head>
   <meta charset="utf-8">
 
-  <title>Mutualismo</title>
+  <title>{% block title %}{% trans "Mutualism" %}{% endblock title %}</title>
   <!--<meta name="description" content="">-->
 
   <!-- Mobile viewport optimized: h5bp.com/viewport -->
   <meta name="viewport" content="width=device-width,initial-scale=1">
-
-  <link rel="stylesheet" href="/static/style.css">
   {% block extra_head %}
+  {% endblock %}
+
+  <link type="text/css" href="/statics/css/style.css" rel="stylesheet" />
+  <link type="text/css" href="/statics/css/smoothness/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
+  {% block css %}
   {% endblock %}
 </head>
 
 <body>
   <header>
-    <a href=""><h1>Mutualismo</h1></a>
-    <h2>Red de intercambio de bienes y servicios basada en el mutualismo.</h2>
+    <h1><a href="/">{% block header_title %}{% trans "Mutualism" %}{% endblock header_title %}</a></h1>
     {% block extra_header %}
+        <h2>{% trans "Network for exchanging goods and services based on mutualism." %}</h2>
     {% endblock %}
     <hr>
   </header>
@@ -58,8 +62,12 @@ dolorem eum fugiat quo voluptas nulla pariatur?
     {% endblock %}
   </footer>
   <!-- JavaScript at the bottom for fast page loading -->
-  <script type="text/javascript" src="/static/jquery.js"></script>
-  <script type="text/javascript" src="/static/less_grid.js"></script>
-  <!-- end scripts -->
+  <!-- WARNING! jQuery has to be placed in the first place since the other scripts
+                depend on the availability of jQuery. --!>
+  <script type="text/javascript" src="/statics/js/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" src="/statics/js/jquery-ui-1.8.17.custom.min.js"></script>
+  <script type="text/javascript" src="/statics/js/less_grid.js"></script>
+  {% block javascripts %}
+  {% endblock %}
 </body>
 </html>

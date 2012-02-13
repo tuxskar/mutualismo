@@ -7,6 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 from django_autoslug.fields import AutoSlugField
 from taggit.managers import TaggableManager
 
+
 class Trade(models.Model):
     """
     Represents an object or action which can be part of a trade within our network. 

@@ -12,7 +12,6 @@ class TradeManager(Manager):
         
         By default it returns all the offers.
         """
-        # TODO use ``latest``
         loans = Loan.objects.all()
         gifts = Gift.objects.all()
         services = Service.objects.all()
@@ -33,8 +32,7 @@ class TradeManager(Manager):
         
         By default it returns all the demands.
         """
-        # TODO ordered by date: ``latest``
-        latest = Demand.objects.all()
+        latest = Demand.objects.all().order_by('-date')
         if count is None:
             return latest
         elif count > 0: 
@@ -44,7 +42,8 @@ class TradeManager(Manager):
 
     def offers(self, username, count=None):
         """
-        Returns the latest ``count`` offers for the given ``username``.
+        Returns the latest ``count`` offers for the given ``username``
+        ordered by date.
         
         By default it returns all the offers.
         """
@@ -63,7 +62,8 @@ class TradeManager(Manager):
 
     def demands(self, username, count=None):
         """
-        Returns the latest ``count`` demands for the given ``username``.
+        Returns the latest ``count`` demands for the given ``username``
+        ordered by date.
         
         By default it returns all the demands.
         """
@@ -72,10 +72,67 @@ class TradeManager(Manager):
         except User.DoesNotExist:
             return Demand.objects.none()
 
-        demands = Demand.objects.filter(owner=user)
+        demands = Demand.objects.filter(owner=user).order_by('-date')
         if count is None:
             return demands
         elif count > 0: 
             return demands[:count]
         else:
             return Demand.objects.none()
+
+    def services(self, username, count=None):
+        """
+        Returns the latest ``count`` services owned by the given ``username``.
+        
+        By default it returns all the services.
+        """
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return Service.objects.none()
+
+        services = Service.objects.filter(owner=user)
+        if count is None:
+            return services
+        elif count > 0: 
+            return services[:count]
+        else:
+            return Service.objects.none()
+
+    def gifts(self, username, count=None):
+        """
+        Returns the latest ``count`` gifts owned by the given ``username``.
+        
+        By default it returns all the gifts.
+        """
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return Gift.objects.none()
+
+        gifts = Gift.objects.filter(owner=user)
+        if count is None:
+            return gifts
+        elif count > 0: 
+            return gifts[:count]
+        else:
+            return Gift.objects.none()
+
+    def loans(self, username, count=None):
+        """
+        Returns the latest ``count`` loans owned by the given ``username``.
+        
+        By default it returns all the loans.
+        """
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return Loan.objects.none()
+
+        loans = Loan.objects.filter(owner=user)
+        if count is None:
+            return loans
+        elif count > 0: 
+            return loans[:count]
+        else:
+            return Loan.objects.none()

@@ -1,15 +1,27 @@
 {% extends "base.html" %}
 
+{% load i18n %}
+
 {% block main %}
-    <h3>Hola {{ username }}</h3>
-    <h4>Ofertas</h4>
-    {% for offer in offers %}
-        {% include "includes/offer.html" %}
-        <a href="{% url red.views.delete_offer offer.slug %}">Borrar</a>
-    {% endfor %}
-    <h4>Demandas</h4>
-    {% for demand in demands %}
-        {% include "includes/demand.html" %}
-        <a href="{% url red.views.delete_demand demand.slug %}">Borrar</a>
-    {% endfor %}
+    <h3>{% blocktrans %}Hello {{ username }}{% endblocktrans %}</h3>
+    <section id="user_control_panel">
+      <ul>
+          <li><a href="/create/demand">{% trans "New demand" %}</a></li>
+          <li><a href="/create/service">{% trans "New service" %}</a></li>
+          <li><a href="/create/gift">{% trans "New gift" %}</a></li>
+          <li><a href="/create/loan">{% trans "New loan" %}</a></li>
+      </ul>
+    </section>
+    <section id="user_trades">
+      <h4>{% trans "Your offers" %}</h4>
+      {% for offer in offers %}
+          {% include "includes/offer.html" %}
+          <a href="{% url red.views.delete_offer offer.slug %}">{% trans "Delete" %}</a>
+      {% endfor %}
+      <h4>{% trans "Your demands" %}</h4>
+      {% for demand in demands %}
+          {% include "includes/demand.html" %}
+          <a href="{% url red.views.delete_demand demand.slug %}">{% trans "Delete" %}</a>
+      {% endfor %}
+    </section>
 {% endblock %}

@@ -2,7 +2,7 @@ from django.core import mail
 from django.test import Client, TestCase
 
 from red.managers import TradeManager
-from red.models import Offer, Demand
+from red.models import Offer, Demand 
 
 class ViewTestCase(TestCase):
     """Helper class for testing views."""
@@ -210,7 +210,7 @@ class TestDemand(ViewTestCase):
 
 
 class TestDeleteOffer(ViewTestCase):
-    """Page for deleteing a certain offer."""
+    """Page for deleting a certain offer."""
     templates = ['base.html', 'dashboard.html']
 
     def setUp(self):
@@ -361,3 +361,189 @@ class TestCreateDemand(ViewTestCase):
             self.client.post(url, form)
             user_demands = trades.demands(self.username)
             self.assertEqual(before_user_demands + 1, len(user_demands))
+
+
+class TestCreateService(ViewTestCase):
+    """Page for creating or modifyng a certain service."""
+    templates = ['base.html', 'create_service.html', 'includes/service_form.html']
+
+    def setUp(self):
+        ViewTestCase.setUp(self)
+        self.login()
+        self.urls = ['/create/service', '/create/service/']
+
+    def test_http_ok(self):
+        for url in self.urls:
+            self.assertHTTPOk(url)
+
+    def test_templates(self):
+        for url in self.urls:
+            response = self.client.get(url)
+            self.assertTemplatesUsed(response, self.templates)
+
+    def test_invalid_offer_form_post_templates(self):
+        # when an invalid form is submitted, same templates are rendered again
+        form = {'name': '',
+                'description': '',}
+        for url in self.urls:
+            response = self.client.post(url, form)
+            self.assertTemplatesUsed(response, self.templates)
+
+    def test_invalid_offer_form_post_does_not_create_service(self):
+        # when an invalid form is submitted the service is not created
+        trades = TradeManager()
+        user_services = trades.services(self.username) 
+        expected_user_services = len(user_services)
+        form = {'name': '',
+                'description': '',}
+        for url in self.urls:
+            self.client.post(url, form)
+            user_services = trades.services(self.username)
+            self.assertEqual(expected_user_services, len(user_services))
+
+    # FIXME
+    #def test_valid_service_form_post_templates(self):
+        ## when a valid form is submitted, dashboard templates are rendered
+        #form = {'name': 'test',
+                #'description': 'test',}
+        #templates = ['base.html', 'dashboard.html', 'includes/service.html']
+        #for url in self.urls:
+            #response = self.client.post(url, form)
+            #self.assertTemplatesUsed(response, templates)
+
+    def test_valid_service_form_post_creates_service(self):
+        # when a valid form is submitted the service is created
+        trades = TradeManager()
+        user_services = trades.services(self.username) 
+        before_user_services = len(user_services)
+        form = {'name': 'test',
+                'description': 'test',}
+        for url in self.urls:
+            self.client.post(url, form)
+            user_services = trades.services(self.username)
+            self.assertEqual(before_user_services + 1, len(user_services))
+
+
+class TestCreateGift(ViewTestCase):
+    """Page for creating or modifyng a certain gift."""
+    templates = ['base.html', 'create_gift.html', 'includes/gift_form.html']
+
+    def setUp(self):
+        ViewTestCase.setUp(self)
+        self.login()
+        self.urls = ['/create/gift', '/create/gift/']
+
+    def test_http_ok(self):
+        for url in self.urls:
+            self.assertHTTPOk(url)
+
+    def test_templates(self):
+        for url in self.urls:
+            response = self.client.get(url)
+            self.assertTemplatesUsed(response, self.templates)
+
+    def test_invalid_gift_form_post_templates(self):
+        # when an invalid form is submitted, same templates are rendered again
+        form = {'name': '',
+                'description': '',}
+        for url in self.urls:
+            response = self.client.post(url, form)
+            self.assertTemplatesUsed(response, self.templates)
+
+    def test_invalid_gift_form_post_does_not_create_gift(self):
+        # when an invalid form is submitted the gift is not created
+        trades = TradeManager()
+        user_gifts = trades.gifts(self.username) 
+        expected_user_gifts = len(user_gifts)
+        form = {'name': '',
+                'description': '',}
+        for url in self.urls:
+            self.client.post(url, form)
+            user_gifts = trades.gifts(self.username)
+            self.assertEqual(expected_user_gifts, len(user_gifts))
+
+    # FIXME
+    #def test_valid_gift_form_post_templates(self):
+        ## when a valid form is submitted, dashboard templates are rendered
+        #form = {'name': 'test',
+                #'description': 'test',}
+        #templates = ['base.html', 'dashboard.html', 'includes/gift.html']
+        #for url in self.urls:
+            #response = self.client.post(url, form)
+            #self.assertTemplatesUsed(response, templates)
+
+    def test_valid_gift_form_post_creates_gift(self):
+        # when a valid form is submitted the gift is created
+        trades = TradeManager()
+        user_gifts = trades.gifts(self.username) 
+        before_user_gifts = len(user_gifts)
+        form = {'name': 'test',
+                'description': 'test',
+                'available': True,
+                'communal': False,}
+        for url in self.urls:
+            self.client.post(url, form)
+            user_gifts = trades.gifts(self.username)
+            self.assertEqual(before_user_gifts + 1, len(user_gifts))
+
+
+class TestCreateLoan(ViewTestCase):
+    """Page for creating or modifyng a certain loan."""
+    templates = ['base.html', 'create_loan.html', 'includes/loan_form.html']
+
+    def setUp(self):
+        ViewTestCase.setUp(self)
+        self.login()
+        self.urls = ['/create/loan', '/create/loan/']
+
+    def test_http_ok(self):
+        for url in self.urls:
+            self.assertHTTPOk(url)
+
+    def test_templates(self):
+        for url in self.urls:
+            response = self.client.get(url)
+            self.assertTemplatesUsed(response, self.templates)
+
+    def test_invalid_loan_form_post_templates(self):
+        # when an invalid form is submitted, same templates are rendered again
+        form = {'name': '',
+                'description': '',}
+        for url in self.urls:
+            response = self.client.post(url, form)
+            self.assertTemplatesUsed(response, self.templates)
+
+    def test_invalid_loan_form_post_does_not_create_loan(self):
+        # when an invalid form is submitted the loan is not created
+        trades = TradeManager()
+        user_loans = trades.loans(self.username) 
+        expected_user_loans = len(user_loans)
+        form = {'name': '',
+                'description': '',}
+        for url in self.urls:
+            self.client.post(url, form)
+            user_loans = trades.loans(self.username)
+            self.assertEqual(expected_user_loans, len(user_loans))
+
+    ## FIXME
+    ##def test_valid_loan_form_post_templates(self):
+        ### when a valid form is submitted, dashboard templates are rendered
+        ##form = {'name': 'test',
+                ##'description': 'test',}
+        ##templates = ['base.html', 'dashboard.html', 'includes/loan.html']
+        ##for url in self.urls:
+            ##response = self.client.post(url, form)
+            ##self.assertTemplatesUsed(response, templates)
+
+    def test_valid_loan_form_post_creates_loan(self):
+        # when a valid form is submitted the loan is created
+        trades = TradeManager()
+        user_loans = trades.loans(self.username) 
+        before_user_loans = len(user_loans)
+        form = {'name': 'test',
+                'description': 'test',
+                'status': 2,}
+        for url in self.urls:
+            self.client.post(url, form)
+            user_loans = trades.loans(self.username)
+            self.assertEqual(before_user_loans + 1, len(user_loans))
