@@ -1,0 +1,16 @@
+{% load i18n %}
+
+{% if offer %}
+  <div class="offer">
+      <a href="{% url red.views.offer offer.slug %}"><h3>{{ offer.name }}</h3></a>
+      <span class="offer_date">{{ offer.date }}</span>
+      <p>{{ offer.description }}</p>
+      <div class="offer_tags">
+      {% for tag in offer.tags.all %}
+          <span class="offer_tag">{{ tag }}</span>
+      {% endfor %}
+      </div>
+  </div>
+{% else %}
+  <p>{% trans "We didn't found the offer that you were looking for." %}</p>
+{% endif %}

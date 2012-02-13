@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block main %}
+  {% if offer %}
+    {% include "includes/offer.html" %}
+  {% endif %}
+  {% if demand %}
+    {% include "includes/demand.html" %}
+  {% endif %}
+{% endblock %}

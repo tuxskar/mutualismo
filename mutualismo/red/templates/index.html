@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block main %}
+  <div id="last_offers">
+    <h3 class="large">{% trans "Latest offers" %}</h3>
+    <ul>
+      {% for offer in latest_offers %}
+          {% include "includes/offer.html" %}
+      {% endfor %}
+    </ul>
+  </div> 
+  <div id="last_demandas">
+    <h3 class="large">{% trans "Latest demands" %}</h3>
+    <ul>
+      {% for demand in latest_demands %}
+          {% include "includes/demand.html" %}
+      {% endfor %}
+    </ul>
+  </div> 
+{% endblock main %}

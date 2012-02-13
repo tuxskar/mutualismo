@@ -4,3 +4,4 @@
 .project
 .coverage
 tmp/
+.swp
