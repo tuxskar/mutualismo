@@ -19,4 +19,11 @@
       {% endfor %}
     </ul>
   </div> 
+  {% if user.is_authenticated %}
+      <!--TODO-->
+      <!--valuable information and common actions for the user-->
+  {% else %}
+      {% include "includes/login_form.html" %}
+      {% include "includes/registration_form.html" %}
+  {% endif %}
 {% endblock main %}

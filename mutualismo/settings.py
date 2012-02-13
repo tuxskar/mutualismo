@@ -93,6 +93,9 @@ INSTALLED_APPS = (
     'registration',
     'faq',
     'taggit',
+    'debug_toolbar',
+    'django_extensions',
+    'registration',
     'django_autoslug',
     'django_nose',
     'red',
@@ -118,6 +121,9 @@ LOGGING = {
 
 # Registration
 ACCOUNT_ACTIVATION_DAYS = 7
+
+# to be able to reference URLs for `registration`  
+APPEND_SLASH = True
 
 # Testing
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
