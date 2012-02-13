@@ -3,11 +3,12 @@ from django.utils.translation import ugettext_lazy as _
 
 from red.models import Demand, Service, Gift, Loan
 
+
 class ContactForm(Form):
     """Form for submitting a message to the site administrators."""
     subject = CharField(label=_("Subject"), max_length=100)
     message = CharField(label=_("Message"))
-    sender = EmailField()
+    sender = EmailField(label=_("Sender"))
     cc_myself = BooleanField(label=_("Send me a copy"), required=False)
 
 
