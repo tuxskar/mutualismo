@@ -80,6 +80,22 @@ dolorem eum fugiat quo voluptas nulla pariatur?
   <script type="text/javascript" src="/statics/js/jquery-1.7.1.min.js"></script>
   <script type="text/javascript" src="/statics/js/jquery-ui-1.8.17.custom.min.js"></script>
   <script type="text/javascript" src="/statics/js/less_grid.js"></script>
+  <script>
+	$(function() {
+	  $( "#accordion" ).accordion({
+	  	event: "mouseover",animated: 'bounceslide'
+	  });
+	});
+</script>
+  <script>
+	$(function() {
+	  $( "#accordion2" ).accordion({
+	  	event: "mouseover",animated: 'bounceslide'
+	  });
+	});
+</script>
+
+
   {% block javascripts %}
   {% endblock %}
 </body>
