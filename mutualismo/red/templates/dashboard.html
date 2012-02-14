@@ -14,14 +14,20 @@
     </section>
     <section id="user_trades">
       <h4>{% trans "Your offers" %}</h4>
+	   <div id="accordion">
       {% for offer in offers %}
-          {% include "includes/offer.html" %}
-          <a href="{% url red.views.delete_offer offer.slug %}">{% trans "Delete" %}</a>
+	    {% include "includes/offer.html" %}
+	      {% block manage_trade %}
+            <a href="{% url red.views.delete_offer offer.slug %}">{% trans "Delete" %}</a>
+	      {% endblock manage_trade %}
       {% endfor %}
+       </div>
       <h4>{% trans "Your demands" %}</h4>
+	   <div id="accordion2">
       {% for demand in demands %}
-          {% include "includes/demand.html" %}
-          <a href="{% url red.views.delete_demand demand.slug %}">{% trans "Delete" %}</a>
+          {% include "includes/demand.html" with delete="true" %}
+          <!--<a href="{% url red.views.delete_demand demand.slug %}">{% trans "Delete" %}</a>-->
       {% endfor %}
+     </div>
     </section>
 {% endblock %}
