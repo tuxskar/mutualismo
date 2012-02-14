@@ -16,12 +16,14 @@ def index(request):
     latest_offers = trades.latest_offers()
     latest_demands = trades.latest_demands()
     data = {'latest_offers':  latest_offers,
-            'latest_demands': latest_demands,}
+            'latest_demands': latest_demands, }
     return render_to_response('index.html', data)
+
 
 def about(request):
     """About page."""
     return render_to_response('about.html',)
+
 
 def contact(request):
     """Contact page."""
@@ -54,6 +56,7 @@ def contact(request):
                               {'form': form,}, 
                               RequestContext(request))
 
+
 @login_required
 def dashboard(request):
     """User's dashboard page."""
@@ -70,6 +73,7 @@ def dashboard(request):
                               RequestContext(request))
 
 # Read
+
 
 def _trade(request, cls, slug):
     """
@@ -93,7 +97,35 @@ def demand(request, demand_slug):
     """Shows information about a certain demand."""
     return _trade(request, Demand, demand_slug)
 
+
 # Create
+
+
+@login_required
+def _create(request, model, form_model, next_view):
+    """
+    A page for creating an instance of the given ``model`` with
+    using the ``form_model`` form and the ``create_<model-name>``.html
+    template.
+    
+    It re-renders itself whit invalid data, and calls ``next_view``
+    when the data is valid.
+    """
+    user = request.user
+    if request.method == 'POST': 
+        instance = model(owner=user,)
+        instance_form = form_model(request.POST, instance=instance) 
+        if instance_form.is_valid(): 
+            instance_form.save()
+            return next_view(request)
+        else:
+            form = instance_form
+    else:
+        form = form_model()
+    return render_to_response('create_%s.html' % model.__name__.lower(), 
+                              {'form': form,}, 
+                              RequestContext(request))
+
 
 @login_required
 def create_demand(request):
@@ -102,20 +134,8 @@ def create_demand(request):
 
     After that, redirects to the dashboard.
     """
-    user = request.user
-    if request.method == 'POST': 
-        demand = Demand(owner=user,)
-        demand_form = DemandForm(request.POST, instance=demand) 
-        if demand_form.is_valid(): 
-            demand_form.save()
-            return dashboard(request)
-        else:
-            form = demand_form
-    else:
-        form = DemandForm()
-    return render_to_response('create_demand.html', 
-                              {'form': form,}, 
-                              RequestContext(request))
+    return _create(request, Demand, DemandForm, dashboard)
+
 
 @login_required
 def create_service(request):
@@ -124,20 +144,8 @@ def create_service(request):
 
     After that, redirects to the dashboard.
     """
-    user = request.user
-    if request.method == 'POST': 
-        service = Service(owner=user,)
-        service_form = ServiceForm(request.POST, instance=service) 
-        if service_form.is_valid(): 
-            service_form.save()
-            return dashboard(request)
-        else:
-            form = service_form
-    else:
-        form = ServiceForm()
-    return render_to_response('create_service.html', 
-                              {'form': form,}, 
-                              RequestContext(request))
+    return _create(request, Service, ServiceForm, dashboard)
+
 
 @login_required
 def create_gift(request):
@@ -146,20 +154,8 @@ def create_gift(request):
 
     After that, redirects to the dashboard.
     """
-    user = request.user
-    if request.method == 'POST': 
-        gift = Gift(owner=user,)
-        gift_form = GiftForm(request.POST, instance=gift) 
-        if gift_form.is_valid(): 
-            gift_form.save()
-            return dashboard(request)
-        else:
-            form = gift_form
-    else:
-        form = GiftForm()
-    return render_to_response('create_gift.html', 
-                              {'form': form,}, 
-                              RequestContext(request))
+    return _create(request, Gift, GiftForm, dashboard)
+
 
 @login_required
 def create_loan(request):
@@ -168,22 +164,16 @@ def create_loan(request):
 
     After that, redirects to the dashboard.
     """
-    user = request.user
-    if request.method == 'POST': 
-        loan = Loan(owner=user,)
-        loan_form = LoanForm(request.POST, instance=loan) 
-        if loan_form.is_valid(): 
-            loan_form.save()
-            return dashboard(request)
-        else:
-            form = loan_form
-    else:
-        form = LoanForm()
-    return render_to_response('create_loan.html', 
-                              {'form': form,}, 
-                              RequestContext(request))
+    return _create(request, Loan, LoanForm, dashboard)
+
 
 # Edit
+
+# TODO
+@login_required
+def _edit(request, slug):
+    pass
+
 
 @login_required
 def edit_demand(request, demand_slug):
@@ -210,6 +200,7 @@ def edit_demand(request, demand_slug):
                                'demand': demand}, 
                               RequestContext(request))
 
+
 @login_required
 def edit_service(request, service_slug):
     """
@@ -234,6 +225,7 @@ def edit_service(request, service_slug):
                               {'form': form,
                                'service': service}, 
                               RequestContext(request))
+
 
 @login_required
 def edit_gift(request, gift_slug):
@@ -260,6 +252,7 @@ def edit_gift(request, gift_slug):
                                'gift': gift}, 
                               RequestContext(request))
     
+
 @login_required
 def edit_loan(request, loan_slug):
     """
@@ -285,7 +278,14 @@ def edit_loan(request, loan_slug):
                                'loan': loan}, 
                               RequestContext(request))
 
+
 # Delete
+
+# TODO
+@login_required
+def _delete(request, slug):
+    pass
+
 
 @login_required
 def delete_demand(request, demand_slug):
@@ -304,6 +304,7 @@ def delete_demand(request, demand_slug):
         demand_to_delete.delete()
     return dashboard(request)
 
+
 @login_required
 def delete_offer(request, offer_slug):
     """
@@ -320,4 +321,3 @@ def delete_offer(request, offer_slug):
     if offer_to_delete:
         offer_to_delete.delete()
     return dashboard(request)
-
