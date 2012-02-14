@@ -69,6 +69,8 @@ def dashboard(request):
                               data,
                               RequestContext(request))
 
+# Read
+
 def _trade(request, cls, slug):
     """
     Helper function to render a certain trade given its class and slug.
@@ -91,22 +93,7 @@ def demand(request, demand_slug):
     """Shows information about a certain demand."""
     return _trade(request, Demand, demand_slug)
 
-@login_required
-def delete_offer(request, offer_slug):
-    """
-    Deletes the offer corresponding to the given slug if it belongs
-    to the user who is logged in.
-
-    After that, redirects to the dashboard.
-    """
-    user = request.user
-    username = user.username
-    trades = TradeManager()
-    user_offers = trades.offers(username)
-    offer_to_delete = get_object_or_404(user_offers, slug=offer_slug) 
-    if offer_to_delete:
-        offer_to_delete.delete()
-    return dashboard(request)
+# Create
 
 @login_required
 def create_demand(request):
@@ -196,6 +183,85 @@ def create_loan(request):
                               {'form': form,}, 
                               RequestContext(request))
 
+# Edit
+
+@login_required
+def edit_demand(request, demand_slug):
+    """
+    Edits a demand belonging to the logged in user.
+
+    After that, redirects to the dashboard.
+    """
+    user = request.user
+    trades = TradeManager()
+    user_demands = trades.demands(user.username)
+    demand = get_object_or_404(user_demands, slug=demand_slug)
+    if request.method == 'POST': 
+        demand_form = DemandForm(request.POST, instance=demand) 
+        if demand_form.is_valid(): 
+            demand_form.save()
+            return dashboard(request)
+        else:
+            form = demand_form
+    else:
+        form = DemandForm(instance=demand)
+    return render_to_response('edit_demand.html', 
+                              {'form': form,
+                               'demand': demand}, 
+                              RequestContext(request))
+
+@login_required
+def edit_gift(request, gift_slug):
+    """
+    Edits a gift belonging to the logged in user.
+
+    After that, redirects to the dashboard.
+    """
+    user = request.user
+    trades = TradeManager()
+    user_gifts = trades.gifts(user.username)
+    gift = get_object_or_404(user_gifts, slug=gift_slug)
+    if request.method == 'POST': 
+        gift_form = GiftForm(request.POST, instance=gift) 
+        if gift_form.is_valid(): 
+            gift_form.save()
+            return dashboard(request)
+        else:
+            form = gift_form
+    else:
+        form = GiftForm(instance=gift)
+    return render_to_response('edit_gift.html', 
+                              {'form': form,
+                               'gift': gift}, 
+                              RequestContext(request))
+    
+@login_required
+def edit_loan(request, loan_slug):
+    """
+    Edits a loan belonging to the logged in user.
+
+    After that, redirects to the dashboard.
+    """
+    user = request.user
+    trades = TradeManager()
+    user_loans = trades.loans(user.username)
+    loan = get_object_or_404(user_loans, slug=loan_slug)
+    if request.method == 'POST': 
+        loan_form = LoanForm(request.POST, instance=loan) 
+        if loan_form.is_valid(): 
+            loan_form.save()
+            return dashboard(request)
+        else:
+            form = loan_form
+    else:
+        form = LoanForm(instance=loan)
+    return render_to_response('edit_loan.html', 
+                              {'form': form,
+                               'loan': loan}, 
+                              RequestContext(request))
+
+# Delete
+
 @login_required
 def delete_demand(request, demand_slug):
     """
@@ -212,3 +278,21 @@ def delete_demand(request, demand_slug):
     if demand_to_delete:
         demand_to_delete.delete()
     return dashboard(request)
+
+@login_required
+def delete_offer(request, offer_slug):
+    """
+    Deletes the offer corresponding to the given slug if it belongs
+    to the user who is logged in.
+
+    After that, redirects to the dashboard.
+    """
+    user = request.user
+    username = user.username
+    trades = TradeManager()
+    user_offers = trades.offers(username)
+    offer_to_delete = get_object_or_404(user_offers, slug=offer_slug) 
+    if offer_to_delete:
+        offer_to_delete.delete()
+    return dashboard(request)
+
