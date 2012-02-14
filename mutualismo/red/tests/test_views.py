@@ -2,7 +2,7 @@ from django.core import mail
 from django.test import Client, TestCase
 
 from red.managers import TradeManager
-from red.models import Offer, Demand, Gift, Loan
+from red.models import Offer, Service, Demand, Gift, Loan
 
 class ViewTestCase(TestCase):
     """Helper class for testing views."""
@@ -531,7 +531,74 @@ class TestEditDemand(ViewTestCase):
             self.assertEqual(modified_demand.name, 'Modified name')
             self.assertEqual(modified_demand.description, 'Modified description')
 
-# TODO: TestEditService
+
+class TestEditService(ViewTestCase):
+    """Page for modifyng a certain service."""
+    templates = ['base.html', 'edit_service.html', 'includes/service_edit_form.html']
+
+    def setUp(self):
+        ViewTestCase.setUp(self)
+        self.login()
+        trades = TradeManager()
+        self.services = trades.services(self.username) 
+        # create urls
+        self.urls = []
+        for service in self.services:
+            self.urls.append('/edit/service/' + service.slug)
+
+    def test_http_ok(self):
+        for url in self.urls:
+            self.assertHTTPOk(url)
+
+    def test_templates(self):
+        for url in self.urls:
+            response = self.client.get(url)
+            self.assertTemplatesUsed(response, self.templates)
+
+    def test_invalid_service_form_post_templates(self):
+        for url in self.urls:
+            form = {'name': '',
+                    'description': '',
+                    'availability': 'always',}
+            response = self.client.post(url, form)
+            # service editting form rendered again
+            self.assertTemplatesUsed(response, self.templates)
+
+    def test_invalid_service_form_post_does_not_touch_database(self):
+        for url in self.urls:
+            service_slug = url.split('/')[-1]
+            form = {'name': '',
+                    'description': '',
+                    'availability': 'always',}
+            self.client.post(url, form)
+            # ensure that the object is still in the DB
+            Service.objects.get(slug=service_slug)
+
+    def test_valid_service_form_post_templates(self):
+        # when a valid form is submitted, dashboard templates are rendered
+        form = {'name': 'test',
+                'description': 'test',
+                'availability': 'always',}
+        templates = ['base.html', 'dashboard.html', 'includes/offer.html']
+        for url in self.urls:
+            response = self.client.post(url, form)
+            self.assertTemplatesUsed(response, templates)
+
+    def test_valid_service_form_post_modifies_service(self):
+        for url in self.urls:
+            # get the service from the URL
+            service_slug = url.split('/')[-1]
+            service = Service.objects.get(slug=service_slug)
+            form = {'name': 'Modified name',
+                    'description': 'Modified description',
+                    'availability': 'Modified availability',}
+            self.client.post(url, form)
+            # ensure that the service has changed
+            modified_service = Service.objects.get(pk=service.pk)
+            self.assertEqual(modified_service.name, 'Modified name')
+            self.assertEqual(modified_service.description, 'Modified description')
+            self.assertEqual(modified_service.availability, 'Modified availability')
+            
 
 class TestEditGift(ViewTestCase):
     """Page for modifyng a certain gift."""

@@ -211,6 +211,31 @@ def edit_demand(request, demand_slug):
                               RequestContext(request))
 
 @login_required
+def edit_service(request, service_slug):
+    """
+    Edits a service belonging to the logged in user.
+
+    After that, redirects to the dashboard.
+    """
+    user = request.user
+    trades = TradeManager()
+    user_services = trades.services(user.username)
+    service = get_object_or_404(user_services, slug=service_slug)
+    if request.method == 'POST': 
+        service_form = ServiceForm(request.POST, instance=service) 
+        if service_form.is_valid(): 
+            service_form.save()
+            return dashboard(request)
+        else:
+            form = service_form
+    else:
+        form = ServiceForm(instance=service)
+    return render_to_response('edit_service.html', 
+                              {'form': form,
+                               'service': service}, 
+                              RequestContext(request))
+
+@login_required
 def edit_gift(request, gift_slug):
     """
     Edits a gift belonging to the logged in user.
