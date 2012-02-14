@@ -17,3 +17,6 @@ pycrypto==2.4.1
 simplejson==2.3.0
 ssh==1.7.11
 wsgiref==0.1.2
+django-haystack==1.2.6
+Whoosh==2.3.2
+-e git+https://github.com/toastdriven/django-haystack.git@4fb267623b58c5581be96a9a9504ca10a72eb0d8#egg=django_haystack-dev

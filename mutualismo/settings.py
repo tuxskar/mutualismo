@@ -95,6 +95,7 @@ INSTALLED_APPS = (
     'taggit',
     'django_autoslug',
     'django_nose',
+    'haystack',
     'red',
 )
 
@@ -114,6 +115,14 @@ LOGGING = {
             'propagate': True,
         },
     }
+}
+
+# Search
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': path.join(path.dirname(__file__), 'whoosh_index'),
+    },
 }
 
 # Registration
