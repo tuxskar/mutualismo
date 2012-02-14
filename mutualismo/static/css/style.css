@@ -137,14 +137,39 @@ header h1 {
     list-style: none;
 }
 
-/* Misc
-   ---- */
-hr {
-    border: 1px dashed #ccc;
-}
-
 /* UI
    -- */
+
+/* Feedback button */
+#feedback { 
+    position: fixed; 
+    height: 115px;
+    width: 115px;
+    top: 40%; 
+    left: 0%;
+    z-index: 1000;
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg); 
+    -moz-transform: rotate(-90deg); 
+    -o-transform: rotate(-90deg); 
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+#feedback a { 
+    display: block; 
+    background: #f00; 
+    padding: 8px 16px;
+    color: #fff; 
+    font-family: Arial, sans-serif; 
+    font-size: 17px; 
+    font-weight: bold; 
+    text-decoration: none; 
+    border-bottom: solid 1px #333; border-left: solid 1px #333; border-right: solid 1px #fff;
+}
+
+#feedback a:hover { 
+    background: #06c; 
+}
 
 /* css for timepicker */
 .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
