@@ -24,8 +24,8 @@
        </div>
       <h4>{% trans "Your demands" %}</h4>
 	   <div id="accordion2">
-      {% for demand in demands %}
-          {% include "includes/demand.html" with delete="true" %}
+		   {% for demand in demands%} {{ delete }}
+          {% include "includes/demand.html" %}
           <!--<a href="{% url red.views.delete_demand demand.slug %}">{% trans "Delete" %}</a>-->
       {% endfor %}
      </div>

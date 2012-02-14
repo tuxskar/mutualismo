@@ -9,6 +9,10 @@
       {% for tag in demand.tags.all %}
           <span class="demand_tag">{{ tag }}</span>
       {% endfor %}
+	  {% if delete %}
+		  <a href="{% url red.views.delete_demand demand.slug %}">{% trans "Delete" %}</a>
+
+	  {% endif %}
       </div>
   </div>
 {% else %}
