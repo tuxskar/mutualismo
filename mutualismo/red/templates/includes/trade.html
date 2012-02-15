@@ -1,0 +1,16 @@
+{% load i18n %}
+
+{% if trade %}
+<h4><a href="">{{ trade.name }}</a></h4>
+  <div class="trade">
+      <span class="trade_date">{{ trade.date }}</span>
+      <p>{{ trade.description }}</p>
+      <ul class="tag_list">
+      {% for tag in offer.tags.all %}
+        <li> {{ tag.name }}</li>
+      {% endfor %}
+      </ul>
+  </div>
+{% else %}
+  <p>{% trans "We didn't found the trade that you were looking for." %}</p>
+{% endif %}
