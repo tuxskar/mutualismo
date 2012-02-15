@@ -1,18 +1,16 @@
 {% load i18n %}
 
 {% if offer %}
-  <h3><a href="{% url red.views.offer offer.slug %}">{{ offer.name }}</a></h3>
+  <h4><a href="{% url offer offer.slug %}">{{ offer.name }}</a></h4>
   <div class="offer">
       <span class="offer_date">{{ offer.date }}</span>
       <p>{{ offer.description }}</p>
-      <div class="offer_tags">
+      <ul class="tag_list">
       {% for tag in offer.tags.all %}
-          <span class="offer_tag">{{ tag }}</span>
+        <li> {{ tag.name }}</li>
       {% endfor %}
+      </ul>
       </div>
-	  {% if delete %}
-          <a href="{% url red.views.delete_demand demand.slug %}">{% trans "Delete" %}</a>
-	  {% endif %}
   </div>
 {% else %}
   <p>{% trans "We didn't found the offer that you were looking for." %}</p>

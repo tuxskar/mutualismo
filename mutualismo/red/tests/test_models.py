@@ -30,3 +30,11 @@ class TestDemand(TestCase):
             expected_url = '/'.join([URL_PREFIX, demand.slug])
             returned_url = unicode(demand.get_absolute_url())
             self.assertEqual(expected_url, returned_url)
+
+    def test_type_for_humans(self):
+        code_string = {}
+        for code, string in Demand.TYPE_CHOICE:
+            code_string[code] = string
+        demands = Demand.objects.all()            
+        for demand in demands:
+            self.assertEqual(demand.type_for_humans(), code_string[demand.trade_type])

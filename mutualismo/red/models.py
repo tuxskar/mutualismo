@@ -53,7 +53,12 @@ class Demand(Trade):
         (4, _('Communal good')),
     )
     trade_type = models.IntegerField(_('type'), choices = TYPE_CHOICE, default = 0)
-    # TODO field for specifying if the demand is still being required.
+
+    def type_for_humans(self):
+        """Returns a human-readable version of ``trade_type``."""
+        for type_code, string in self.TYPE_CHOICE:
+            if type_code == self.trade_type:
+                return string
 
     @models.permalink
     def get_absolute_url(self):
