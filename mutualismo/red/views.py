@@ -51,7 +51,6 @@ def contact(request):
                                       RequestContext(request))
     else:
         form = ContactForm()
-
     return render_to_response('contact.html', 
                               {'form': form,}, 
                               RequestContext(request))
@@ -75,15 +74,15 @@ def dashboard(request):
 # Read
 
 
-def _trade(request, cls, slug):
+def _trade(request, model, slug):
     """
     Helper function to render a certain trade given its class and slug.
     """
     try:
-        trade = cls.objects.get(slug=slug)
-    except cls.DoesNotExist:
+        trade = model.objects.get(slug=slug)
+    except model.DoesNotExist:
         trade = None
-    trade_type = cls.__name__.lower()
+    trade_type = model.__name__.lower()
     data = {trade_type: trade,}
     return render_to_response('trade.html',
                               data,
@@ -169,10 +168,32 @@ def create_loan(request):
 
 # Edit
 
-# TODO
-@login_required
-def _edit(request, slug):
-    pass
+
+def _edit(request, model, form_model, user_instances, slug, next_view):
+    """
+    Given a ``model``, a form for editing that model ``form_model``, the
+    ``user_instances`` of that model and the ``slug`` of one of them, renders
+    a view in which that instance, if exists, can be modified and saved.
+
+    If the instance is not found, a 404 error is raised. Otherwise, the
+    modified instance is saved and ``next_view`` is called with the ``request``
+    parameter.
+    """
+    instance = get_object_or_404(user_instances, slug=slug)
+    if request.method == 'POST': 
+        instance_form = form_model(request.POST, instance=instance) 
+        if instance_form.is_valid(): 
+            instance_form.save()
+            return next_view(request)
+        else:
+            form = instance_form
+    else:
+        form = form_model(instance=instance)
+    model_name = model.__name__.lower()
+    return render_to_response('edit_%s.html' % (model_name), 
+                              {'form': form,
+                               model_name: instance}, 
+                               RequestContext(request))
 
 
 @login_required
@@ -185,20 +206,12 @@ def edit_demand(request, demand_slug):
     user = request.user
     trades = TradeManager()
     user_demands = trades.demands(user.username)
-    demand = get_object_or_404(user_demands, slug=demand_slug)
-    if request.method == 'POST': 
-        demand_form = DemandForm(request.POST, instance=demand) 
-        if demand_form.is_valid(): 
-            demand_form.save()
-            return dashboard(request)
-        else:
-            form = demand_form
-    else:
-        form = DemandForm(instance=demand)
-    return render_to_response('edit_demand.html', 
-                              {'form': form,
-                               'demand': demand}, 
-                              RequestContext(request))
+    return _edit(request=request,
+                 model=Demand,
+                 form_model=DemandForm,
+                 user_instances=user_demands,
+                 slug=demand_slug,
+                 next_view=dashboard)
 
 
 @login_required
@@ -211,20 +224,12 @@ def edit_service(request, service_slug):
     user = request.user
     trades = TradeManager()
     user_services = trades.services(user.username)
-    service = get_object_or_404(user_services, slug=service_slug)
-    if request.method == 'POST': 
-        service_form = ServiceForm(request.POST, instance=service) 
-        if service_form.is_valid(): 
-            service_form.save()
-            return dashboard(request)
-        else:
-            form = service_form
-    else:
-        form = ServiceForm(instance=service)
-    return render_to_response('edit_service.html', 
-                              {'form': form,
-                               'service': service}, 
-                              RequestContext(request))
+    return _edit(request=request,
+                 model=Service,
+                 form_model=ServiceForm,
+                 user_instances=user_services,
+                 slug=service_slug,
+                 next_view=dashboard)
 
 
 @login_required
@@ -237,20 +242,12 @@ def edit_gift(request, gift_slug):
     user = request.user
     trades = TradeManager()
     user_gifts = trades.gifts(user.username)
-    gift = get_object_or_404(user_gifts, slug=gift_slug)
-    if request.method == 'POST': 
-        gift_form = GiftForm(request.POST, instance=gift) 
-        if gift_form.is_valid(): 
-            gift_form.save()
-            return dashboard(request)
-        else:
-            form = gift_form
-    else:
-        form = GiftForm(instance=gift)
-    return render_to_response('edit_gift.html', 
-                              {'form': form,
-                               'gift': gift}, 
-                              RequestContext(request))
+    return _edit(request=request,
+                 model=Gift,
+                 form_model=GiftForm,
+                 user_instances=user_gifts,
+                 slug=gift_slug,
+                 next_view=dashboard)
     
 
 @login_required
@@ -263,28 +260,27 @@ def edit_loan(request, loan_slug):
     user = request.user
     trades = TradeManager()
     user_loans = trades.loans(user.username)
-    loan = get_object_or_404(user_loans, slug=loan_slug)
-    if request.method == 'POST': 
-        loan_form = LoanForm(request.POST, instance=loan) 
-        if loan_form.is_valid(): 
-            loan_form.save()
-            return dashboard(request)
-        else:
-            form = loan_form
-    else:
-        form = LoanForm(instance=loan)
-    return render_to_response('edit_loan.html', 
-                              {'form': form,
-                               'loan': loan}, 
-                              RequestContext(request))
+    return _edit(request=request,
+                 model=Loan,
+                 form_model=LoanForm,
+                 user_instances=user_loans,
+                 slug=loan_slug,
+                 next_view=dashboard)
 
 
 # Delete
 
-# TODO
-@login_required
-def _delete(request, slug):
-    pass
+def _delete(request, user_instances, slug, next_view):
+    """
+    Deletes the instance of corresponding to the given slug 
+    if its in ``user_instances``.
+
+    After that, renders ``next_view``.
+    """
+    instance_to_delete = get_object_or_404(user_instances, slug=slug) 
+    if instance_to_delete:
+        instance_to_delete.delete()
+    return next_view(request)
 
 
 @login_required
@@ -299,10 +295,10 @@ def delete_demand(request, demand_slug):
     username = user.username
     trades = TradeManager()
     user_demands = trades.demands(username)
-    demand_to_delete = get_object_or_404(user_demands, slug=demand_slug) 
-    if demand_to_delete:
-        demand_to_delete.delete()
-    return dashboard(request)
+    return _delete(request=request, 
+                   user_instances=user_demands, 
+                   slug=demand_slug, 
+                   next_view=dashboard)
 
 
 @login_required
@@ -317,7 +313,7 @@ def delete_offer(request, offer_slug):
     username = user.username
     trades = TradeManager()
     user_offers = trades.offers(username)
-    offer_to_delete = get_object_or_404(user_offers, slug=offer_slug) 
-    if offer_to_delete:
-        offer_to_delete.delete()
-    return dashboard(request)
+    return _delete(request=request, 
+                   user_instances=user_offers, 
+                   slug=offer_slug, 
+                   next_view=dashboard)
