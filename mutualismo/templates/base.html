@@ -19,30 +19,7 @@
 </head>
 
 <body>
-	
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">Mutualismo</a>
-          <div class="nav-collapse">
-            <ul class="nav">
-				<li class="active"><a href="/">Home</a></li>
-			  <li><a href="{% url about %}">About</a></li>
-			  <li><a href="{% url dashboard %}">Dashboard</a></li>
-              <li><a href="{% url contact %}">Contact</a></li>
-            </ul>
-            <!--TODO-->
-            <p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-
+  {% include "navigation.html" %}
   <section id="content">
     <div role="main" id="main" class="small">
       {% block main %}
@@ -94,7 +71,7 @@ dolorem eum fugiat quo voluptas nulla pariatur?
 	  });
 	});
 </script>
-
+<script>$('#menu a[href*="' + location.pathname.split("/")[2] + "about"'"][class!="noactive"]').addClass('active'); </script>
 
   {% block javascripts %}
   {% endblock %}
