@@ -1,3 +1,4 @@
+    <!-- Navigation bar --!>
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -6,17 +7,23 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Mutualismo</a>
+          <a class="brand" href="/">Mutualismo</a>
           <div class="nav-collapse">
             <ul class="nav">
-				<li id="menu"><a href="/">Home</a></li>
-				<li><a id="menu" href="{% url about %}">About</a></li>
-			  <li><a href="{% url dashboard %}">Dashboard</a></li>
+			  <li class="active"><a href="{% url dashboard %}">Dashboard</a></li>
+			  <li><a href="{% url about %}">About</a></li>
               <li><a href="{% url contact %}">Contact</a></li>
+              <li><a href="/search">Search</a></li>
             </ul>
-            <!--TODO-->
-            <p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>
+            {% if user.is_authenticated %}
+                <p class="navbar-text pull-right">{% trans "Logged in as" %} <a href="#">{{ user.username }}</a> <a href="{% url auth_logout %}">{% trans "Logout" %}</a></p>
+            {% else %}
+                <p class="navbar-text pull-right"><a href="{% url auth_login %}">{% trans "Sign in" %}</a></p>
+            {% endif %}
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
+
+    <!-- Feedback button --!>
+    <div id="feedback"><a href="{% url contact %}">feedback</a></div>

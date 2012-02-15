@@ -1,7 +1,9 @@
+.env
 .DS_Store
 *.pyc
 *.db
 .project
 .coverage
 tmp/
+whoosh_index/
 .swp
