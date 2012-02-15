@@ -1,7 +1,7 @@
 {% load i18n %}
 
 {% if demand %}
-     <h4><a href="{% url demand demand.slug %}">{{ demand.name }}</a></h4>
+  <h4><a href="{% url demand demand.slug %}">{{ demand.name }}</a></h4>
   <div class="demand">
       <span class="demand_date">{{ demand.date }}</span>
       <p>{{ demand.description }}</p>
@@ -11,8 +11,7 @@
         <li>{{ tag.name }}</li>
       {% endfor %}
       </ul>
-      </div>
-  </div>
+   </div>
 {% else %}
   <p>{% trans "We didn't found the demand that you were looking for." %}</p>
 {% endif %}

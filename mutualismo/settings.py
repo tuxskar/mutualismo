@@ -93,8 +93,12 @@ INSTALLED_APPS = (
     'registration',
     'faq',
     'taggit',
+    'debug_toolbar',
+    'django_extensions',
+    'registration',
     'django_autoslug',
     'django_nose',
+    'haystack',
     'red',
 )
 
@@ -116,8 +120,19 @@ LOGGING = {
     }
 }
 
+# Search
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': path.join(path.dirname(__file__), 'whoosh_index'),
+    },
+}
+
 # Registration
 ACCOUNT_ACTIVATION_DAYS = 7
+
+# to be able to reference URLs for `registration`  
+APPEND_SLASH = True
 
 # Testing
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'

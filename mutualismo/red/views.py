@@ -1,9 +1,12 @@
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.core.mail import EmailMessage
 from django.shortcuts import render_to_response, get_object_or_404
 
 from settings import ADMINS
+
+from registration.forms import RegistrationForm
 
 from red.managers import TradeManager
 from red.models import Offer, Demand, Service, Gift, Loan
@@ -15,9 +18,15 @@ def index(request):
     trades = TradeManager()
     latest_offers = trades.latest_offers()
     latest_demands = trades.latest_demands()
-    data = {'latest_offers':  latest_offers,
-            'latest_demands': latest_demands, }
-    return render_to_response('index.html', data)
+    login_form = AuthenticationForm()
+    registration_form = RegistrationForm()
+    data = {'latest_offers':     latest_offers,
+            'latest_demands':    latest_demands,
+            'login_form':        login_form,
+            'registration_form': registration_form,}
+    return render_to_response('index.html', 
+                              data,
+                              RequestContext(request))
 
 
 def about(request):
@@ -134,7 +143,6 @@ def create_demand(request):
     After that, redirects to the dashboard.
     """
     return _create(request, Demand, DemandForm, dashboard)
-
 
 @login_required
 def create_service(request):

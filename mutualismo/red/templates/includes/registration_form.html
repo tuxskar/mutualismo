@@ -1,0 +1,6 @@
+<table>
+    <form method='post' action='/accounts/register/'>{% csrf_token %}
+        {{ registration_form }}
+        <tr><td></td><td><input type="submit" value="Send activation email" /></td>
+    </form>
+</table>

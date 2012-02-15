@@ -6,20 +6,27 @@
   <div class="demo">
   <div id="last_offers">
     <h3 class="large">{% trans "Latest offers" %}</h3>
-   <div id="accordion">
+    <div id="accordion">
 	  {% for offer in latest_offers %}
 		  {% include "includes/offer.html" %}
 	  {% endfor %}
-   </div> 
+    </div> 
   </div> 
   </div> 
   <hr>
   <div id="last_demandas">
 	<h3 class="large">{% trans "Latest demands" %}</h3>
-   <div id="accordion2">
+    <div id="accordion2">
 	  {% for demand in latest_demands %}
 		  {% include "includes/demand.html" %}
 	  {% endfor %}
-   </div>
+    </div>
   </div>
+  {% if user.is_authenticated %}
+      <!--TODO-->
+      <!--valuable information and common actions for the user-->
+  {% else %}
+      {% include "includes/login_form.html" %}
+      {% include "includes/registration_form.html" %}
+  {% endif %}
 {% endblock main %}

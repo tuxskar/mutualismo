@@ -18,6 +18,7 @@ class Trade(models.Model):
     owner       = models.ForeignKey(User)
     tags        = TaggableManager(blank=True)
     # TODO: categorize trades with a 3rd party app
+    visible = models.BooleanField(_('visible'), default=True)
 
     slug        = AutoSlugField(populate_from=('name',), unique=True, max_length=255)
     objects     = models.Manager()
@@ -33,11 +34,9 @@ class Offer(Trade):
     """
     Represents a trade that is offered by its owner.
     """
-    # XXX Maybe we should include a field to control the trade's visibility.
-    #     This way, when the user gives it to somebody else or it's no longer
-    #     available can be 'erased' changing this field to False.
-    visible = models.BooleanField(_('visible'), default=True)
-
+    # This class is convenient because it allows us to have a 
+    # foreign key to an ``Offer`` model and use that field with
+    # subclasses of ``Offer``.
     @models.permalink
     def get_absolute_url(self):
         return ('red.views.offer', (), {'offer_slug': self.slug})
