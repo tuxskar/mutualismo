@@ -52,6 +52,7 @@ class Demand(Trade):
         (4, _('Communal good')),
     )
     trade_type = models.IntegerField(_('type'), choices = TYPE_CHOICE, default = 0)
+    is_demand = True
 
     def type_for_humans(self):
         """Returns a human-readable version of ``trade_type``."""
@@ -74,6 +75,7 @@ class Loan(Offer):
         (3, _('Not available')),
     )
     status = models.IntegerField(_('status'), choices = STATUS_CHOICES, default = 1)
+    is_loan = True
     # XXX: Are we going to specify time ranges for loans? Could be optional
 
     class Meta:
@@ -88,6 +90,7 @@ class Gift(Offer):
     # XXX A gift can pass from non-communal to communal, but not the other way!
     communal  = models.BooleanField(_('communal'))
     available = models.BooleanField(_('available'))
+    is_gift = True
 
     class Meta:
         verbose_name = _('gift')
@@ -108,6 +111,7 @@ class Service(Offer):
     starts       = models.DateTimeField(_('start date'), blank=True, null=True)
     ends         = models.DateTimeField(_('end date'), blank=True, null=True)
     availability = models.TextField(_('availability'), blank=True)
+    is_service = True
 
     class Meta:
         verbose_name = _('service')

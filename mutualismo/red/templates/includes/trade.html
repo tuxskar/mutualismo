@@ -1,7 +1,11 @@
 {% load i18n %}
 
 {% if trade %}
-<h4><a href="">{{ trade.name }}</a></h4>
+<h4><a href="{% if trade.is_demand %}     
+               {% url demand trade.slug %}
+             {% else %}
+               {% url offer trade.slug %}
+             {% endif %}">{{ trade.name }}</a></h4>
   <div class="trade">
       <span class="trade_date">{{ trade.date }}</span>
       <p>{{ trade.description }}</p>
