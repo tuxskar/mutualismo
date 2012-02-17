@@ -44,19 +44,19 @@ class Offer(Trade):
 
 class Demand(Trade):
     # XXX very provisional.
-    TYPE_CHOICE = (
+    TYPE_CHOICES = (
         (0, _('All')),
         (1, _('Service')),
         (2, _('Good for loan')),
         (3, _('Good for gift')),
         (4, _('Communal good')),
     )
-    trade_type = models.IntegerField(_('type'), choices = TYPE_CHOICE, default = 0)
+    trade_type = models.IntegerField(_('type'), choices = TYPE_CHOICES, default = 0)
     is_demand = True
 
     def type_for_humans(self):
         """Returns a human-readable version of ``trade_type``."""
-        for type_code, string in self.TYPE_CHOICE:
+        for type_code, string in self.TYPE_CHOICES:
             if type_code == self.trade_type:
                 return string
 
@@ -77,6 +77,12 @@ class Loan(Offer):
     status = models.IntegerField(_('status'), choices = STATUS_CHOICES, default = 1)
     is_loan = True
     # XXX: Are we going to specify time ranges for loans? Could be optional
+
+    def status_for_humans(self):
+        """Returns a human-readable version of ``status``."""
+        for type_code, string in self.STATUS_CHOICES:
+            if type_code == self.status:
+                return string
 
     class Meta:
         verbose_name = _('loan')
