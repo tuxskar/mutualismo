@@ -142,3 +142,9 @@ class Exchange(models.Model):
     def __unicode__(self):
         # TODO
         return u'exchange'
+
+
+# Categories by `django-categories`
+
+import categories
+categories.register_fk(Trade)
