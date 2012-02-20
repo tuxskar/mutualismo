@@ -2,15 +2,21 @@
 
 {% if offer %}
   <h4><a href="{% url offer offer.slug %}">{{ offer.name }}</a></h4>
-  <div class="offer">
-      <span class="offer_date">{{ offer.date }}</span>
-      <p>{{ offer.description }}</p>
-      <ul class="tag_list">
-      {% for tag in offer.tags.all %}
-        <li> {{ tag.name }}</li>
-      {% endfor %}
-      </ul>
-  </div>
+  {% if offer.is_service %}
+    {% with offer as service %} 
+      {% include "includes/service_body.html" %}
+    {% endwith %}
+  {% endif %}
+  {% if offer.is_gift %}
+    {% with offer as gift %}
+      {% include "includes/gift_body.html" %}
+    {% endwith %}
+  {% endif %}
+  {% if offer.is_loan %}
+    {% with offer as loan %}
+      {% include "includes/loan_body.html" %}
+    {% endwith %}
+  {% endif %}
 {% else %}
   <p>{% trans "We didn't found the offer that you were looking for." %}</p>
 {% endif %}

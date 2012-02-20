@@ -4,6 +4,7 @@ from django.test import Client, TestCase
 from red.managers import TradeManager
 from red.models import Offer, Service, Demand, Gift, Loan
 
+
 class ViewTestCase(TestCase):
     """Helper class for testing views."""
     fixtures = ['test.json']
@@ -170,7 +171,9 @@ class TestDashboard(ViewTestCase):
 
 class TestOffer(ViewTestCase):
     """Page for a certain offer."""
-    templates = ['base.html', 'trade.html', 'includes/offer.html']
+    templates = ['base.html', 
+                 'trade.html', 
+                 'includes/offer.html',]
 
     def setUp(self):
         ViewTestCase.setUp(self)
@@ -189,9 +192,71 @@ class TestOffer(ViewTestCase):
             self.assertTemplatesUsed(response, self.templates)
 
 
+class TestService(ViewTestCase):
+    """Page for a certain service."""
+    templates = ['base.html', 
+                 'trade.html', 
+                 'includes/offer.html',
+                 'includes/service_body.html']
+
+    def setUp(self):
+        ViewTestCase.setUp(self)
+        services = Service.objects.all()
+        self.urls = []
+        for service in services:
+            self.urls.append(service.get_absolute_url())
+
+    def test_templates(self):
+        for url in self.urls:
+            response = self.client.get(url)
+            self.assertTemplatesUsed(response, self.templates)
+
+
+class TestGift(ViewTestCase):
+    """Page for a certain gift."""
+    templates = ['base.html', 
+                 'trade.html', 
+                 'includes/offer.html',  
+                 'includes/gift_body.html']
+
+    def setUp(self):
+        ViewTestCase.setUp(self)
+        gifts = Gift.objects.all()
+        self.urls = []
+        for gift in gifts:
+            self.urls.append(gift.get_absolute_url())
+
+    def test_templates(self):
+        for url in self.urls:
+            response = self.client.get(url)
+            self.assertTemplatesUsed(response, self.templates)
+
+
+class TestLoan(ViewTestCase):
+    """Page for a certain loan."""
+    templates = ['base.html', 
+                 'trade.html', 
+                 'includes/offer.html',  
+                 'includes/loan_body.html']
+
+    def setUp(self):
+        ViewTestCase.setUp(self)
+        loans = Loan.objects.all()
+        self.urls = []
+        for loan in loans:
+            self.urls.append(loan.get_absolute_url())
+
+    def test_templates(self):
+        for url in self.urls:
+            response = self.client.get(url)
+            self.assertTemplatesUsed(response, self.templates)
+
+
 class TestDemand(ViewTestCase):
     """Page for a certain demand."""
-    templates = ['base.html', 'trade.html', 'includes/demand.html']
+    templates = ['base.html', 
+                 'trade.html', 
+                 'includes/demand.html',]
 
     def setUp(self):
         ViewTestCase.setUp(self)
@@ -208,6 +273,7 @@ class TestDemand(ViewTestCase):
         for url in self.urls:
             response = self.client.get(url)
             self.assertTemplatesUsed(response, self.templates)
+
 
 # Create
 

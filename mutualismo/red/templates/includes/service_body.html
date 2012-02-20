@@ -1,0 +1,17 @@
+{% load i18n %}
+
+{% if service %}
+  <div class="service">
+      <span class="service_date">{{ service.date }}</span>
+      <p>{{ service.description }}</p>
+      <p class="service_start_date">{{ service.starts }}</p>
+      <p class="service_end_date">{{ service.ends }}</p>
+      <p class="service_availability">{{ service.availability }}</p>
+      <ul class="tag_list">
+      {% for tag in loan.tags.all %}
+        <li>{{ tag.name }}</li>
+      {% endfor %}
+      </ul>
+  </div>
+{% else %}
+{% endif %}

@@ -9,7 +9,7 @@ from settings import ADMINS
 from registration.forms import RegistrationForm
 
 from red.managers import TradeManager
-from red.models import Offer, Demand, Service, Gift, Loan
+from red.models import Demand, Service, Gift, Loan
 from red.forms import ContactForm, DemandForm, ServiceForm, GiftForm, LoanForm
 
 
@@ -91,15 +91,24 @@ def _trade(request, model, slug):
         trade = model.objects.get(slug=slug)
     except model.DoesNotExist:
         trade = None
-    trade_type = model.__name__.lower()
-    data = {trade_type: trade,}
+    data = {'trade': trade,}
     return render_to_response('trade.html',
                               data,
                               RequestContext(request))
 
 def offer(request, offer_slug):
     """Shows information about a certain offer."""
-    return _trade(request, Offer, offer_slug)
+    # XXX Ugly hack (TM)  XXX
+    #  The problem here is that if we pass an `Offer` object
+    #  to the view, we are not able to determine its subclass
+    #  and render the proper template.
+    for cls in [Service, Gift, Loan]:
+        try:
+            cls.objects.get(slug=offer_slug)
+        except cls.DoesNotExist:
+            continue
+        else:
+            return _trade(request, cls, offer_slug)
 
 def demand(request, demand_slug):
     """Shows information about a certain demand."""

@@ -1,20 +1,15 @@
 {% load i18n %}
 
 {% if trade %}
-<h4><a href="{% if trade.is_demand %}     
-               {% url demand trade.slug %}
-             {% else %}
-               {% url offer trade.slug %}
-             {% endif %}">{{ trade.name }}</a></h4>
-  <div class="trade">
-      <span class="trade_date">{{ trade.date }}</span>
-      <p>{{ trade.description }}</p>
-      <ul class="tag_list">
-      {% for tag in offer.tags.all %}
-        <li> {{ tag.name }}</li>
-      {% endfor %}
-      </ul>
-  </div>
+  {% if trade.is_demand %}     
+    {% with trade as demand %}
+      {% include "includes/demand.html" %}
+    {% endwith %}
+  {% else %}
+    {% with trade as offer%}
+      {% include "includes/offer.html" %}
+    {% endwith %}
+  {% endif %}
 {% else %}
   <p>{% trans "We didn't found the trade that you were looking for." %}</p>
 {% endif %}
