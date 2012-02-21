@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load category_tags %}
+{% load i18n %}
+
+{% block main %}
+
+<h1>{% trans "Categories" %}</h1>
+  {% for category in object_list %}
+    <li>
+      <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+    
+    {% if category.children.count %}
+      <ul>
+      {% for child in category.children.all %}
+          <li><a href="{{ child.get_absolute_url }}">{{ child.name }}</a></li>
+      {% endfor %}
+      </ul>
+    </li>
+    {% endif %}
+  {% endfor %}
+
+{% endblock %}

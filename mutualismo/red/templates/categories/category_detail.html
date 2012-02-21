@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block main %}
+
+<h1>{{ category }}</h1>
+  {% if category.description %}
+    <p>{{ category.description }}</p>
+  {% endif %}
+  
+  {% if category.demand_set.count %}
+    <h3>{% trans "Demands" %}</h2>
+    <ul>
+    {% for demand in category.demand_set.all %}
+      <li><a href="{{ demand.get_absolute_url }}">{{ demand.name }}</a></li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% if category.offer_set.count %}
+    <h3>{% trans "Offers" %}</h2>
+    <ul>
+    {% for offer in category.offer_set.all %}
+        <li><a href="{{ offer.get_absolute_url }}">{{ offer.name }}</a></li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+
+{% endblock %}

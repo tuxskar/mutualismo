@@ -16,9 +16,10 @@ class Trade(models.Model):
     description = models.TextField(_('description'))
     date        = models.DateTimeField(_('date'), default = datetime.datetime.now)
     owner       = models.ForeignKey(User)
+
     tags        = TaggableManager(blank=True)
-    # TODO: categorize trades with a 3rd party app
-    visible = models.BooleanField(_('visible'), default=True)
+    category    = models.ForeignKey('categories.Category', null=True)
+    visible     = models.BooleanField(_('visible'), default=True)
 
     slug        = AutoSlugField(populate_from=('name',), unique=True, max_length=255)
     objects     = models.Manager()
@@ -142,9 +143,3 @@ class Exchange(models.Model):
     def __unicode__(self):
         # TODO
         return u'exchange'
-
-
-# Categories by `django-categories`
-
-import categories
-categories.register_fk(Trade)
