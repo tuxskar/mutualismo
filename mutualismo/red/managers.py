@@ -136,3 +136,20 @@ class TradeManager(Manager):
             return loans[:count]
         else:
             return Loan.objects.none()
+
+    def total_users(self):
+        """
+        Return the total of trades
+        """
+        return User.objects.all().count()
+
+    def total_offers(self):
+        """
+        Return the total of offers 
+        """
+
+        return Loan.objects.all().count() \
+				+ Gift.objects.all().count() \
+				+ Service.objects.all().count()
+
+

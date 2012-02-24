@@ -18,12 +18,16 @@ def index(request):
     trades = TradeManager()
     latest_offers = trades.latest_offers()
     latest_demands = trades.latest_demands()
+    total_offers = trades.total_offers()
+    total_users = trades.total_users()
     login_form = AuthenticationForm()
     registration_form = RegistrationForm()
     data = {'latest_offers':     latest_offers,
             'latest_demands':    latest_demands,
             'login_form':        login_form,
-            'registration_form': registration_form,}
+            'registration_form': registration_form,                  
+            'total_offers':      total_offers,
+            'total_users':      total_users,} 
     return render_to_response('index.html', 
                               data,
                               RequestContext(request))
