@@ -16,6 +16,7 @@ class ServiceAdmin(admin.ModelAdmin):
 class DemandAdmin(admin.ModelAdmin):
     pass
 
+
 class ExchangeAdmin(admin.ModelAdmin):
     pass
 

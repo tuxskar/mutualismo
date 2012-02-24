@@ -16,9 +16,10 @@ class Trade(models.Model):
     description = models.TextField(_('description'))
     date        = models.DateTimeField(_('date'), default = datetime.datetime.now)
     owner       = models.ForeignKey(User)
+
     tags        = TaggableManager(blank=True)
-    # TODO: categorize trades with a 3rd party app
-    visible = models.BooleanField(_('visible'), default=True)
+    category    = models.ForeignKey('categories.Category', null=True)
+    visible     = models.BooleanField(_('visible'), default=True)
 
     slug        = AutoSlugField(populate_from=('name',), unique=True, max_length=255)
     objects     = models.Manager()
@@ -44,14 +45,21 @@ class Offer(Trade):
 
 class Demand(Trade):
     # XXX very provisional.
-    TYPE_CHOICE = (
+    TYPE_CHOICES = (
         (0, _('All')),
         (1, _('Service')),
         (2, _('Good for loan')),
         (3, _('Good for gift')),
         (4, _('Communal good')),
     )
-    trade_type = models.IntegerField(_('type'), choices = TYPE_CHOICE, default = 0)
+    trade_type = models.IntegerField(_('type'), choices = TYPE_CHOICES, default = 0)
+    is_demand = True
+
+    def type_for_humans(self):
+        """Returns a human-readable version of ``trade_type``."""
+        for type_code, string in self.TYPE_CHOICES:
+            if type_code == self.trade_type:
+                return string
 
     @models.permalink
     def get_absolute_url(self):
@@ -68,7 +76,14 @@ class Loan(Offer):
         (3, _('Not available')),
     )
     status = models.IntegerField(_('status'), choices = STATUS_CHOICES, default = 1)
+    is_loan = True
     # XXX: Are we going to specify time ranges for loans? Could be optional
+
+    def status_for_humans(self):
+        """Returns a human-readable version of ``status``."""
+        for type_code, string in self.STATUS_CHOICES:
+            if type_code == self.status:
+                return string
 
     class Meta:
         verbose_name = _('loan')
@@ -82,6 +97,7 @@ class Gift(Offer):
     # XXX A gift can pass from non-communal to communal, but not the other way!
     communal  = models.BooleanField(_('communal'))
     available = models.BooleanField(_('available'))
+    is_gift = True
 
     class Meta:
         verbose_name = _('gift')
@@ -102,6 +118,7 @@ class Service(Offer):
     starts       = models.DateTimeField(_('start date'), blank=True, null=True)
     ends         = models.DateTimeField(_('end date'), blank=True, null=True)
     availability = models.TextField(_('availability'), blank=True)
+    is_service = True
 
     class Meta:
         verbose_name = _('service')

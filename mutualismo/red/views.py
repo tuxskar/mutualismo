@@ -9,7 +9,7 @@ from settings import ADMINS
 from registration.forms import RegistrationForm
 
 from red.managers import TradeManager
-from red.models import Offer, Demand, Service, Gift, Loan
+from red.models import Demand, Service, Gift, Loan
 from red.forms import ContactForm, DemandForm, ServiceForm, GiftForm, LoanForm
 
 
@@ -28,9 +28,11 @@ def index(request):
                               data,
                               RequestContext(request))
 
+
 def about(request):
     """About page."""
     return render_to_response('about.html',)
+
 
 def contact(request):
     """Contact page."""
@@ -58,10 +60,10 @@ def contact(request):
                                       RequestContext(request))
     else:
         form = ContactForm()
-
     return render_to_response('contact.html', 
                               {'form': form,}, 
                               RequestContext(request))
+
 
 @login_required
 def dashboard(request):
@@ -78,44 +80,69 @@ def dashboard(request):
                               data,
                               RequestContext(request))
 
-def _trade(request, cls, slug):
+# Read
+
+
+def _trade(request, model, slug):
     """
     Helper function to render a certain trade given its class and slug.
     """
     try:
-        trade = cls.objects.get(slug=slug)
-    except cls.DoesNotExist:
+        trade = model.objects.get(slug=slug)
+    except model.DoesNotExist:
         trade = None
-    trade_type = cls.__name__.lower()
-    data = {trade_type: trade,}
+    data = {'trade': trade,}
     return render_to_response('trade.html',
                               data,
                               RequestContext(request))
 
 def offer(request, offer_slug):
     """Shows information about a certain offer."""
-    return _trade(request, Offer, offer_slug)
+    # XXX Ugly hack (TM)  XXX
+    #  The problem here is that if we pass an `Offer` object
+    #  to the view, we are not able to determine its subclass
+    #  and render the proper template.
+    for cls in [Service, Gift, Loan]:
+        try:
+            cls.objects.get(slug=offer_slug)
+        except cls.DoesNotExist:
+            continue
+        else:
+            return _trade(request, cls, offer_slug)
 
 def demand(request, demand_slug):
     """Shows information about a certain demand."""
     return _trade(request, Demand, demand_slug)
 
-@login_required
-def delete_offer(request, offer_slug):
-    """
-    Deletes the offer corresponding to the given slug if it belongs
-    to the user who is logged in.
 
-    After that, redirects to the dashboard.
+# Create
+
+
+@login_required
+def _create(request, model, form_model, next_view):
+    """
+    A page for creating an instance of the given ``model`` with
+    using the ``form_model`` form and the ``create_<model-name>``.html
+    template.
+    
+    It re-renders itself whit invalid data, and calls ``next_view``
+    when the data is valid.
     """
     user = request.user
-    username = user.username
-    trades = TradeManager()
-    user_offers = trades.offers(username)
-    offer_to_delete = get_object_or_404(user_offers, slug=offer_slug) 
-    if offer_to_delete:
-        offer_to_delete.delete()
-    return dashboard(request)
+    if request.method == 'POST': 
+        instance = model(owner=user,)
+        instance_form = form_model(request.POST, instance=instance) 
+        if instance_form.is_valid(): 
+            instance_form.save()
+            return next_view(request)
+        else:
+            form = instance_form
+    else:
+        form = form_model()
+    return render_to_response('create_%s.html' % model.__name__.lower(), 
+                              {'form': form,}, 
+                              RequestContext(request))
+
 
 @login_required
 def create_demand(request):
@@ -124,21 +151,7 @@ def create_demand(request):
 
     After that, redirects to the dashboard.
     """
-    user = request.user
-    if request.method == 'POST': 
-        demand = Demand(owner=user,)
-        demand_form = DemandForm(request.POST, instance=demand) 
-        if demand_form.is_valid(): 
-            demand_form.save()
-            return dashboard(request)
-        else:
-            form = demand_form
-    else:
-        form = DemandForm()
-    return render_to_response('create_demand.html', 
-                              {'form': form,}, 
-                              RequestContext(request))
-
+    return _create(request, Demand, DemandForm, dashboard)
 
 @login_required
 def create_service(request):
@@ -147,20 +160,8 @@ def create_service(request):
 
     After that, redirects to the dashboard.
     """
-    user = request.user
-    if request.method == 'POST': 
-        service = Service(owner=user,)
-        service_form = ServiceForm(request.POST, instance=service) 
-        if service_form.is_valid(): 
-            service_form.save()
-            return dashboard(request)
-        else:
-            form = service_form
-    else:
-        form = ServiceForm()
-    return render_to_response('create_service.html', 
-                              {'form': form,}, 
-                              RequestContext(request))
+    return _create(request, Service, ServiceForm, dashboard)
+
 
 @login_required
 def create_gift(request):
@@ -169,20 +170,8 @@ def create_gift(request):
 
     After that, redirects to the dashboard.
     """
-    user = request.user
-    if request.method == 'POST': 
-        gift = Gift(owner=user,)
-        gift_form = GiftForm(request.POST, instance=gift) 
-        if gift_form.is_valid(): 
-            gift_form.save()
-            return dashboard(request)
-        else:
-            form = gift_form
-    else:
-        form = GiftForm()
-    return render_to_response('create_gift.html', 
-                              {'form': form,}, 
-                              RequestContext(request))
+    return _create(request, Gift, GiftForm, dashboard)
+
 
 @login_required
 def create_loan(request):
@@ -191,86 +180,125 @@ def create_loan(request):
 
     After that, redirects to the dashboard.
     """
-    user = request.user
+    return _create(request, Loan, LoanForm, dashboard)
+
+
+# Edit
+
+
+def _edit(request, model, form_model, user_instances, slug, next_view):
+    """
+    Given a ``model``, a form for editing that model ``form_model``, the
+    ``user_instances`` of that model and the ``slug`` of one of them, renders
+    a view in which that instance, if exists, can be modified and saved.
+
+    If the instance is not found, a 404 error is raised. Otherwise, the
+    modified instance is saved and ``next_view`` is called with the ``request``
+    parameter.
+    """
+    instance = get_object_or_404(user_instances, slug=slug)
     if request.method == 'POST': 
-        loan = Loan(owner=user,)
-        loan_form = LoanForm(request.POST, instance=loan) 
-        if loan_form.is_valid(): 
-            loan_form.save()
-            return dashboard(request)
+        instance_form = form_model(request.POST, instance=instance) 
+        if instance_form.is_valid(): 
+            instance_form.save()
+            return next_view(request)
         else:
-            form = loan_form
+            form = instance_form
     else:
-        form = LoanForm()
-    return render_to_response('create_loan.html', 
-                              {'form': form,}, 
-                              RequestContext(request))
+        form = form_model(instance=instance)
+    model_name = model.__name__.lower()
+    return render_to_response('edit_%s.html' % (model_name), 
+                              {'form': form,
+                               model_name: instance}, 
+                               RequestContext(request))
+
 
 @login_required
-def create_service(request):
+def edit_demand(request, demand_slug):
     """
-    Creates a service offer belonging to the logged in user.
+    Edits a demand belonging to the logged in user.
 
     After that, redirects to the dashboard.
     """
     user = request.user
-    if request.method == 'POST': 
-        service = Service(owner=user,)
-        service_form = ServiceForm(request.POST, instance=service) 
-        if service_form.is_valid(): 
-            service_form.save()
-            return dashboard(request)
-        else:
-            form = service_form
-    else:
-        form = ServiceForm()
-    return render_to_response('create_service.html', 
-                              {'form': form,}, 
-                              RequestContext(request))
+    trades = TradeManager()
+    user_demands = trades.demands(user.username)
+    return _edit(request=request,
+                 model=Demand,
+                 form_model=DemandForm,
+                 user_instances=user_demands,
+                 slug=demand_slug,
+                 next_view=dashboard)
+
 
 @login_required
-def create_gift(request):
+def edit_service(request, service_slug):
     """
-    Creates a gift offer belonging to the logged in user.
+    Edits a service belonging to the logged in user.
 
     After that, redirects to the dashboard.
     """
     user = request.user
-    if request.method == 'POST': 
-        gift = Gift(owner=user,)
-        gift_form = GiftForm(request.POST, instance=gift) 
-        if gift_form.is_valid(): 
-            gift_form.save()
-            return dashboard(request)
-        else:
-            form = gift_form
-    else:
-        form = GiftForm()
-    return render_to_response('create_gift.html', 
-                              {'form': form,}, 
-                              RequestContext(request))
+    trades = TradeManager()
+    user_services = trades.services(user.username)
+    return _edit(request=request,
+                 model=Service,
+                 form_model=ServiceForm,
+                 user_instances=user_services,
+                 slug=service_slug,
+                 next_view=dashboard)
+
 
 @login_required
-def create_loan(request):
+def edit_gift(request, gift_slug):
     """
-    Creates a loan offer belonging to the logged in user.
+    Edits a gift belonging to the logged in user.
 
     After that, redirects to the dashboard.
     """
     user = request.user
-    if request.method == 'POST': 
-        loan = Loan(owner=user,)
-        loan_form = LoanForm(request.POST, instance=loan) 
-        if loan_form.is_valid(): 
-            loan_form.save()
-            return dashboard(request)
-        else:
-            form = loan_form
-    else:
-        form = LoanForm()
-    return render_to_response('create_loan.html', 
-                              {'form': form,}, 
-                              RequestContext(request))
+    trades = TradeManager()
+    user_gifts = trades.gifts(user.username)
+    return _edit(request=request,
+                 model=Gift,
+                 form_model=GiftForm,
+                 user_instances=user_gifts,
+                 slug=gift_slug,
+                 next_view=dashboard)
+    
+
+@login_required
+def edit_loan(request, loan_slug):
+    """
+    Edits a loan belonging to the logged in user.
+
+    After that, redirects to the dashboard.
+    """
+    user = request.user
+    trades = TradeManager()
+    user_loans = trades.loans(user.username)
+    return _edit(request=request,
+                 model=Loan,
+                 form_model=LoanForm,
+                 user_instances=user_loans,
+                 slug=loan_slug,
+                 next_view=dashboard)
+
+
+# Delete
+
+def _delete(request, user_instances, slug, next_view):
+    """
+    Deletes the instance of corresponding to the given slug 
+    if its in ``user_instances``.
+
+    After that, renders ``next_view``.
+    """
+    instance_to_delete = get_object_or_404(user_instances, slug=slug) 
+    if instance_to_delete:
+        instance_to_delete.delete()
+    return next_view(request)
+
 
 @login_required
 def delete_demand(request, demand_slug):
@@ -284,7 +312,25 @@ def delete_demand(request, demand_slug):
     username = user.username
     trades = TradeManager()
     user_demands = trades.demands(username)
-    demand_to_delete = get_object_or_404(user_demands, slug=demand_slug) 
-    if demand_to_delete:
-        demand_to_delete.delete()
-    return dashboard(request)
+    return _delete(request=request, 
+                   user_instances=user_demands, 
+                   slug=demand_slug, 
+                   next_view=dashboard)
+
+
+@login_required
+def delete_offer(request, offer_slug):
+    """
+    Deletes the offer corresponding to the given slug if it belongs
+    to the user who is logged in.
+
+    After that, redirects to the dashboard.
+    """
+    user = request.user
+    username = user.username
+    trades = TradeManager()
+    user_offers = trades.offers(username)
+    return _delete(request=request, 
+                   user_instances=user_offers, 
+                   slug=offer_slug, 
+                   next_view=dashboard)

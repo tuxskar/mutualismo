@@ -11,26 +11,17 @@ class TradeManagerTest(TestCase):
 
     def setUp(self):
         self.manager = TradeManager()
-    
+
+    # `latest_offers`
     def test_latest_offers_count(self):
         count = 10
         latest_ten_offers = self.manager.latest_offers(count)
         self.assertLessEqual(len(latest_ten_offers), count)
 
-    def test_latest_demands_count(self):
-        count = 10
-        latest_ten_demands = self.manager.latest_demands(count)
-        self.assertLessEqual(len(latest_ten_demands), count)
-
     def test_latest_offer_count_when_negative(self):
         count = -3
         latest_offers = self.manager.latest_offers(count)
         self.assertEqual(0, len(latest_offers))
-
-    def test_latest_demand_count_when_negative(self):
-        count = -3
-        latest_demands = self.manager.latest_demands(count)
-        self.assertEqual(0, len(latest_demands))
 
     def test_latest_offers_sorted_by_date(self):
         latest_offers = self.manager.latest_offers()
@@ -38,12 +29,25 @@ class TradeManagerTest(TestCase):
                                                key=attrgetter('date'),
                                                reverse=True))
 
+
+    # `latest_demands`
+    def test_latest_demands_count(self):
+        count = 10
+        latest_ten_demands = self.manager.latest_demands(count)
+        self.assertLessEqual(len(latest_ten_demands), count)
+
+    def test_latest_demand_count_when_negative(self):
+        count = -3
+        latest_demands = self.manager.latest_demands(count)
+        self.assertEqual(0, len(latest_demands))
+
     def test_latest_demands_sorted_by_date(self):
         latest_offers = self.manager.latest_offers()
         self.assertEqual(latest_offers, sorted(latest_offers, 
                                                key=attrgetter('date'),
                                                reverse=True))
 
+    # `offers`
     def test_user_offers(self):
         alice = User.objects.get(username=u'Alice')
         offers = self.manager.offers(alice)
@@ -60,6 +64,7 @@ class TradeManagerTest(TestCase):
         for index, offer in enumerate(sorted_offers):
             self.assertEqual(offer, offers[index])
 
+    # `demands`
     def test_user_demands(self):
         alice = User.objects.get(username=u'Alice')
         demands = self.manager.demands(alice)
@@ -76,6 +81,7 @@ class TradeManagerTest(TestCase):
         for index, demand in enumerate(sorted_demands):
             self.assertEqual(demand, demands[index])
 
+    # `services`
     def test_user_services(self):
         alice = User.objects.get(username=u'Alice')
         services = self.manager.services(alice)
@@ -92,6 +98,7 @@ class TradeManagerTest(TestCase):
         for index, service in enumerate(sorted_services):
             self.assertEqual(service, services[index])
 
+    # `gifts`
     def test_user_gifts(self):
         alice = User.objects.get(username=u'Alice')
         gifts = self.manager.gifts(alice)
@@ -108,6 +115,7 @@ class TradeManagerTest(TestCase):
         for index, gift in enumerate(sorted_gifts):
             self.assertEqual(gift, gifts[index])
 
+    # `loans`
     def test_user_loans(self):
         alice = User.objects.get(username=u'Alice')
         loans = self.manager.loans(alice)

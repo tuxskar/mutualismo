@@ -1,19 +1,22 @@
 {% load i18n %}
 
 {% if offer %}
-  <h3><a href="{% url red.views.offer offer.slug %}">{{ offer.name }}</a></h3>
-  <div class="offer">
-      <span class="offer_date">{{ offer.date }}</span>
-      <p>{{ offer.description }}</p>
-      <div class="offer_tags">
-      {% for tag in offer.tags.all %}
-          <span class="offer_tag">{{ tag }}</span>
-      {% endfor %}
-      </div>
-	  {% if delete %}
-          <a href="{% url red.views.delete_demand demand.slug %}">{% trans "Delete" %}</a>
-	  {% endif %}
-  </div>
+  <h4><a href="{% url offer offer.slug %}">{{ offer.name }}</a></h4>
+  {% if offer.is_service %}
+    {% with offer as service %} 
+      {% include "includes/service_body.html" %}
+    {% endwith %}
+  {% endif %}
+  {% if offer.is_gift %}
+    {% with offer as gift %}
+      {% include "includes/gift_body.html" %}
+    {% endwith %}
+  {% endif %}
+  {% if offer.is_loan %}
+    {% with offer as loan %}
+      {% include "includes/loan_body.html" %}
+    {% endwith %}
+  {% endif %}
 {% else %}
   <p>{% trans "We didn't found the offer that you were looking for." %}</p>
 {% endif %}

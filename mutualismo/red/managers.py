@@ -8,7 +8,7 @@ from red.models import Offer, Demand, Gift, Loan, Service
 class TradeManager(Manager):
     def latest_offers(self, count=None):
         """
-        Returns the latest ``count`` offers ordered by date.
+        Returns the latest ``count`` offers ordered reversely by date.
         
         By default it returns all the offers.
         """
@@ -28,7 +28,7 @@ class TradeManager(Manager):
 
     def latest_demands(self, count=None):
         """
-        Returns the latest ``count`` demands ordered by date.
+        Returns the latest ``count`` demands ordered reversely by date.
         
         By default it returns all the demands.
         """
@@ -43,7 +43,7 @@ class TradeManager(Manager):
     def offers(self, username, count=None):
         """
         Returns the latest ``count`` offers for the given ``username``
-        ordered by date.
+        ordered reversely by date.
         
         By default it returns all the offers.
         """
@@ -52,7 +52,7 @@ class TradeManager(Manager):
         except User.DoesNotExist:
             return Offer.objects.none()
 
-        offers = Offer.objects.filter(owner=user)
+        offers = Offer.objects.filter(owner=user).order_by('-date')
         if count is None:
             return offers
         elif count > 0: 
@@ -63,7 +63,7 @@ class TradeManager(Manager):
     def demands(self, username, count=None):
         """
         Returns the latest ``count`` demands for the given ``username``
-        ordered by date.
+        ordered reversely by date.
         
         By default it returns all the demands.
         """
@@ -91,7 +91,7 @@ class TradeManager(Manager):
         except User.DoesNotExist:
             return Service.objects.none()
 
-        services = Service.objects.filter(owner=user)
+        services = Service.objects.filter(owner=user).order_by('-date')
         if count is None:
             return services
         elif count > 0: 
@@ -110,7 +110,7 @@ class TradeManager(Manager):
         except User.DoesNotExist:
             return Gift.objects.none()
 
-        gifts = Gift.objects.filter(owner=user)
+        gifts = Gift.objects.filter(owner=user).order_by('-date')
         if count is None:
             return gifts
         elif count > 0: 
@@ -129,7 +129,7 @@ class TradeManager(Manager):
         except User.DoesNotExist:
             return Loan.objects.none()
 
-        loans = Loan.objects.filter(owner=user)
+        loans = Loan.objects.filter(owner=user).order_by('-date')
         if count is None:
             return loans
         elif count > 0: 

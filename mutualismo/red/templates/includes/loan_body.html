@@ -1,0 +1,13 @@
+{% if loan %}
+  <div class="loan">
+      <span class="loan_date">{{ loan.date }}</span>
+      <p>{{ loan.description }}</p>
+      <span class="loan_status">{{ loan.status_for_humans}}</span>
+      <ul class="tag_list">
+      {% for tag in loan.tags.all %}
+        <li>{{ tag.name }}</li>
+      {% endfor %}
+      </ul>
+  </div>
+{% else %}
+{% endif %}

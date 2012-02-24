@@ -1,0 +1,22 @@
+{% load i18n %}
+
+{% if gift %}
+  <div class="gift">
+      <span class="gift_date">{{ gift.date }}</span>
+      <p>{{ gift.description }}</p>
+      {% if gift.communal %}
+        <p class="communal">{% trans "Communal" %}</p>
+      {% endif %}
+      <ul class="tag_list">
+      {% for tag in loan.tags.all %}
+        <li>{{ tag.name }}</li>
+      {% endfor %}
+      </ul>
+  </div>
+{% else %}
+{% endif %}
+{% load i18n %}
+
+{% if gift %}
+{% else %}
+{% endif %}
