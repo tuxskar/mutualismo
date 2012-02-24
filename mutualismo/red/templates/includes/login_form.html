@@ -12,7 +12,7 @@
       <td>{{ login_form.password }}</td>
   </tr>
   </table>
-  <p><a href="{% url auth_password_reset %}">{% trans "Forgot" %}</a>{% trans "your password?" %}  <a href="{% url registration_register %}">{% trans "Need an account?" %}</a></p>
+  <p><a href="{% url auth_password_reset %}">{% trans "Forgot" %}</a> {% trans "your password?" %}  <a href="{% url registration_register %}">{% trans "Need an account?" %}</a></p>
   <input type="hidden" name="next" value="/" />
   <input type="submit" value="Submit" />
 </form>

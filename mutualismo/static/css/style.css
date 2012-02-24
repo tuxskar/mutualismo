@@ -113,9 +113,19 @@ body {
 }
 
 #main {
-    width: 648px;
+    width: 850px;
     margin-left: 17px;
+    float:left;
+}
+#index-main {
+    width: 450px;
     float: left;
+}
+
+#login-right{
+    width: 150px;
+    float: left;
+	margin: 12px 12px 12px 12px;
 }
 
 /* right column */

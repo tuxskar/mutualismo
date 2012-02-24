@@ -11,7 +11,6 @@
         <li>{{ tag.name }}</li>
       {% endfor %}
 		  <a href="{% url red.views.delete_demand demand.slug %}">{% trans "Delete" %}</a>
-	  {% endif %}
       </ul>
    </div>
 {% else %}

@@ -3,7 +3,7 @@
 {% load i18n %}
 
 {% block main %}
-  <div class="demo">
+  <div id="index-main">
   <div id="last_offers">
     <h3 class="large">{% trans "Latest offers" %}</h3>
     <div id="accordion">
@@ -11,7 +11,6 @@
 		  {% include "includes/offer.html" %}
 	  {% endfor %}
     </div> 
-  </div> 
   </div> 
   <hr>
   <div id="last_demands">
@@ -22,11 +21,14 @@
 	  {% endfor %}
     </div>
   </div>
+  </div>
   {% if user.is_authenticated %}
       <!--TODO-->
       <!--valuable information and common actions for the user-->
   {% else %}
+  <div id="login-right" valign:"top">
       {% include "includes/login_form.html" %}
       {% include "includes/registration_form.html" %}
+  </div> 
   {% endif %}
 {% endblock main %}
