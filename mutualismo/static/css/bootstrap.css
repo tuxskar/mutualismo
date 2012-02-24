@@ -2236,6 +2236,11 @@ input[type="submit"].btn.small {
 .nav-list > li + .nav-header {
   margin-top: 9px;
 }
+
+
+
+
+#page-dashboard ul.menu .services,
 .nav-list .active > a,
 .nav-list .active > a:hover {
   color: #ffffff;

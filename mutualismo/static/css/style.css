@@ -1,4 +1,4 @@
-/*  Less Framework 4
+/*  Less Framework 
     http://lessframework.com
     by Joni Korpi
     License: http://opensource.org/licenses/mit-license.php */
@@ -232,4 +232,8 @@ px      68    160    252    344    436    */
         padding: 36px 22px 48px;
     }
     
+}
+
+.navbar .active{
+ font-weight:bold;
 }

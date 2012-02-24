@@ -1,4 +1,7 @@
-    <!-- Navigation bar --!>
+{% load i18n %}
+{% load base_extras %}
+<!doctype html>
+<!-- Navigation bar --!>
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -9,10 +12,11 @@
           </a>
           <a class="brand" href="/">Mutualismo</a>
           <div class="nav-collapse">
+			<div class="menu">
             <ul class="nav">
-			  <li class="active"><a href="{% url dashboard %}">Dashboard</a></li>
-			  <li><a href="{% url about %}">About</a></li>
-              <li><a href="{% url contact %}">Contact</a></li>
+				<li class="dashboard" ><a href="{% url dashboard %}">Dashboard</a></li>
+			  <li class="about"><a href="{% url about %}">about</a></li>
+              <li class="navlink"><a class="{navactive request 'contact'}" href="{% url contact %}">Contact</a></li>
               <li><a href="/search">Search</a></li>
             </ul>
             {% if user.is_authenticated %}
@@ -21,6 +25,7 @@
                 <p class="navbar-text pull-right"><a href="{% url auth_login %}">{% trans "Sign in" %}</a></p>
             {% endif %}
           </div><!--/.nav-collapse -->
+        </div>
         </div>
       </div>
     </div>

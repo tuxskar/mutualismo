@@ -1,5 +1,4 @@
 {% load i18n %}
-{% load base_extras %}
 <!doctype html>
 <head>
   <meta charset="utf-8">
@@ -56,6 +55,16 @@
 	});
 </script>
 
+<script>$('#menu a[href*="' + location.pathname.split("/")[2] + "about"'"][class!="noactive"]').addClass('active'); </script>
+
+  </script>
+  $(document).ready(function () {
+
+      $('.navlink:eq({% block navnum %}-1{% endblock navnum %})').addClass('highlight');
+
+});
+
+</script>
   {% block javascripts %}
   {% endblock %}
 </body>
