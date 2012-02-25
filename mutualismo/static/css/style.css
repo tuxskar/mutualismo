@@ -137,7 +137,7 @@ border-collapse:collapse;
 #stat-table td, #stat-table th 
 {
 font-size:1em;
-border:1px solid #CCFFFF;
+border:1px solid #CC66FF;
 padding:3px 7px 2px 7px;
 }
 #stat-table th 
@@ -146,13 +146,13 @@ font-size:1.1em;
 text-align:left;
 padding-top:5px;
 padding-bottom:4px;
-background-color:#998bf2;
+background-color:#9900FF;
 color:#ffffff;
 }
 #stat-table tr.alt td 
 {
 color:#000000;
-background-color:#EAF2D3;
+background-color:#CC99FF;
 text-align:center;
 }
 

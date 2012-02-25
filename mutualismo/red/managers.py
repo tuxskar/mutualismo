@@ -147,7 +147,6 @@ class TradeManager(Manager):
         """
         Return the total of offers 
         """
-
         return Loan.objects.all().count() \
 				+ Gift.objects.all().count() \
 				+ Service.objects.all().count()
