@@ -6,5 +6,5 @@
 .coverage
 tmp/
 whoosh_index/
-.swp
+*.swp
 whoosh_index/
