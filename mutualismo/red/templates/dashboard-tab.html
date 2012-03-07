@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block main %}
+    <h3>{% blocktrans %}Hello {{ username }}{% endblocktrans %}</h3>
+    <div id="tabs">
+      <ul>
+          <li><a href="#tabs-resume">{% trans "Resume" %}</a></li>
+          <li><a href="#tabs-newdemand">{% trans "New demand" %}</a></li>
+          <li><a href="#tabs-newservice">{% trans "New service" %}</a></li>
+          <li><a href="#tabs-newgift">{% trans "New gift" %}</a></li>
+          <li><a href="#tabs-newloan">{% trans "New loan" %}</a></li>
+      </ul>
+  <div id="tabs-resume">
+      <h4>{% trans "Your offers" %}</h4>
+       <div id="accordion">
+      {% for offer in offers %}
+        {% include "includes/offer.html" %}
+          {% block manage_trade %}
+            <!--<a href="{% url red.views.delete_offer offer.slug %}">{% trans "Delete" %}</a>-->
+          {% endblock manage_trade %}
+      {% endfor %}
+       </div>
+      <h4>{% trans "Your demands" %}</h4>
+       <div id="accordion2">
+           {% for demand in demands%} {{ delete }}
+          {% include "includes/demand.html" %}
+          <!--<a href="{% url red.views.delete_demand demand.slug %}">{% trans "Delete" %}</a>-->
+      {% endfor %}
+     </div>
+     </div>
+  <div id="tabs-newdemand">
+        <form action="/create/demand" method="post">
+          {% csrf_token %}
+      {{ demandForm.as_p }}
+      <input type="submit" value="Submit" />
+    </form>
+  </div>
+  <div id="tabs-newservice">
+        <form action="/create/service" method="post">
+          {% csrf_token %}
+          {{ serviceForm.as_p }}
+          <input type="submit" value="Submit" />
+        </form>
+  </div>
+  <div id="tabs-newgift">
+        <form action="/create/gift" method="post">
+          {% csrf_token %}
+          {{ giftForm.as_p }}
+          <input type="submit" value="Submit" />
+        </form>
+  </div>
+  <div id="tabs-newloan">
+        <form action="/create/loan" method="post">
+          {% csrf_token %}
+          {{ loanForm.as_p }}
+          <input type="submit" value="Submit" />
+        </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block javascripts %} 
+<script>
+	$(function() {
+		$( "#tabs" ).tabs();
+	});
+	</script>
+{% endblock %}

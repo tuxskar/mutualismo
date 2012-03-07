@@ -77,10 +77,16 @@ def dashboard(request):
     trades = TradeManager()
     offers = trades.offers(username)
     demands = trades.demands(username)
+    demandForm = DemandForm()
+    serviceForm,giftForm,loanForm,demandForm = ServiceForm(),GiftForm(),LoanForm(),DemandForm()
     data = {'username': username,
             'offers':   offers,
-            'demands':  demands,}
-    return render_to_response('dashboard.html', 
+            'demands':  demands,
+            'demandForm':  demandForm,
+            'serviceForm':  serviceForm,
+            'loanForm':  loanForm,
+            'giftForm':  giftForm,}
+    return render_to_response('dashboard-tab.html', 
                               data,
                               RequestContext(request))
 

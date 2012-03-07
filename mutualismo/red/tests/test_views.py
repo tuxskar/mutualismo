@@ -151,7 +151,7 @@ class TestContact(ViewTestCase):
 
 class TestDashboard(ViewTestCase):
     """User's dashboard page."""
-    templates = ['base.html', 'dashboard.html', 'includes/offer.html', 'includes/demand.html']
+    templates = ['base.html', 'dashboard-tab.html', 'includes/offer.html', 'includes/demand.html']
 
     def setUp(self):
         ViewTestCase.setUp(self)
@@ -578,7 +578,7 @@ class TestEditDemand(ViewTestCase):
         form = {'name': 'test',
                 'description': 'test',
                 'trade_type': 0,}
-        templates = ['base.html', 'dashboard.html', 'includes/demand.html']
+        templates = ['base.html', 'dashboard-tab.html', 'includes/demand.html']
         for url in self.urls:
             response = self.client.post(url, form)
             self.assertTemplatesUsed(response, templates)
@@ -645,7 +645,7 @@ class TestEditService(ViewTestCase):
         form = {'name': 'test',
                 'description': 'test',
                 'availability': 'always',}
-        templates = ['base.html', 'dashboard.html', 'includes/offer.html']
+        templates = ['base.html', 'dashboard-tab.html', 'includes/offer.html']
         for url in self.urls:
             response = self.client.post(url, form)
             self.assertTemplatesUsed(response, templates)
@@ -713,7 +713,7 @@ class TestEditGift(ViewTestCase):
         form = {'name': 'test',
                 'description': 'test',
                 'trade_type': 0,}
-        templates = ['base.html', 'dashboard.html', 'includes/offer.html']
+        templates = ['base.html', 'dashboard-tab.html', 'includes/offer.html']
         for url in self.urls:
             response = self.client.post(url, form)
             self.assertTemplatesUsed(response, templates)
@@ -770,7 +770,7 @@ class TestEditloan(ViewTestCase):
         form = {'name': 'test',
                 'description': 'test',
                 'status': 1,}
-        templates = ['base.html', 'dashboard.html', 'includes/offer.html']
+        templates = ['base.html', 'dashboard-tab.html', 'includes/offer.html']
         for url in self.urls:
             response = self.client.post(url, form)
             self.assertTemplatesUsed(response, templates)
@@ -793,7 +793,7 @@ class TestEditloan(ViewTestCase):
 
 class TestDeleteDemand(ViewTestCase):
     """Page for deleteing a certain demand."""
-    templates = ['base.html', 'dashboard.html']
+    templates = ['base.html', 'dashboard-tab.html']
 
     def setUp(self):
         ViewTestCase.setUp(self)
@@ -836,7 +836,7 @@ class TestDeleteDemand(ViewTestCase):
 
 class TestDeleteOffer(ViewTestCase):
     """Page for deleting a certain offer."""
-    templates = ['base.html', 'dashboard.html']
+    templates = ['base.html', 'dashboard-tab.html']
 
     def setUp(self):
         ViewTestCase.setUp(self)
