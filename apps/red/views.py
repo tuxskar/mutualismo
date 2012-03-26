@@ -4,13 +4,13 @@ from django.template import RequestContext
 from django.core.mail import EmailMessage
 from django.shortcuts import render_to_response, get_object_or_404
 
-from settings import ADMINS
+from mutualismo.settings import ADMINS
 
 from registration.forms import RegistrationForm
 
-from red.managers import TradeManager
-from red.models import Demand, Service, Gift, Loan
-from red.forms import ContactForm, DemandForm, ServiceForm, GiftForm, LoanForm
+from .managers import TradeManager
+from .models import Demand, Service, Gift, Loan
+from .forms import ContactForm, DemandForm, ServiceForm, GiftForm, LoanForm
 
 
 def index(request):

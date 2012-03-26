@@ -9,7 +9,7 @@ urlpatterns = patterns('',
     url(r'^search/',        include('haystack.urls')),
     url(r'^accounts/',      include('registration.backends.default.urls')),
     url(r'^faq/',           include('faq.urls')),
-    url(r'',                include('red.urls')),
+    url(r'',                include('apps.red.urls')),
 )
 
 import settings

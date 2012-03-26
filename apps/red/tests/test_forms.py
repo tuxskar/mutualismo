@@ -1,8 +1,8 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
 
-from red.forms import ServiceForm
-from red.models import Service
+from ..forms import ServiceForm
+from ..models import Service
 
 class TestServiceForm(TestCase):
     """Test ``ServiceForm`` class."""

@@ -1,4 +1,6 @@
 # coding=utf-8
+
+import sys
 from os import path
 
 
@@ -55,7 +57,7 @@ SECRET_KEY = 'nz^nz&lu2o46v#b^k5y7%p09gcgf&z^#^b+!jb$jhakx4oe6%_'
 
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
+    #'django.template.loaders.app_directories.Loader',
 #     'django.template.loaders.eggs.Loader',
 )
 
@@ -75,10 +77,8 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'mutualismo.urls'
 
 PROJECT_TEMPLATES = path.join(BASE_DIR, 'templates')
-RED_TEMPLATES = path.join(BASE_DIR, 'red/templates')
 TEMPLATE_DIRS = (
     PROJECT_TEMPLATES,
-    RED_TEMPLATES
 )
 
 INSTALLED_APPS = (
@@ -96,13 +96,15 @@ INSTALLED_APPS = (
     'registration',
     'faq',
     'taggit',
-    'debug_toolbar',
+    #'debug_toolbar',
     'django_extensions',
     'registration',
     'django_autoslug',
     'django_nose',
     'haystack',
-    'red',
+
+    # our app
+    'apps.red',
 )
 
 LOGGING = {
@@ -127,7 +129,7 @@ LOGGING = {
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-        'PATH': path.join(path.dirname(__file__), 'whoosh_index'),
+        'PATH': path.join(BASE_DIR, 'whoosh_index'),
     },
 }
 
@@ -137,16 +139,17 @@ ACCOUNT_ACTIVATION_DAYS = 7
 # to be able to reference URLs for `registration`  
 APPEND_SLASH = True
 
-# Testing
-TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+if 'test' in sys.argv:
+    # Testing
+    #TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
-NOSE_ARGS = [
-    '--with-coverage',
-    '--cover-package=red',
-]
+    #NOSE_ARGS = [
+        #'--with-coverage',
+        #'--cover-package=apps.red',
+    #]
 
-# Debugging
+    # Debugging
 
-# Fake email backend for development
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH = path.join(BASE_DIR, 'tmp')
+    # Fake email backend for development
+    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+    EMAIL_FILE_PATH = path.join(BASE_DIR, 'tmp')

@@ -7,11 +7,10 @@ django-autoslug-field==0.2.3
 -e git+https://github.com/django-extensions/django-extensions.git#egg=django-extensions
 -e hg+https://bitbucket.org/ubernostrum/django-registration#egg=django-registration
 django-taggit==0.9.3
-gunicorn==0.13.4
 pycrypto==2.4.1
 simplejson==2.3.0
 ssh==1.7.11
 wsgiref==0.1.2
 Whoosh==2.3.2
--e git+https://github.com/toastdriven/django-haystack.git#egg=django_haystack
+-e git+https://github.com/toastdriven/django-haystack.git#egg=django-haystack
 django-mptt==0.5.2
