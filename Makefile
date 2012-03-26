@@ -16,3 +16,6 @@ base:
 
 dev:
 	$(PIP) install $(PIPFLAGS) $(PIP_DEV_REQUIREMENTS)
+
+test:
+	$(MANAGE) test red
