@@ -15,7 +15,7 @@ Desarrollo
 ----------
 
 Lista de correo:             http://groups.google.com/group/Mutualismo
-Forja y repositorio oficial: http://www.mutualismo.es 
+Repositorio oficial:         http://github.com/alejandrogomez/mutualismo
 
 En Twitter somos @MutualismoCUSL.
 
@@ -29,17 +29,31 @@ solamente hay que lanzar el comando:
 
 Con lo que ya tendríamos todas las dependencias instaladas y actualizadas
 
+Clonación del repo
+------------------
+
+Para clonar el respositorio es necesario tener instalado "git" en nuestro
+sistema. Para clonar el repositorio se ejecuta el siguiente comando:
+
+#> git clone git@github.com:alejandrogomez/mutualismo.git
+
 Ejecución
 ---------
 
-Para ejecutar la aplicación hay que posicionarse en la carpeta "mutualismo" 
-y ejecutar el comando para lanzar la aplicación, o directamente se puede 
-ejecutar este comando una vez clonado el repositorio:
+Para ejecutar la aplicación hay crear una base de datos con algunos datos
+y después posicionarse en la carpeta "mutualismo", ejecutar el comando para
+lanzar el servidor.
+Para crear la base de datos:
+
+#> python mutualismo/manage.py syncdb
+
+Y para lanzar el servidor es el siguiente:
 
 #> python /mutualismo/manage.py startserver
 
 Ahora se puede ver la aplicación web accediendo desde el navegador en la 
 dirección: "http://127.0.0.1:8000/"
+
 
 Para ejecutar los tests se debe de ejecutar el siguiente comando:
 
