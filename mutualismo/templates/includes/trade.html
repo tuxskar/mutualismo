@@ -1,0 +1,15 @@
+{% load i18n %}
+
+{% if trade %}
+  {% if trade.is_demand %}     
+    {% with trade as demand %}
+      {% include "includes/demand.html" %}
+    {% endwith %}
+  {% else %}
+    {% with trade as offer%}
+      {% include "includes/offer.html" %}
+    {% endwith %}
+  {% endif %}
+{% else %}
+  <p>{% trans "We didn't found the trade that you were looking for." %}</p>
+{% endif %}

@@ -1,0 +1,17 @@
+{% load i18n %}
+
+{% if demand %}
+  <h4><a href="{% url demand demand.slug %}">{{ demand.name }}</a></h4>
+  <div class="demand">
+      <span class="demand_date">{{ demand.date }}</span>
+      <p>{{ demand.description }}</p>
+      <p class="demand_type">{{ demand.type_for_humans }}</p>
+      <ul class="tag_list">
+      {% for tag in demand.tags.all %}
+        <li>{{ tag.name }}</li>
+      {% endfor %}
+      </ul>
+   </div>
+{% else %}
+  <p>{% trans "We didn't found the demand that you were looking for." %}</p>
+{% endif %}
