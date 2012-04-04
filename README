@@ -25,9 +25,12 @@ Requisitos
 Para controlar todas las dependencias del proyecto, y ya que se basa en Django, 
 solamente hay que lanzar el comando:
 
-#> pip-install -r pip-requirements.txt
+#> pip install -r requirements/dev.txt
 
 Con lo que ya tendríamos todas las dependencias instaladas y actualizadas
+
+Para usar este método hay que tener cuenta en github y bitbucket para poder 
+descargar todas las dependencias necesarias. 
 
 Clonación del repo
 ------------------
@@ -40,20 +43,48 @@ sistema. Para clonar el repositorio se ejecuta el siguiente comando:
 Ejecución
 ---------
 
-Para ejecutar la aplicación hay crear una base de datos con algunos datos
-y después posicionarse en la carpeta "mutualismo", ejecutar el comando para
-lanzar el servidor.
+Para ejecutar la aplicación hay que crear una base de datos con algunos datos
+de prueba e inicializarla:
+
 Para crear la base de datos:
 
-#> python mutualismo/manage.py syncdb
+#> python manage.py syncdb
+
+Inicialización de la aplicación de categorias:
+
+#> python manage.py migrate
+
+Cargamos los datos de prueba:
+
+#> python manage.py loaddata apps/red/fixtures/test.json
 
 Y para lanzar el servidor es el siguiente:
 
-#> python /mutualismo/manage.py startserver
+#> python /mutualismo/manage.py runserver
 
 Ahora se puede ver la aplicación web accediendo desde el navegador en la 
 dirección: "http://127.0.0.1:8000/"
 
+El único usuario con posibilidad de loguearse se llama:
+
+"Usuario:"     Alice
+"Contraseña:"  alice
+
+Administración
+--------------
+
+Si se quiere ver la zona de administración solamente hay que dirigirse
+a:
+
+"http://127.0.0.1:8000/admin"
+
+Y los credenciales son:
+
+"Usuario:"    admin
+"Contraseña:" admin
+
+Testear
+-------
 
 Para ejecutar los tests se debe de ejecutar el siguiente comando:
 
