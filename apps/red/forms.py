@@ -1,7 +1,7 @@
 from django.forms import Form, ModelForm, CharField, EmailField, BooleanField
 from django.utils.translation import ugettext_lazy as _
 
-from red.models import Demand, Service, Gift, Loan
+from .models import Demand, Service, Gift, Loan
 
 
 class ContactForm(Form):

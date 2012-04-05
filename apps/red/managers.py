@@ -3,7 +3,7 @@ from itertools import chain
 from django.db.models import Manager
 from django.contrib.auth.models import User
 
-from red.models import Offer, Demand, Gift, Loan, Service
+from .models import Offer, Demand, Gift, Loan, Service
 
 class TradeManager(Manager):
     def latest_offers(self, count=None):

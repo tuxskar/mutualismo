@@ -3,7 +3,7 @@ from operator import attrgetter
 from django.contrib.auth.models import User
 from django.test import TestCase
 
-from red.managers import TradeManager
+from ..managers import TradeManager
 
 class TradeManagerTest(TestCase):
     """Test case for ``TradeManager``."""

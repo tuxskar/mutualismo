@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from red.models import Offer, Demand, Loan
+from ..models import Offer, Demand, Loan
 
 
 class TestOffer(TestCase):

@@ -2,7 +2,7 @@ from datetime import datetime
 
 from haystack import indexes
 
-from red.models import Demand, Service, Gift, Loan
+from .models import Demand, Service, Gift, Loan
 
 
 class DemandIndex(indexes.SearchIndex, indexes.Indexable):

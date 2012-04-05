@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import patterns, url
 
-from views import *
+from .views import *
 
 urlpatterns = patterns('red.views',
     url(r'^$',                                     index, name='index'),

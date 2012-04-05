@@ -1,5 +1,6 @@
 from django.contrib import admin
-from red.models import Loan, Gift, Service, Demand, Exchange
+
+from .models import Loan, Gift, Service, Demand, Exchange
 
 class LoanAdmin(admin.ModelAdmin):
     pass

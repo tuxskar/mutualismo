@@ -1,8 +1,8 @@
 from django.core import mail
 from django.test import Client, TestCase
 
-from red.managers import TradeManager
-from red.models import Offer, Service, Demand, Gift, Loan
+from ..managers import TradeManager
+from ..models import Offer, Service, Demand, Gift, Loan
 
 
 class ViewTestCase(TestCase):

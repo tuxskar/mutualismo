@@ -40,7 +40,7 @@ class Offer(Trade):
     # subclasses of ``Offer``.
     @models.permalink
     def get_absolute_url(self):
-        return ('red.views.offer', (), {'offer_slug': self.slug})
+        return ('offer', (), {'offer_slug': self.slug})
 
 
 class Demand(Trade):
@@ -63,7 +63,7 @@ class Demand(Trade):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('red.views.demand', (), {'demand_slug': self.slug})
+        return ('demand', (), {'demand_slug': self.slug})
 
 
 class Loan(Offer):
