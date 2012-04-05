@@ -57,7 +57,7 @@ SECRET_KEY = 'nz^nz&lu2o46v#b^k5y7%p09gcgf&z^#^b+!jb$jhakx4oe6%_'
 
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
-    #'django.template.loaders.app_directories.Loader',
+    'django.template.loaders.app_directories.Loader',
 #     'django.template.loaders.eggs.Loader',
 )
 
