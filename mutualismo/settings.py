@@ -141,12 +141,12 @@ APPEND_SLASH = True
 
 if 'test' in sys.argv:
     # Testing
-    #TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
-    #NOSE_ARGS = [
-        #'--with-coverage',
-        #'--cover-package=apps.red',
-    #]
+    TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+    NOSE_ARGS = [
+        '--with-coverage',
+       '--cover-package=apps.red',
+    ]
 
     # Debugging
 

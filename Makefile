@@ -6,7 +6,7 @@ PIP_DEV_REQUIREMENTS=requirements/dev.txt
 MANAGE=python manage.py
 MANAGE_FLAGS=--noinput
 
-bootstrap: base
+bootstrap: base dev
 	$(MANAGE) syncdb $(MANAGE_FLAGS) 
 	$(MANAGE) migrate $(MANAGE_FLAGS) 
 	$(MANAGE) rebuild_index $(MANAGE_FLAGS) 
