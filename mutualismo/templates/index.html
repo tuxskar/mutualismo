@@ -35,3 +35,20 @@
   </div> 
   {% endif %}
 {% endblock main %}
+{% block javascripts %}
+  <script>
+	$(function() {
+	  $( "#accordion" ).accordion({
+	  	event: "mouseover"
+	  });
+	});
+</script>
+
+  <script>
+	$(function() {
+	  $( "#accordion2" ).accordion({
+	  	event: "mouseover"
+	  });
+	});
+</script>
+{% endblock javascripts %}
