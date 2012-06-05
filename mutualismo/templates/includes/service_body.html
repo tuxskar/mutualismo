@@ -4,6 +4,7 @@
   <div class="service">
       <span class="service_date">{{ service.date }}</span>
       <p>{{ service.description }}</p>
+      <p>{{ service.owner.username }}</p>
       <p class="service_start_date">{{ service.starts }}</p>
       <p class="service_end_date">{{ service.ends }}</p>
       <p class="service_availability">{{ service.availability }}</p>
@@ -11,7 +12,7 @@
       {% for tag in loan.tags.all %}
         <li>{{ tag.name }}</li>
       {% endfor %}
-      {% if user.is_authenticated %}
+      {% if user.is_authenticated and user.username == service.owner.username %}
             <a href="{% url apps.red.views.delete_offer offer.slug %}">{% trans "Delete" %}</a>
       {% endif %}
       </ul>

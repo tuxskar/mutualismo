@@ -5,12 +5,13 @@
   <div class="demand">
       <span class="demand_date">{{ demand.date }}</span>
       <p>{{ demand.description }}</p>
+      <p>{{ demand.owner.username }}</p>
       <p class="demand_type">{{ demand.type_for_humans }}</p>
       <ul class="tag_list">
       {% for tag in demand.tags.all %}
         <li>{{ tag.name }}</li>
       {% endfor %}
-  {% if user.is_authenticated %}
+      {% if user.is_authenticated and user.username == demand.owner.username %}
   <a href="{% url apps.red.views.delete_demand demand.slug %}">{% trans "Delete" %}</a>
   {% endif %}
       </ul>

@@ -3,12 +3,13 @@
   <div class="loan">
       <span class="loan_date">{{ loan.date }}</span>
       <p>{{ loan.description }}</p>
+      <p>{{ loan.owner.username }}</p>
       <span class="loan_status">{{ loan.status_for_humans}}</span>
       <ul class="tag_list">
       {% for tag in loan.tags.all %}
         <li>{{ tag.name }}</li>
       {% endfor %}
-      {% if user.is_authenticated %}
+      {% if user.is_authenticated and user.username == loan.owner.username %}
             <a href="{% url apps.red.views.delete_offer offer.slug %}">{% trans "Delete" %}</a>
       {% endif %}
       </ul>

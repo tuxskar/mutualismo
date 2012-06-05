@@ -4,6 +4,7 @@
   <div class="gift">
       <span class="gift_date">{{ gift.date }}</span>
       <p>{{ gift.description }}</p>
+      <p>{{ gift.owner.username }}</p>
       {% if gift.communal %}
         <p class="communal">{% trans "Communal" %}</p>
       {% endif %}
@@ -11,7 +12,7 @@
       {% for tag in loan.tags.all %}
         <li>{{ tag.name }}</li>
       {% endfor %}
-      {% if user.is_authenticated %}
+      {% if user.is_authenticated and user.username == gift.owner.username %}
             <a href="{% url apps.red.views.delete_offer offer.slug %}">{% trans "Delete" %}</a>
       {% endif %}
       </ul>
