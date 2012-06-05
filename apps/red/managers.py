@@ -43,9 +43,8 @@ class TradeManager(Manager):
     def offers(self, username, count=None):
         """
         Returns the latest ``count`` offers for the given ``username``
-        ordered reversely by date.
-
-        By default it returns all the offers.
+        ordered reversely by date but joined as child offer class
+        to be able to render.
         """
         try:
             user = User.objects.get(username=username)
@@ -59,6 +58,28 @@ class TradeManager(Manager):
         offers = sorted(chain(loans, gifts, services),
                         key=lambda trade: trade.date,
                         reverse=True)
+        if count is None:
+            return offers
+        elif count > 0:
+            return offers[:count]
+        else:
+            return Offer.objects.none()
+
+
+    def offer_objects(self, username, count=None):
+        """
+        Returns the latest ``count`` offers objects for the given
+        ``username`` ordered reversely by date.
+
+        By default it returns all the offers objects.
+        """
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return Offer.objects.none()
+
+        offers = Offer.objects.filter(owner=user).order_by('-date')
+
         if count is None:
             return offers
         elif count > 0:

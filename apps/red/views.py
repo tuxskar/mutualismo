@@ -344,7 +344,7 @@ def delete_offer(request, offer_slug):
     user = request.user
     username = user.username
     trades = TradeManager()
-    user_offers = trades.offers(username)
+    user_offers = trades.offer_objects(username)
     return _delete(request=request,
                    user_instances=user_offers,
                    slug=offer_slug,
