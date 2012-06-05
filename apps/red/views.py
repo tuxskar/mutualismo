@@ -25,24 +25,27 @@ def index(request):
     data = {'latest_offers':     latest_offers,
             'latest_demands':    latest_demands,
             'login_form':        login_form,
-            'registration_form': registration_form,                  
+            'registration_form': registration_form,
             'total_offers':      total_offers,
-            'total_users':      total_users,} 
-    return render_to_response('index.html', 
+            'total_users':      total_users,
+            'is_index':          True,}
+    return render_to_response('index.html',
                               data,
                               RequestContext(request))
 
 
 def about(request):
     """About page."""
-    return render_to_response('about.html',)
+    data = {'is_about':          True,}
+    return render_to_response('about.html',
+                               data,)
 
 
 def contact(request):
     """Contact page."""
-    if request.method == 'POST': 
-        form = ContactForm(request.POST) 
-        if form.is_valid(): 
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
             # process and send mails
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
@@ -60,12 +63,13 @@ def contact(request):
             if cc_myself:
                 email.cc = [sender]
             email.send()
-            return render_to_response('thankyou.html', 
+            return render_to_response('thankyou.html',
                                       RequestContext(request))
     else:
         form = ContactForm()
-    return render_to_response('contact.html', 
-                              {'form': form,}, 
+    return render_to_response('contact.html',
+                              {'form':       form,
+                               'is_contact': True,},
                               RequestContext(request))
 
 
@@ -85,8 +89,9 @@ def dashboard(request):
             'demandForm':  demandForm,
             'serviceForm':  serviceForm,
             'loanForm':  loanForm,
-            'giftForm':  giftForm,}
-    return render_to_response('dashboard-tab.html', 
+            'giftForm':  giftForm,
+            'is_dashboard': True,}
+    return render_to_response('dashboard-tab.html',
                               data,
                               RequestContext(request))
 
@@ -134,23 +139,23 @@ def _create(request, model, form_model, next_view):
     A page for creating an instance of the given ``model`` with
     using the ``form_model`` form and the ``create_<model-name>``.html
     template.
-    
+
     It re-renders itself whit invalid data, and calls ``next_view``
     when the data is valid.
     """
     user = request.user
-    if request.method == 'POST': 
+    if request.method == 'POST':
         instance = model(owner=user,)
-        instance_form = form_model(request.POST, instance=instance) 
-        if instance_form.is_valid(): 
+        instance_form = form_model(request.POST, instance=instance)
+        if instance_form.is_valid():
             instance_form.save()
             return next_view(request)
         else:
             form = instance_form
     else:
         form = form_model()
-    return render_to_response('create_%s.html' % model.__name__.lower(), 
-                              {'form': form,}, 
+    return render_to_response('create_%s.html' % model.__name__.lower(),
+                              {'form': form,},
                               RequestContext(request))
 
 
@@ -207,9 +212,9 @@ def _edit(request, model, form_model, user_instances, slug, next_view):
     parameter.
     """
     instance = get_object_or_404(user_instances, slug=slug)
-    if request.method == 'POST': 
-        instance_form = form_model(request.POST, instance=instance) 
-        if instance_form.is_valid(): 
+    if request.method == 'POST':
+        instance_form = form_model(request.POST, instance=instance)
+        if instance_form.is_valid():
             instance_form.save()
             return next_view(request)
         else:
@@ -217,9 +222,9 @@ def _edit(request, model, form_model, user_instances, slug, next_view):
     else:
         form = form_model(instance=instance)
     model_name = model.__name__.lower()
-    return render_to_response('edit_%s.html' % (model_name), 
+    return render_to_response('edit_%s.html' % (model_name),
                               {'form': form,
-                               model_name: instance}, 
+                               model_name: instance},
                                RequestContext(request))
 
 
@@ -275,7 +280,7 @@ def edit_gift(request, gift_slug):
                  user_instances=user_gifts,
                  slug=gift_slug,
                  next_view=dashboard)
-    
+
 
 @login_required
 def edit_loan(request, loan_slug):
@@ -299,12 +304,12 @@ def edit_loan(request, loan_slug):
 
 def _delete(request, user_instances, slug, next_view):
     """
-    Deletes the instance of corresponding to the given slug 
+    Deletes the instance of corresponding to the given slug
     if its in ``user_instances``.
 
     After that, renders ``next_view``.
     """
-    instance_to_delete = get_object_or_404(user_instances, slug=slug) 
+    instance_to_delete = get_object_or_404(user_instances, slug=slug)
     if instance_to_delete:
         instance_to_delete.delete()
     return next_view(request)
@@ -322,9 +327,9 @@ def delete_demand(request, demand_slug):
     username = user.username
     trades = TradeManager()
     user_demands = trades.demands(username)
-    return _delete(request=request, 
-                   user_instances=user_demands, 
-                   slug=demand_slug, 
+    return _delete(request=request,
+                   user_instances=user_demands,
+                   slug=demand_slug,
                    next_view=dashboard)
 
 
@@ -340,7 +345,7 @@ def delete_offer(request, offer_slug):
     username = user.username
     trades = TradeManager()
     user_offers = trades.offers(username)
-    return _delete(request=request, 
-                   user_instances=user_offers, 
-                   slug=offer_slug, 
+    return _delete(request=request,
+                   user_instances=user_offers,
+                   slug=offer_slug,
                    next_view=dashboard)

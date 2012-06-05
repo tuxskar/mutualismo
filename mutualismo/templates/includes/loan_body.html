@@ -1,3 +1,4 @@
+{% load i18n %}
 {% if loan %}
   <div class="loan">
       <span class="loan_date">{{ loan.date }}</span>
@@ -7,6 +8,9 @@
       {% for tag in loan.tags.all %}
         <li>{{ tag.name }}</li>
       {% endfor %}
+      {% if user.is_authenticated %}
+            <a href="{% url apps.red.views.delete_offer offer.slug %}">{% trans "Delete" %}</a>
+      {% endif %}
       </ul>
   </div>
 {% else %}
