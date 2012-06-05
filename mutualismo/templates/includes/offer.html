@@ -1,7 +1,7 @@
 {% load i18n %}
 
 {% if offer %}
-  <h4><a href="{% url offer offer.slug %}">{{ offer.name }}</a></h4>
+<h4><a href="{% url offer offer.slug %}"><b>{{ offer.name }}</b></a></h4>
   {% if offer.is_service %}
     {% with offer as service %} 
       {% include "includes/service_body.html" %}

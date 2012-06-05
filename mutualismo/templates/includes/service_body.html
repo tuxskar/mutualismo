@@ -2,13 +2,13 @@
 
 {% if service %}
   <div class="service">
-      <span class="service_date">{{ service.date }}</span>
-      <p>{{ service.description }}</p>
+      <span class="service_date"><b>{% trans "Date" %}              : </b> {{ service.date }}</span>
+      <p><b>{% trans "Description" %}                               : </b> {{ service.description }}</p>
       <p>{{ service.owner.username }}</p>
-      <p class="service_start_date">{{ service.starts }}</p>
-      <p class="service_end_date">{{ service.ends }}</p>
-      <p class="service_availability">{{ service.availability }}</p>
-      <ul class="tag_list">
+      <p class="service_start_date"><b>{% trans "Start date" %}     : </b>{{ service.starts }}</p>
+      <p class="service_end_date"><b>{% trans "End date" %}         : </b>{{ service.ends }}</p>
+      <p class="service_availability"><b>{% trans "Availability" %} : </b>{{ service.availability }}</p>
+      <ul class="tag_list"><b>{% trans "Tags"%}                     : </b>
       {% for tag in loan.tags.all %}
         <li>{{ tag.name }}</li>
       {% endfor %}

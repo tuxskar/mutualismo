@@ -2,13 +2,14 @@
 
 {% if gift %}
   <div class="gift">
-      <span class="gift_date">{{ gift.date }}</span>
-      <p>{{ gift.description }}</p>
-      <p>{{ gift.owner.username }}</p>
+      <span class="gift_date"><b>{% trans "Date" %}         : </b> {{ gift.date }}</span>
+      <p><b>{% trans "Description" %}                       : </b> {{ gift.description }}</p>
+      <p><b>{% trans "Owner" %}                             : </b> {{ gift.owner.username }}</p>
       {% if gift.communal %}
-        <p class="communal">{% trans "Communal" %}</p>
+      <p class="communal"><b><i>{% trans "Communal" %}</i></b></p>
       {% endif %}
-      <ul class="tag_list">
+      <ul class="tag_list"><b>{% trans "Tags"%}             : </b>
+
       {% for tag in loan.tags.all %}
         <li>{{ tag.name }}</li>
       {% endfor %}
