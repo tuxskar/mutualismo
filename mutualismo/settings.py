@@ -18,12 +18,12 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE':   'sqlite3', 
-        'NAME':     path.join(BASE_DIR, 'database.db'),                      
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME':     path.join(BASE_DIR, 'database.db'),
         'USER':     '',
-        'PASSWORD': '',                  
-        'HOST':     '',                  
-        'PORT':     '',                  
+        'PASSWORD': '',
+        'HOST':     '',
+        'PORT':     '',
     }
 }
 
@@ -35,10 +35,10 @@ USE_I18N = True
 USE_L10N = True
 
 MEDIA_ROOT = path.join(BASE_DIR, 'media')
-MEDIA_URL  = '/media'
+MEDIA_URL = 'media/'
 
-STATIC_ROOT        = path.join(BASE_DIR, 'static')
-STATIC_URL         = '/static/'
+STATIC_ROOT = path.join(BASE_DIR, 'static')
+STATIC_URL  = '/static/'
 ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 STATICFILES_DIRS = (
@@ -62,7 +62,7 @@ TEMPLATE_LOADERS = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth', 
+    'django.contrib.auth.context_processors.auth',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -91,8 +91,8 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'south',
     'django_autoslug',
-    'categories',
-    'categories.editor',
+    #'categories',
+    #'categories.editor',
     'registration',
     'faq',
     'taggit',
@@ -136,7 +136,7 @@ HAYSTACK_CONNECTIONS = {
 # Registration
 ACCOUNT_ACTIVATION_DAYS = 7
 
-# to be able to reference URLs for `registration`  
+# to be able to reference URLs for `registration`
 APPEND_SLASH = True
 
 if 'test' in sys.argv:

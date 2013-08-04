@@ -10,7 +10,7 @@ from taggit.managers import TaggableManager
 
 class Trade(models.Model):
     """
-    Represents an object or action which can be part of a trade within our network. 
+    Represents an object or action which can be part of a trade within our network.
     """
     name        = models.CharField(_('name'), max_length=124, unique=True)
     description = models.TextField(_('description'))
@@ -18,7 +18,7 @@ class Trade(models.Model):
     owner       = models.ForeignKey(User)
 
     tags        = TaggableManager(blank=True)
-    category    = models.ForeignKey('categories.Category', null=True)
+    #category    = models.ForeignKey('categories.Category', null=True)
     visible     = models.BooleanField(_('visible'), default=True)
 
     slug        = AutoSlugField(populate_from=('name',), unique=True, max_length=255)
@@ -26,7 +26,7 @@ class Trade(models.Model):
 
     class Meta:
         abstract = True
-        
+
     def __unicode__(self):
         return u'%s' % self.name
 
@@ -35,7 +35,7 @@ class Offer(Trade):
     """
     Represents a trade that is offered by its owner.
     """
-    # This class is convenient because it allows us to have a 
+    # This class is convenient because it allows us to have a
     # foreign key to an ``Offer`` model and use that field with
     # subclasses of ``Offer``.
     @models.permalink
@@ -106,12 +106,12 @@ class Gift(Offer):
 
 class Service(Offer):
     """
-    Represents a service that can be offered or demanded.  
+    Represents a service that can be offered or demanded.
     """
     # XXX This is a bit rudimentary, check the Django fields to find
     #     a range of dates with more granularity. We want to be able to specify
     #     the ranges of hours when the service is available in every single
-    #     day. 
+    #     day.
     #
     #     If there are not suitable fields for this, check for 3rd party apps
     #     that provide the wanted functionality.

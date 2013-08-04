@@ -32,16 +32,17 @@
           <a class="brand" href="/">Mutualismo</a>
           <div class="nav-collapse">
             <ul class="nav">
-			  <li class="active"><a href="{% url dashboard %}">Dashboard</a></li>
+			  <li class="active"><a href="{% url "red:dashboard" %}">Dashboard</a></li>
 			  <li><a href="/categories">Categories</a></li>
-			  <li><a href="{% url about %}">About</a></li>
-              <li><a href="{% url contact %}">Contact</a></li>
+			  <li><a href="{% url "red:about" %}">About</a></li>
+              <li><a href="{% url "red:contact" %}">Contact</a></li>
               <li><a href="/search">Search</a></li>
             </ul>
             {% if user.is_authenticated %}
-                <p class="navbar-text pull-right">{% trans "Logged in as" %} <a href="#">{{ user.username }}</a> <a href="{% url auth_logout %}">{% trans "Logout" %}</a></p>
+                <p class="navbar-text pull-right">{% trans "Logged in as"
+                %} <a href="#">{{ user.username }}</a> <a href="{% url 'auth_logout' %}">{% trans "Logout" %}</a></p>
             {% else %}
-                <p class="navbar-text pull-right"><a href="{% url auth_login %}">{% trans "Sign in" %}</a></p>
+                <p class="navbar-text pull-right"><a href="{% url 'auth_login' %}">{% trans "Sign in" %}</a></p>
             {% endif %}
           </div><!--/.nav-collapse -->
         </div>
@@ -49,7 +50,7 @@
     </div>
 
     <!-- Feedback button --!>
-    <div id="feedback"><a href="{% url contact %}">feedback</a></div>
+    <div id="feedback"><a href="{% url "red:contact" %}">feedback</a></div>
 
   <section id="content">
     <div role="main" id="main" class="small">

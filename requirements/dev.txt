@@ -6,3 +6,12 @@ django-debug-toolbar==0.9.4
 coverage==3.5.1
 Werkzeug==0.8.3
 mock==0.8.0
+django-haystack
+django-nose
+django-autoslug-field
+django-registration
+django-taggit
+django-extensions
+django-faq
+South
+Whoosh
