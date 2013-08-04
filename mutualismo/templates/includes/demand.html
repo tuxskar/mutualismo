@@ -1,7 +1,7 @@
 {% load i18n %}
 
 {% if demand %}
-  <h4><a href="{% url demand demand.slug %}">{{ demand.name }}</a></h4>
+  <h4><a href="{% url "red:demand" demand.slug %}">{{ demand.name }}</a></h4>
   <div class="demand">
       <span class="demand_date">{{ demand.date }}</span>
       <p>{{ demand.description }}</p>

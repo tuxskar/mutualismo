@@ -18,5 +18,5 @@ urlpatterns = patterns('red.views',
     url(r'^create/gift',                           create_gift, name='create_gift'),
     url(r'^create/loan',                           create_loan, name='create_loan'),
     url(r'^delete/offer/(?P<offer_slug>[\w-]+)',   delete_offer, name='delete_offer'),
-    url(r'^delete/demand/(?P<demand_slug>[\w-]+)', delete_demand, name='delete_deamand'),
+    url(r'^delete/demand/(?P<demand_slug>[\w-]+)', delete_demand, name='delete_demand'),
 )

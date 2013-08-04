@@ -18,7 +18,7 @@
       {% for offer in offers %}
 	    {% include "includes/offer.html" %}
 	      {% block manage_trade %}
-            <a href="{% url apps.red.views.delete_offer offer.slug %}">{% trans "Delete" %}</a>
+            <a href="{% url 'apps.red.views.delete_offer' offer.slug %}">{% trans "Delete" %}</a>
 	      {% endblock manage_trade %}
       {% endfor %}
        </div>
@@ -26,7 +26,7 @@
 	   <div id="accordion2">
       {% for demand in demands %}
           {% include "includes/demand.html" with delete="true" %}
-          <!--<a href="{% url apps.red.views.delete_demand demand.slug %}">{% trans "Delete" %}</a>-->
+          <a href="{% url 'apps.red.views.delete_demand' demand.slug %}">{% trans "Delete" %}</a>
       {% endfor %}
      </div>
     </section>
